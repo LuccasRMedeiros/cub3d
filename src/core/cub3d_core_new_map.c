@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_map_parser.c                            :+:      :+:    :+:   */
+/*   cub3d_core_new_map.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 22:19:14 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/14 22:24:25 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/15 12:17:28 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/16 16:09:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Here the map is parsed to an array.
+** Create a new t_map.
 */
 
-#include "cub3d_core.h"
+t_map	*new_map(void)
+{
+	t_map	*new;
 
-int	*map_parser(char **map)
+	new = malloc(sizeof *new);
+	if (!new)
+		return (NULL);
+	new->name = NULL;
+	new->tileset = new_tile();
+	new->spriteset = new_sprite();
+	new->layout = NULL;
+	new->map_x = 0;
+	new->map_y = 0;
+}
