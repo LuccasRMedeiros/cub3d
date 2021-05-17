@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-05-17T13:15:50.055Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="3OB-xT977nmD9OTBk5yk" version="14.6.13" type="github">
+<mxfile host="app.diagrams.net" modified="2021-05-17T13:34:05.707Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="0Ivj5j9Tx1YnkgRy6EyR" version="14.6.13" type="github">
   <diagram name="Page-1" id="9f46799a-70d6-7492-0946-bef42562c5a5">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
       <root>
@@ -7,7 +7,7 @@
         <mxCell id="Ikg8jb_DaZGRDgJEE0CS-3" value="&lt;p style=&quot;text-align: justify&quot;&gt;&lt;span&gt;&lt;font style=&quot;font-size: 12px ; line-height: 200%&quot;&gt;C isn&#39;t an object oriented programing language, even though it is possible to adopt a similar aproach to make a program, using structs.&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;align=left;strokeColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="20" y="20" width="160" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="3tqWQ6UETtMJ4lxkTFmu-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Ikg8jb_DaZGRDgJEE0CS-4" target="3tqWQ6UETtMJ4lxkTFmu-19">
+        <mxCell id="3tqWQ6UETtMJ4lxkTFmu-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="Ikg8jb_DaZGRDgJEE0CS-4" target="3tqWQ6UETtMJ4lxkTFmu-19">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Ikg8jb_DaZGRDgJEE0CS-4" value="t_map" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#FFFFFF;strokeWidth=1;" parent="1" vertex="1">
@@ -71,7 +71,7 @@
           <mxGeometry y="52" width="140" height="26" as="geometry" />
         </mxCell>
         <mxCell id="3tqWQ6UETtMJ4lxkTFmu-10" value="t_scene" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;strokeColor=#FFFFFF;strokeWidth=1;" vertex="1" parent="1">
-          <mxGeometry x="860" y="228" width="140" height="92" as="geometry" />
+          <mxGeometry x="860" y="180" width="140" height="92" as="geometry" />
         </mxCell>
         <mxCell id="3tqWQ6UETtMJ4lxkTFmu-11" value="size_t res[2]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="3tqWQ6UETtMJ4lxkTFmu-10">
           <mxGeometry y="40" width="140" height="26" as="geometry" />
