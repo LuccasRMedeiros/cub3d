@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/16 20:23:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:34:39 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct	s_map
 	char			*name;
 	t_tile			*tileset; // Array of tiles
 	t_sprite		*spriteset; // Array of sprites
+	unsigned char	floor_color[3]; // Color of the floor
+	unsigned char	ceilling_color[3]; // Color of the ceiling
 	char			**layout; // Array of lines found in .cub file
 	size_t			map_x; // Height
 	size_t			map_y; // Width
@@ -50,8 +52,6 @@ typedef struct	s_map
 typedef struct	s_scene
 {
 	size_t			res[2]; // Width of the window to draw the scene
-	unsigned char	floor_color[3]; // Color of the floor
-	unsigned char	ceilling_color[3]; // Color of the ceiling
 	t_map			*map; // The map to be drawed
 }				t_scene;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_scene_parser.c                          :+:      :+:    :+:   */
+/*   cub3d_core_read_cub.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/16 20:23:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/17 18:03:49 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,21 @@
 void	select_case_line(char *line, t_scene *scene)
 {
 	if (!ft_strncmp(line, "R", 1)
-		do_something;
+		set_scene_resolution(line, scene);
 	else if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) 
 			|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
-		do_something;
+		set_tileset(line, scene);
 	else if (!ft_strncmp(line, "S", 1))
-		do_something;
+		do_something();
 	else if (!ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
-		do_something;
-	if (scene->res && scene->floor_color && scene->ceilling_color)
-		do_something;
+		do_something();
+	else if (scene->res && scene->floor_color && scene->ceilling_color)
+		do_something();
+	else
+		read_cub_error();
 }
 
-t_scene	*compose_scene(char *cub_path)
+t_scene	*read_cub(char *cub_path)
 {
 	t_scene	*scene;
 	int		fd;
