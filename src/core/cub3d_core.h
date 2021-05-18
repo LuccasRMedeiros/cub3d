@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 18:34:39 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/17 22:48:22 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 typedef struct	s_tile
 {
-	unsigned int	id;	// Defines what char represents this tile
-	char			*wall_no; // North cube face texture
-	char			*wall_so; // South cube face texture
-	char			*wall_we; // West cube face texture
-	char			*wall_ea; // East cube face texture
+	char	id;	// Defines what char represents this tile
+	char	*wall_no; // North cube face texture
+	char	*wall_so; // South cube face texture
+	char	*wall_we; // West cube face texture
+	char	*wall_ea; // East cube face texture
 }				t_tileset;
 
 typedef struct	s_sprite
 {
-	unsigned int	id; // Defines what number represents its sprite
-	char			*sprite; // Sprite texture
+	char	id; // Defines what number represents its sprite
+	char	*sprite; // Sprite texture
 }				t_sprite;
 
 typedef struct	s_map
@@ -42,8 +42,8 @@ typedef struct	s_map
 	char			*name;
 	t_tile			*tileset; // Array of tiles
 	t_sprite		*spriteset; // Array of sprites
-	unsigned char	floor_color[3]; // Color of the floor
-	unsigned char	ceilling_color[3]; // Color of the ceiling
+	unsigned char	floor[3]; // Color of the floor
+	unsigned char	ceilling[3]; // Color of the ceiling
 	char			**layout; // Array of lines found in .cub file
 	size_t			map_x; // Height
 	size_t			map_y; // Width
