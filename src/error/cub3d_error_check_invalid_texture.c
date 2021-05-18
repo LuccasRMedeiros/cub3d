@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 18:03:19 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 10:16:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	check_invalid_texture(char *path)
 	if (fd == -1)
 	{
 		error = ft_strcomb(3, "file: ", path, " was not found.");
-		error_msg(error, "cub file");
+		error_msg(error, "texture file");
 		error = NULL;
 		free(error);
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 22:48:22 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 10:22:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,11 @@ t_map		*new_map(void);
 void		del_map(t_map *del);
 t_scene		*new_scene(void);
 void		del_scene(t_scene *del);
+t_scene		*read_cub(char *cub_path);
+void		set_scene_resolution(char *line, t_scene *scene);
+void		set_tileset(char *line, t_scene *scene);
+void		set_spriteset(char *line, t_scene *scene);
+void		set_floor_color(char *line, t_scene *scene);
+void		set_ceilling_color(char *line, t_scene *scene);
 
 #endif

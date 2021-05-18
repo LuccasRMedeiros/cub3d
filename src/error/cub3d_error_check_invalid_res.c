@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_error_check_invalid_resolution.c             :+:      :+:    :+:   */
+/*   cub3d_error_check_invalid_res.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 17:53:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 10:16:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	check_invalid_res(char **values)
 		{
 			if (ft_isalpha(values[vi][i]) || values[vi][i] == '-')
 			{
-				error_msg("Invalid value for resolution", "cub file");
+				error_msg("Invalid value for resolution", "resolution");
 				return (true);
 			}
 			++i
@@ -44,7 +44,7 @@ bool	check_invalid_res(char **values)
 	}
 	if (vi < 2 || vi > 2)
 	{
-		error_msg("Resolution must have width and height", "cub file");
+		error_msg("Resolution must have width and height", "resolution");
 		return (true);
 	}
 }
