@@ -1,10 +1,10 @@
 R 800 600
-NO ../resources/tile1.bmp
-SO ../resources/tile2.bmp
-WE ../resources/tile3.bmp
-EA ../resources/tile4.bmp
+NO ./resources/tile1.bmp
+SO ./resources/tile2.bmp
+WE ./resources/tile3.bmp
+EA ./resources/tile4.bmp
 
-S ../resources/vase.bmp
+S ./resources/vase.bmp
 F 104, 128, 136
 C 168, 152, 104
 

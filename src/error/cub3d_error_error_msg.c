@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 18:33:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/16 18:53:05 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/19 13:39:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	error_msg(char *msg, char *obj)
 {
 	ft_fprintf(2, "\e[0;31mA problem has ocurred with/at %s: \e[0m\n", obj);
 	ft_fprintf(2, msg);
-	write(2, '\n', 1);
+	write(2, "\n", 1);
 }

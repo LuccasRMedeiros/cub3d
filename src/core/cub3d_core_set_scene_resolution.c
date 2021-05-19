@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:27:16 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 22:29:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:58:55 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void	set_scene_resolution(char *line, t_scene *scene)
 	values = ft_split(line + 1, ' ');
 	if (check_invalid_res(values))
 		return ;
-	scene->res[0] = ft_atoi(*values);
-	++values;
-	scene->res[1] = ft_atoi(*values);
+	scene->res[0] = ft_atoi(values[0]);
+	scene->res[1] = ft_atoi(values[1]);
 	free(values);
 	scene->status += 4;
 }

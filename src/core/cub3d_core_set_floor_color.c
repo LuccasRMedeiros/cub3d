@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:19:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 22:48:22 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/19 12:05:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	set_floor_color(char *line, t_scene *scene)
 	rgb = ft_split(line + 1, ' ');
 	if (check_invalid_color(rgb, "floor"))
 		return ;
-	scene->map->floor[0] = ft_atoi(rgb[0]);
-	scene->map->floor[1] = ft_atoi(rgb[1]);
-	scene->map->floor[2] = ft_atoi(rgb[2]);
-	ft_destroyer(rgb);
+	scene->map->floor_color[0] = ft_atoi(rgb[0]);
+	scene->map->floor_color[1] = ft_atoi(rgb[1]);
+	scene->map->floor_color[2] = ft_atoi(rgb[2]);
+	ft_destroyer((void **)rgb);
 }

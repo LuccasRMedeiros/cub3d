@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 10:16:28 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/19 13:42:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	check_invalid_res(char **values)
 				error_msg("Invalid value for resolution", "resolution");
 				return (true);
 			}
-			++i
+			++i;
 		}
 		++vi;
 	}
@@ -47,4 +47,5 @@ bool	check_invalid_res(char **values)
 		error_msg("Resolution must have width and height", "resolution");
 		return (true);
 	}
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 10:16:28 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/19 13:38:25 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 
 #include "cub3d_error.h"
 
-bool	check_invalid_texture(char *path)
+bool	check_invalid_texture(char *path, char *where)
 {
 	int		fd;
-	char	error;
+	char	*error;
 	size_t	ext_pos;
 
 	fd = open(path, O_RDONLY);
@@ -33,17 +33,17 @@ bool	check_invalid_texture(char *path)
 	if (fd == -1)
 	{
 		error = ft_strcomb(3, "file: ", path, " was not found.");
-		error_msg(error, "texture file");
+		error_msg(error, where);
 		error = NULL;
 		free(error);
 		return (true);
 	}
 	close(fd);
 	ext_pos = ft_strlen(path) - 4;
-	if (ft_strncmp(line + ext_pos, ".bmp", 4) != 0)
+	if (ft_strncmp(path + ext_pos, ".bmp", 4) != 0)
 	{
 		error = ft_strcomb(3, "file: ", path, " have invalid format.");
-		error_msg(error, "texture file");
+		error_msg(error, where);
 		error = NULL;
 		free(error);
 		return (true);

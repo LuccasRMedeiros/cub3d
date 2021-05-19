@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 22:04:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/19 15:17:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	main(int argc, char **argv)
 		del_scene(scene);
 		exit(-1);
 	}
+	del_scene(scene);
 	return (argc);
 }
