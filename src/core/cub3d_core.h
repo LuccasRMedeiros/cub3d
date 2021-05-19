@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 10:22:13 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:29:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct	s_tile
 	char	*wall_so; // South cube face texture
 	char	*wall_we; // West cube face texture
 	char	*wall_ea; // East cube face texture
-}				t_tileset;
+}				t_tile;
 
 typedef struct	s_sprite
 {
@@ -51,8 +51,9 @@ typedef struct	s_map
 
 typedef struct	s_scene
 {
-	size_t			res[2]; // Width of the window to draw the scene
-	t_map			*map; // The map to be drawed
+	int		status; // Tells the program if it can continue or must stop
+	size_t	res[2]; // Width of the window to draw the scene
+	t_map	*map; // The map to be drawed
 }				t_scene;
 
 t_tile		*new_tile(void);

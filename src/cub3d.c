@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 17:09:47 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:04:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@
 
 int	main(int argc, char **argv)
 {
-	if (read_cub(*argv[0]) == -1)
+	t_scene	*scene;
+
+	scene = read_cub(argv[1]);
+	if (scene->status == -1)
+	{
+		del_scene(scene);
 		exit(-1);
-	do_nothing();
-	return (0);
+	}
+	return (argc);
 }

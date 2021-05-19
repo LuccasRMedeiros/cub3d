@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:04:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 18:34:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:29:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** Requires a line and a scene. The line is a string processed by the gnl, it  -
 ** is assumed that the first content of such line is a "S" char.
 ** "scene" is a address to a initialized t_scene instance.
+** Upon a successfully set adds 2 to scene status.
 */
 
 #include "cub3d_core.h"
@@ -33,4 +34,5 @@ void	set_spriteset(char *line, t_scene *scene)
 		return ;
 	}
 	scene->map->spriteset->sprite = path;
+	scene->status += 2;
 }

@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/05/18 18:24:06 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/05/18 21:54:07 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ BIN = cub3D
 
 RULE = all
 
-MAKE_EXT = make -C $(MAKEFILE) $(RULE)
+MAKE_EXT = make --no-print-directory -C $(MAKEFILE) $(RULE)
 
 MSG_DONE = echo " -- Done!"
 
@@ -70,34 +70,16 @@ SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 
-OBJ = $(SRC:%.c=%.o)
-
 SRC_FULL = $(addprefix ./src/, $(SRC))
-
-OBJ_FULL = $(addprefix ./out/, $(OBJ))
 
 all: $(BIN)
 	@echo "$$CUBED"
 	@$(MSG_DONE)
 
-$(BIN): makedeps makeft makemlx
+$(BIN): makeft makemlx
 	@echo "Generating excutable $(BIN)"
-	$(CC) $(FLAGS) $(INCLUDES) $(LIBS) -o $(BIN) $(OBJ_FULL) -c ./src/cub3d.c $(SRC_FULL)
+	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(BIN)
 	@echo "To use it call ./$(BIN) maps/map.cub"
-
-makedeps:
-	@echo "Creating 'out' folder and its subdirectories"
-	@mkdir -p ./out
-	@echo "Creating 'core' sub directory"
-	@mkdir -p ./out/core
-	@echo "Creating 'core/structs' sub directory"
-	@mkdir -p ./out/core/structs
-	@echo "Creating 'draw' sub directory"
-	@mkdir -p ./out/draw
-	@echo "Creating 'error' sub directory"
-	@mkdir -p ./out/error
-	@$(MSG_DONE)
-
 
 makeft: MAKEFILE = $(LIBFT)
 
@@ -130,8 +112,6 @@ cleanmlx:
 clean: RULE = clean
 
 clean: cleanft cleanmlx
-	@echo "Removing object files"
-	@rm -rf ./out
 
 fcleanft: MAKEFILE = $(LIBFT)
 
@@ -145,15 +125,9 @@ fcleanmlx: MAKEFILE = $(MLBX)
 
 fcleanmlx: RULE = fclean
 
-fcleanmlx:
-	@echo "Removing dependencies 1/2"
-	@$(MAKE_EXT)
-
 fclean: RULE = fclean
 
-fclean: fcleanft fcleanmlx
-	@echo "Removing object files"
-	@rm -rf ./out
+fclean: fcleanft cleanmlx
 	@echo "Removing executable"
 	@echo "Source code will be preserved"
 	@rm -f $(BIN)

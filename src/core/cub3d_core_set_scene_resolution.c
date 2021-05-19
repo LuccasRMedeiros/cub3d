@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:27:16 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/17 18:03:49 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/18 22:29:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 ** The scene must be an initialized scene address, so set_scene_resolution wii -
 ** process data for its res member.
 ** set_scene_resolution doesn't returns any value.
+** Upon a successfully set adds 4 to scene status.
 */
 
 #include "cub3d_core.h"
@@ -33,4 +34,5 @@ void	set_scene_resolution(char *line, t_scene *scene)
 	++values;
 	scene->res[1] = ft_atoi(*values);
 	free(values);
+	scene->status += 4;
 }
