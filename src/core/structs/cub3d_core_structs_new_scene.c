@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 15:22:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 11:57:47 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 18:34:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_scene	*new_scene(void)
 	new = malloc(sizeof *new);
 	if (!new)
 		return (NULL);
+	new->status = 0;
 	new->res[0] = 0;
 	new->res[1] = 0;
 	new->map = new_map();

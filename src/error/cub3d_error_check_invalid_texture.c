@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 13:38:25 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 18:01:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ bool	check_invalid_texture(char *path, char *where)
 	}
 	return (false);
 }
-

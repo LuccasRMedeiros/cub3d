@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 20:18:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 17:50:31 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # define ELEMENTS "012NSWE"
 
 t_scene		*read_cub(char *cub_path);
-void	set_scene_resolution(char *line, t_scene *scene);
-void	set_tileset(char *line, t_scene *scene);
-void	set_spriteset(char *line, t_scene *scene);
-void	set_floor_color(char *line, t_scene *scene);
-void	set_ceilling_color(char *line, t_scene *scene);
-void	set_layout(char *line, t_scene *scene, size_t gnl_stts);
+void		set_scene_resolution(char *line, t_scene *scene);
+void		set_tileset(char *line, t_scene *scene);
+void		set_spriteset(char *line, t_scene *scene);
+void		set_floor_color(char *line, t_scene *scene);
+void		set_ceilling_color(char *line, t_scene *scene);
+void		set_layout(char *line, t_scene *scene, size_t gnl_stts);
 
 #endif

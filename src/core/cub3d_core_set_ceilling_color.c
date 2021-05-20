@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:47:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 12:05:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 17:55:20 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 void	set_ceilling_color(char *line, t_scene *scene)
 {
-	char **rgb;
+	char	**rgb;
 
 	rgb = ft_split(line + 1, ' ');
 	if (check_invalid_color(rgb, "ceilling"))
@@ -30,5 +30,6 @@ void	set_ceilling_color(char *line, t_scene *scene)
 	scene->map->ceilling_color[0] = ft_atoi(rgb[0]);
 	scene->map->ceilling_color[1] = ft_atoi(rgb[1]);
 	scene->map->ceilling_color[2] = ft_atoi(rgb[2]);
+	scene->status += 1;
 	ft_destroyer((void **)rgb);
 }

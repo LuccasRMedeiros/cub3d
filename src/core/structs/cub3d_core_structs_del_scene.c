@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 15:43:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 13:25:26 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 18:34:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	del_scene(t_scene *del)
 
 	map = del->map;
 	del_map(map);
+	del->status = 0;
 	del->res[0] = 0;
 	del->res[1] = 0;
 	free(del);

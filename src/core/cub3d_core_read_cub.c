@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 20:28:47 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 17:54:41 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	select_case_line(char *line, t_scene *scene, int gnl_stts)
 		return ;
 	else if (!ft_strncmp(line, "R", 1))
 		set_scene_resolution(line, scene);
-	else if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) 
-			|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
+	else if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
+		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
 		set_tileset(line, scene);
 	else if (!ft_strncmp(line, "S", 1))
 		set_spriteset(line, scene);
@@ -34,7 +34,7 @@ void	select_case_line(char *line, t_scene *scene, int gnl_stts)
 		set_floor_color(line, scene);
 	else if (!ft_strncmp(line, "C", 1))
 		set_ceilling_color(line, scene);
-	else if (scene->status == 10)
+	else if (scene->status == 12)
 		set_layout(line, scene, gnl_stts);
 	else if (scene->status == -1)
 		exit(-1);
@@ -49,7 +49,7 @@ t_scene	*read_cub(char *cub_path)
 
 	scene = new_scene();
 	fd = open(cub_path, O_RDONLY);
-	gnl_stts = 1; // Initializes with one to grant enter in while loop
+	gnl_stts = 1;
 	if (fd == -1)
 	{
 		error_msg("File not found", "informed cub file");

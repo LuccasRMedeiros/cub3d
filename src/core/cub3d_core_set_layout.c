@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 20:18:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 17:15:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool	is_layout_pattern(char *line)
 
 	i = 0;
 	y = 0;
-	while (line[i] != '\n' || line[i] != '\0')
+	while (line[i] != '\n' && line[i] != '\0')
 	{
 		if (ft_strhvchr(ELEMENTS, line[i]))
 			++y;
@@ -44,16 +44,25 @@ static bool	is_layout_pattern(char *line)
 
 void	set_layout(char *line, t_scene *scene, size_t gnl_stts)
 {
-	size_t	map_x;
+	static char	*layout;
 
-	map_x = scene->map->map_x;
+	if (!layout)
+		layout = ft_calloc(1, sizeof(char));
 	if (is_layout_pattern(line))
 	{
-		scene->map->layout[map_x] = line;
-		scene->map->map_x += 1;
+		layout = ft_reallocncat(layout, line);
+		layout = ft_reallocncat(layout, "\n");
 	}
 	else if (!gnl_stts)
-		scene->status += 10;
-	if (scene->status == 20)
-		do_nothing();
+	{
+		if (check_invalid_layout(layout))
+		{
+			scene->status = -1;
+			return ;
+		}
+		scene->map->layout = ft_split(layout, '\n');
+		layout = NULL;
+		free(layout);
+		scene->status += 8;
+	}	
 }

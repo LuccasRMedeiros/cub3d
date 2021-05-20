@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:20:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 13:56:55 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/20 11:22:39 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ bool	check_invalid_color(char **rgb, char *area)
 		}
 		++rgb_i;
 	}
-	ft_destroyer((void **)rgb);
 	if (rgb_i < 3 || rgb_i > 3)
 	{
 		error_msg("The color must be composed by RGB", area);

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_structs_new_sprite.c                    :+:      :+:    :+:   */
+/*   cub3d_draw_print_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 11:56:31 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 17:58:03 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/20 15:35:25 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/20 15:42:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Initialize a new t_sprite.
+** It is like "do_nothing", a placeholder function to test compilation and see -
+** everything is been parsing correctly.
 */
 
-#include "cub3d_core_structs.h"
+#include "cub3d_draw.h"
 
-t_sprite	*new_sprite(void)
+void	print_map(t_scene *scene)
 {
-	t_sprite	*new;
+	size_t	ln;
+	char	**layout;
 
-	new = malloc(sizeof *new);
-	if (!new)
-		return (NULL);
-	new->id = 0;
-	new->sprite = NULL;
-	return (new);
+	ln = 0;
+	layout = scene->map->layout;
+	while (layout[ln] != NULL)
+	{
+		printf("\e[1;31m%s\e[0m\n", layout[ln]);
+		++ln;
+	}
 }
