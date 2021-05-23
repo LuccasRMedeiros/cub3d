@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/05/20 15:27:50 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/05/22 13:43:18 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ define CUBED
 endef
 export CUBED
 
-CC = clang
+CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -55,6 +55,7 @@ INCLUDES =	-I src/libs/libft/headers \
 			-I src/core \
 			-I src/error \
 			-I src/draw \
+			-I src/world \
 
 LIBFT =	./src/libs/libft
 
@@ -63,9 +64,10 @@ MLBX = 	./src/libs/minilibx-linux
 LIBS =  -L$(LIBFT) -lft \
 
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
-		$(addprefix core/structs/, $(notdir $(wildcard ./src/core/structs/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
+		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
+		$(addprefix world/structs/, $(notdir $(wildcard ./src/world/structs/*.c))) \
 
 SRC_FULL = $(addprefix ./src/, $(SRC))
 

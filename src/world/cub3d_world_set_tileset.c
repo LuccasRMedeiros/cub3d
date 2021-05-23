@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_set_tileset.c                           :+:      :+:    :+:   */
+/*   cub3d_world_set_tileset.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:26:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/18 22:29:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 12:14:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** adds a total of 4 to scene status).
 */
 
-#include "cub3d_core.h"
+#include "cub3d_world.h"
 
 void	set_tileset(char *line, t_scene *scene)
 {
@@ -30,8 +30,8 @@ void	set_tileset(char *line, t_scene *scene)
 	path = ft_strdup(ft_strchr(line, '.'));
 	if (check_invalid_texture(path, "Wall texture"))
 	{
-		path = NULL;
 		free(path);
+		path = NULL;
 		scene->status = -1;
 		return ;
 	}

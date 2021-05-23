@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_structs_new_sprite.c                    :+:      :+:    :+:   */
+/*   cub3d_world_structs_new_sprite.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:56:31 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 17:58:03 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 12:49:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 ** Initialize a new t_sprite.
 */
 
-#include "cub3d_core_structs.h"
+#include "cub3d_world_structs.h"
 
 t_sprite	*new_sprite(void)
 {

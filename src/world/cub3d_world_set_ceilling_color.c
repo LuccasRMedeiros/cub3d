@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_set_ceilling_color.c                    :+:      :+:    :+:   */
+/*   cub3d_world_set_ceilling_color.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:47:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 17:55:20 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 12:14:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** The scene is a address to an t_scene instance.
 */
 
-#include "cub3d_core.h"
+#include "cub3d_world.h"
 
 void	set_ceilling_color(char *line, t_scene *scene)
 {

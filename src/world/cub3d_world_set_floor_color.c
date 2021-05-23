@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_set_floor_color.c                       :+:      :+:    :+:   */
+/*   cub3d_world_set_floor_color.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:19:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 17:51:21 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 12:14:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** The scene is a address to an t_scene instance.
 */
 
-#include "cub3d_core.h"
+#include "cub3d_world.h"
 
 void	set_floor_color(char *line, t_scene *scene)
 {

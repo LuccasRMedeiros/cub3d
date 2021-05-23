@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_set_scene_resolution.c                  :+:      :+:    :+:   */
+/*   cub3d_world_set_scene_resolution.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:27:16 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 14:58:55 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 12:14:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** Upon a successfully set adds 4 to scene status.
 */
 
-#include "cub3d_core.h"
+#include "cub3d_world.h"
 
 void	set_scene_resolution(char *line, t_scene *scene)
 {
@@ -32,6 +32,6 @@ void	set_scene_resolution(char *line, t_scene *scene)
 		return ;
 	scene->res[0] = ft_atoi(values[0]);
 	scene->res[1] = ft_atoi(values[1]);
-	free(values);
+	ft_destroyer((void **)values);
 	scene->status += 4;
 }

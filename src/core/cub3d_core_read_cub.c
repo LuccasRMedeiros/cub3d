@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 17:54:41 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/21 12:46:44 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_scene	*read_cub(char *cub_path)
 	{
 		gnl_stts = ft_gnl(fd, &line);
 		select_case_line(line, scene, gnl_stts);
+		free(line);
 	}
 	close(fd);
 	return (scene);

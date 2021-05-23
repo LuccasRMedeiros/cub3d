@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_set_spriteset.c                         :+:      :+:    :+:   */
+/*   cub3d_world_set_spriteset.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:04:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 11:14:41 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 12:14:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** Upon a successfully set adds 2 to scene status.
 */
 
-#include "cub3d_core.h"
+#include "cub3d_world.h"
 
 void	set_spriteset(char *line, t_scene *scene)
 {
@@ -29,8 +29,8 @@ void	set_spriteset(char *line, t_scene *scene)
 	path = ft_strdup(ft_strchr(line, '.'));
 	if (check_invalid_texture(path, "sprite texture"))
 	{
-		path = NULL;
 		free(path);
+		path = NULL;
 		return ;
 	}
 	scene->map->spriteset->sprite = path;

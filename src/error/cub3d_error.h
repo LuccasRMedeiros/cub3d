@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 17:55:02 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 15:26:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/22 15:14:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,5 @@
 
 void	error_msg(char *msg, char *action);
 void	do_nothing(void);
-bool	check_invalid_res(char **values);
-bool	check_invalid_texture(char *path, char *where);
-bool	check_invalid_color(char **rgb, char *area);
-bool	check_invalid_layout(const char *layout);
 
 #endif

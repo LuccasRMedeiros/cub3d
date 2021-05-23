@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_structs_new_scene.c                     :+:      :+:    :+:   */
+/*   cub3d_world_structs_del_sprite.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 15:22:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 18:34:10 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/15 12:04:02 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/22 12:49:49 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Initialize a new scene.
+** Destroy a t_sprite.
 */
 
-#include "cub3d_core_structs.h"
+#include "cub3d_world_structs.h"
 
-t_scene	*new_scene(void)
+void	del_sprite(t_sprite *del)
 {
-	t_scene	*new;
+	char	*holder;
 
-	new = malloc(sizeof *new);
-	if (!new)
-		return (NULL);
-	new->status = 0;
-	new->res[0] = 0;
-	new->res[1] = 0;
-	new->map = new_map();
-	return (new);
+	holder = del->sprite;
+	free(holder);
+	free(del);
+	del->id = 0;
+	del->sprite = NULL;
 }

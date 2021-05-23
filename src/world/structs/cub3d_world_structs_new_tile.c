@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_del_tile.c                              :+:      :+:    :+:   */
+/*   cub3d_world_structs_new_tile.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 11:51:22 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/19 11:32:58 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/15 11:36:01 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/22 12:49:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Destroy a t_tile.
+** Initialize a new t_tile structure.
 */
 
-#include "cub3d_core_structs.h"
+#include "cub3d_world_structs.h"
 
-void	del_tile(t_tile *del)
+t_tile	*new_tile(void)
 {
-	del->id = 0;
-	del->wall_no = NULL;
-	del->wall_so = NULL;
-	del->wall_we = NULL;
-	del->wall_ea = NULL;
-	free(del);
+	t_tile	*new;
+
+	new = malloc(sizeof *new);
+	if (!new)
+		return (NULL);
+	new->id = 0;
+	new->wall_no = NULL;
+	new->wall_so = NULL;
+	new->wall_we = NULL;
+	new->wall_ea = NULL;
+	return (new);
 }
