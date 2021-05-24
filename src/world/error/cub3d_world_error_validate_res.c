@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error_check_invalid_res.c              :+:      :+:    :+:   */
+/*   cub3d_world_error_validate_res.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 15:49:07 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:30:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #include "cub3d_error.h"
 
-bool	check_invalid_res(char **values)
+bool	validate_res(char **values)
 {
 	size_t	vi;
 	size_t	i;
@@ -36,7 +36,7 @@ bool	check_invalid_res(char **values)
 			if (ft_isalpha(values[vi][i]) || values[vi][i] == '-')
 			{
 				error_msg("Invalid value for resolution", "resolution");
-				return (true);
+				return (false);
 			}
 			++i;
 		}
@@ -45,7 +45,7 @@ bool	check_invalid_res(char **values)
 	if (vi < 2 || vi > 2)
 	{
 		error_msg("Resolution must have width and height", "resolution");
-		return (true);
+		return (false);
 	}
-	return (false);
+	return (true);
 }

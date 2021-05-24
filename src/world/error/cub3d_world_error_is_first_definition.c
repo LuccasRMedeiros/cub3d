@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error.h                                :+:      :+:    :+:   */
+/*   cub3d_world_error_is_first_definition.c            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 15:06:13 by lrocigno          #+#    #+#             */
+/*   Created: 2021/05/23 17:33:36 by lrocigno          #+#    #+#             */
 /*   Updated: 2021/05/23 19:51:44 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header for validation on world creation.
+** Verifies if the scene member that is about to be filled already have some   -
+** data.
+** Receives an address to member data and the property name. Case the address  -
+** have some value, the function will emit a error message and sinalize the    -
+** program to stop.
 */
 
-#ifndef CUB3D_WORLD_ERROR_H
-# define CUB3D_WORLD_ERROR_H
+#include "cub3d_world_error.h"
 
-# include <libft.h>
-# include <cub3d_world.h>
-# include <cub3d_error.h>
-
-# define INNER "02NSWE"
-
-bool	validate_res(char **values);
-bool	validate_texture(char *path, char *where);
-bool	validate_color(char **rgb, char *area);
-bool	validate_layout(t_scene *scene);
-bool	is_first_definition(char *data, char *p_name);
-
-#endif
+bool	is_first_definition(char *data, char *p_name)
+{
+	if (data != NULL)
+	{
+		error_msg("Double definition for property", p_name);
+		return (false);
+	}
+	return (true);
+}

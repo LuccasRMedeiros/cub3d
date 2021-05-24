@@ -1,4 +1,4 @@
-R 800 -600
+R 800 600
 NO ./resources/tile1.bmp
 SO ./resources/tile2.bmp
 WE ./resources/tile3.bmp

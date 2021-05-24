@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:04:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 12:14:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/23 12:39:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_spriteset(char *line, t_scene *scene)
 	char	*path;
 
 	path = ft_strdup(ft_strchr(line, '.'));
-	if (check_invalid_texture(path, "sprite texture"))
+	if (!validate_texture(path, "sprite texture"))
 	{
 		free(path);
 		path = NULL;

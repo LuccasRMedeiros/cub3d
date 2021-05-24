@@ -6,54 +6,30 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 21:43:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/23 20:58:45 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_world.h"
 
 /*
-** is_layout_pattern verifies if a line corresponds at the expected pattern for-
-**  a map layout, this means the line contains at least on element char. 
-*/
-
-static bool	is_layout_pattern(char *line)
-{
-	size_t	i;
-	size_t	y;
-
-	i = 0;
-	y = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-	{
-		if (ft_strhvchr(ELEMENTS, line[i]))
-			++y;
-		++i;
-	}
-	if (y > 0)
-		return (true);
-	return (false);
-}
-
-/*
 ** normalize_map will grant that all the lines have the same amount of columns -
 ** by addind blank spaces till the end of the line.
 ** It uses the map_x value as reference to calculate how much blank spaces are -
 ** needed to normalize such line.
-** filler is used as subfunction of normalize_map, it is called to help        -
-** normalize map generating a string filled with blank spaces which will be    -
-** concatenated in the lines.
+** filler auxiliate normalize_map generating a string filled with blank spaces -
+** which will be concatenated in the line.
 */
 
-static char	filler(size_t spcs)
+static char	*filler(int spcs)
 {
 	char	*fill;
 
-	fill = ft_calloc(spcs, sizeof (char *))
+	fill = ft_calloc(spcs, sizeof (char *));
 	if (!fill)
 		return (NULL);
-	--spcs
-	while (spcs > 0)
+	--spcs;
+	while (spcs >= 0)
 	{
 		fill[spcs] = ' ';
 		--spcs;
@@ -141,7 +117,7 @@ void	set_layout(char *line, t_scene *scene, size_t gnl_stts)
 		layout = NULL;
 		set_axes(scene);
 		normalize_map(scene);
-		if (check_invalid_status(scene))
+		if (!validate_layout(scene))
 		{
 			scene->status = -1;
 			return ;

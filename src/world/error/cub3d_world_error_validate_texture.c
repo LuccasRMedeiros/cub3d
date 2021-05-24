@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error_check_invalid_texture.c          :+:      :+:    :+:   */
+/*   cub3d_world_error_validate_texture.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 15:49:07 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/23 17:59:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
+** ABOUT THE FUNCTION ==========================================================
 ** Check for a invalid texture.
 ** Receives a file path and will try to open it, then will verify its extension.
 ** Invalid texture can be:
 **  - Non existent file;
 **  - File in any format that isn't .bmp;
-** Case one of the above situations been verified, the function prints an error -
-** message and then returns true to sinalize the program to stop.
+** Case one of the above situations been verified, the function prints an error-
+**  message and then returns true to sinalize the program to stop.
+** =============================================================================
 */
 
 #include "cub3d_error.h"
 
-bool	check_invalid_texture(char *path, char *where)
+bool	validate_texture(char *path, char *where)
 {
 	int		fd;
 	char	*error;
@@ -36,7 +38,7 @@ bool	check_invalid_texture(char *path, char *where)
 		error_msg(error, where);
 		error = NULL;
 		free(error);
-		return (true);
+		return (false);
 	}
 	close(fd);
 	ext_pos = ft_strlen(path) - 4;
@@ -46,7 +48,7 @@ bool	check_invalid_texture(char *path, char *where)
 		error_msg(error, where);
 		error = NULL;
 		free(error);
-		return (true);
+		return (false);
 	}
-	return (false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/05/22 13:43:18 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/05/23 20:59:40 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,12 @@ MLBX = 	./src/libs/minilibx-linux
 LIBS =  -L$(LIBFT) -lft \
 
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
+		$(addprefix core/error/, $(notdir $(wildcard ./src/core/error/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
 		$(addprefix world/structs/, $(notdir $(wildcard ./src/world/structs/*.c))) \
+		$(addprefix world/error/, $(notdir $(wildcard ./src/world/error/*.c))) \
 
 SRC_FULL = $(addprefix ./src/, $(SRC))
 
