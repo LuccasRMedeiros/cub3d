@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:47:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 20:10:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 12:32:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_ceilling_color(char *line, t_scene *scene)
 
 	rgb = ft_split(line + 1, ' ');
 	if (!validate_color(rgb, "ceilling")
-		|| !is_first_definition(scene->map->ceilling_color[0], "C"))
+		|| !is_first_definition(&scene->map->ceilling_color[0], "C"))
 	{
 		scene->status = -1;
 		return ;

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:04:02 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 12:49:49 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:07:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	del_sprite(t_sprite *del)
 
 	holder = del->sprite;
 	free(holder);
-	free(del);
 	del->id = 0;
 	del->sprite = NULL;
+	free(del);
 }

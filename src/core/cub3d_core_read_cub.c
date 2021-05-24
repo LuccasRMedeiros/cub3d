@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 20:58:45 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 13:53:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@
 **  a map layout, this means the line contains at least on element char. 
 */
 
-static bool	is_layout_pattern(char *line)
-{
-	size_t	i;
-	size_t	y;
-
-	i = 0;
-	y = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-	{
-		if (ft_strhvchr(ELEMENTS, line[i]))
-			++y;
-		++i;
-	}
-	if (y > 0)
-		return (true);
-	return (false);
-}
-
 static void	select_case_line(char *line, t_scene *scene, int gnl_stts)
 {
 	if (line[0] == '\n')
@@ -59,15 +41,15 @@ static void	select_case_line(char *line, t_scene *scene, int gnl_stts)
 		set_floor_color(line, scene);
 	else if (!ft_strncmp(line, "C", 1))
 		set_ceilling_color(line, scene);
+	else if (scene->status == 12)
+		set_layout(line, scene, gnl_stts);
 	else if (is_layout_pattern(line))
-	{
-		if (scene->status == 12)
-			set_layout(line, scene, gnl_stts);
-		else
-			wrong_order(scene);
-	}
+		wrong_order(scene);
 	if (scene->status == -1)
+	{
 		exit(-1);
+		del_scene(scene);
+	}
 }
 
 t_scene	*read_cub(char *cub_path)

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:51:22 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 12:49:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 15:05:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	del_tile(t_tile *del)
 	free(holder);
 	holder = del->wall_ea;
 	free(holder);	
-	free(del);
 	del->id = 0;
 	del->wall_no = NULL;
 	del->wall_so = NULL;
 	del->wall_we = NULL;
 	del->wall_ea = NULL;
+	free(del);
 }

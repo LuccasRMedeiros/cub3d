@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 11:27:16 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 20:10:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 12:41:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_scene_resolution(char *line, t_scene *scene)
 
 	values = ft_split(line + 1, ' ');
 	if (!validate_res(values)
-		|| !is_first_definition(scene->res[0], "R"))
+		|| !is_first_definition(&scene->res[0], "R"))
 	{
 		scene->status = -1;
 		return ;

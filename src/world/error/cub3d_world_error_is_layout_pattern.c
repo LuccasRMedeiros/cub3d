@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error.h                                :+:      :+:    :+:   */
+/*   cub3d_world_error_is_layout_pattern.c              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 15:06:13 by lrocigno          #+#    #+#             */
+/*   Created: 2021/05/24 13:49:34 by lrocigno          #+#    #+#             */
 /*   Updated: 2021/05/24 13:53:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header for validation on world creation.
+** Confer if a line corresponds to a layout pattern, it means such line have a -
+** sequence of elements.
+** Requires a line which will be read. Return true if it is a layout pattern or-
+**  false if not.
 */
 
-#ifndef CUB3D_WORLD_ERROR_H
-# define CUB3D_WORLD_ERROR_H
+#include "cub3d_world_error.h"
 
-# include <libft.h>
-# include <cub3d_error.h>
+bool	is_layout_pattern(char *line)
+{
+	size_t	i;
+	size_t	y;
 
-# include "../cub3d_world.h"
+	i = 0;
+	y = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+	{
+		if (ft_strhvchr(ELEMENTS, line[i]))
+			++y;
+		++i;
+	}
+	if (y > 0)
+		return (true);
+	return (false);
+}
 
-# define INNER "02NSWE"
-
-bool	validate_res(char **values);
-bool	validate_texture(char *path, char *where);
-bool	validate_color(char **rgb, char *area);
-bool	validate_layout(t_scene *scene);
-bool	is_first_definition(void *data, char *p_name);
-bool	is_layout_pattern(char *line);
-
-#endif

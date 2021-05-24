@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 20:58:45 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 14:11:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	set_axes(t_scene *scene)
 ** even when the program had closed due to some error.
 ** Requires a line and a scene. The line is a string processed by ft_gnl, is   -
 ** assumed that when the program enters this function is because a serie of    -
-** tile id's (0, 1, 2 etc.) were found.
+** elements (0, 1, 2 etc.) were found.
 ** The scene is a address to a t_scene instance.
 */
 
@@ -105,10 +105,10 @@ void	set_layout(char *line, t_scene *scene, size_t gnl_stts)
 
 	if (!layout)
 		layout = ft_calloc(1, sizeof(char));
-	if (is_layout_pattern(line))
+	if (gnl_stts && (*layout != '\0' || is_layout_pattern(line)))
 	{
 		layout = ft_reallocncat(layout, line);
-		layout = ft_reallocncat(layout, "\n");
+		layout = ft_reallocncat(layout, " \n");
 	}
 	else if (!gnl_stts)
 	{

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 15:52:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 14:10:09 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,37 @@ static int	walls_at_row(char *layout)
 }
 
 /*
+** Call walls_at_row and walls_at_col to check if there are walls surrounding  -
+** the map.
+*/
+
+static int	conf_walls(char **layout, t_scene *scene)
+{
+	int		walls;
+	size_t	r;
+	size_t	c;
+	
+	walls = 0;
+	r = 0;
+	c = 0;
+	while (r < scene->map->map_y)
+	{
+		walls = walls_at_row(layout[r]);
+		if (walls != 2)
+			return (walls);
+		++r;
+	}
+	while (c < scene->map->map_x - 1)
+	{
+		walls = walls_at_col(layout, c);
+		if (walls != 2)
+			return (walls);
+		++c;
+	}
+	return (walls);
+}
+
+/*
 ** Check if the layout is invalid.
 ** Receives the address for a t_scene instance then look into its layout member-
 **  to see if there are errors.
@@ -91,27 +122,19 @@ static int	walls_at_row(char *layout)
 bool	validate_layout(t_scene *scene)
 {
 	char	**layout;
-	bool	ret;
-	size_t	r;
-	size_t	c;
+	int		cw;
 
 	layout = scene->map->layout;
-	ret = true;
-	r = 0;
-	c = 0;
-	while (r < scene->map->map_y && ret)
+	cw = conf_walls(layout, scene);
+	if (cw == 1 || cw == -1)
 	{
-		if (walls_at_row(layout[r]) != 2)
-			ret = false;
-		++r;
-	}
-	while (c < scene->map->map_x && ret)
-	{
-		if (walls_at_col(layout, c) != 2)
-			ret = false;
-		++c;
-	}
-	if (!ret)
 		error_msg("The map must be surrounded by walls", "map layout");
-	return (ret);
+		return (false);
+	}
+	else if (cw == 0)
+	{
+		error_msg("More than one rooms or line break in the map", "map layout");
+		return (false);
+	}
+	return (true);
 }
