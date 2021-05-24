@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/24 14:11:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 19:08:20 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ void	set_layout(char *line, t_scene *scene, size_t gnl_stts)
 
 	if (!layout)
 		layout = ft_calloc(1, sizeof(char));
-	if (gnl_stts && (*layout != '\0' || is_layout_pattern(line)))
+	if (gnl_stts && is_layout_pattern(line))
 	{
 		layout = ft_reallocncat(layout, line);
-		layout = ft_reallocncat(layout, " \n");
+		layout = ft_reallocncat(layout, "\n");
 	}
-	else if (!gnl_stts)
+	else if (!gnl_stts || *layout)
 	{
 		scene->map->layout = ft_split(layout, '\n');
 		free(layout);

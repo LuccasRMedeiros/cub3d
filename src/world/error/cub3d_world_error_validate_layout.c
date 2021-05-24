@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/24 14:10:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 19:01:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int	conf_walls(char **layout, t_scene *scene)
 			return (walls);
 		++r;
 	}
-	while (c < scene->map->map_x - 1)
+	while (c < scene->map->map_x)
 	{
 		walls = walls_at_col(layout, c);
 		if (walls != 2)
@@ -133,7 +133,7 @@ bool	validate_layout(t_scene *scene)
 	}
 	else if (cw == 0)
 	{
-		error_msg("More than one rooms or line break in the map", "map layout");
+		error_msg("Blank column found on map layout", "map layout");
 		return (false);
 	}
 	return (true);

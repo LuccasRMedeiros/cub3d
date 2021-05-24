@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:39:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 20:58:45 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/24 19:07:04 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 void	wrong_order(t_scene *scene)
 {
 	scene->status = -1;
+	if (scene->map->layout)
+	{
+		error_msg("Line break between map layout", "map layout");
+		return ;
+	}
 	error_msg ("The maṕ layout begins before all the properties are setted",
 		"cub file");
 }
