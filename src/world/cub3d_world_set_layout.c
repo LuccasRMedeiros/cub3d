@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/24 19:08:20 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:19:15 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ static char	*filler(int spcs)
 	return (fill);
 }
 
-static void	normalize_map(t_scene *scene)
+static void	normalize_map(t_world *world)
 {
 	char	**layout;
 	char	*fill;
 	size_t	l;
 	size_t	lsz;
 
-	layout = scene->map->layout;
+	layout = world->map->layout;
 	l = 0;
-	while (l < scene->map->map_y)
+	while (l < world->map->map_y)
 	{
 		lsz = ft_strlen(layout[l]);
-		if (lsz < scene->map->map_x)
+		if (lsz < world->map->map_x)
 		{
-			lsz = (scene->map->map_x - lsz) + 1;
+			lsz = (world->map->map_x - lsz) + 1;
 			fill = filler(lsz);
 			layout[l] = ft_reallocncat(layout[l], fill);
 			free(fill);
@@ -67,21 +67,21 @@ static void	normalize_map(t_scene *scene)
 ** already parsed data, garanting a better use of memory and processing.
 */
 
-static void	set_axes(t_scene *scene)
+static void	set_axes(t_world *world)
 {
 	char	**layout;
 	size_t	x;
 	size_t	y;
 
-	layout = scene->map->layout;
+	layout = world->map->layout;
 	x = 0;
 	y = ft_strstrlen(layout);
-	scene->map->map_y = y;
+	world->map->map_y = y;
 	while (y > 0)
 	{
 		x = ft_strlen(layout[y]);
-		if (x > scene->map->map_x)
-			scene->map->map_x = x;
+		if (x > world->map->map_x)
+			world->map->map_x = x;
 		--y;
 	}
 }
@@ -93,13 +93,13 @@ static void	set_axes(t_scene *scene)
 **  the read of the cub file, avoiding the static buffer to retain unecessary  -
 ** data.
 ** even when the program had closed due to some error.
-** Requires a line and a scene. The line is a string processed by ft_gnl, is   -
+** Requires a line and a world. The line is a string processed by ft_gnl, is   -
 ** assumed that when the program enters this function is because a serie of    -
 ** elements (0, 1, 2 etc.) were found.
-** The scene is a address to a t_scene instance.
+** The world is a address to a t_world instance.
 */
 
-void	set_layout(char *line, t_scene *scene, size_t gnl_stts)
+void	set_layout(char *line, t_world *world, size_t gnl_stts)
 {
 	static char	*layout;
 
@@ -112,16 +112,16 @@ void	set_layout(char *line, t_scene *scene, size_t gnl_stts)
 	}
 	else if (!gnl_stts || *layout)
 	{
-		scene->map->layout = ft_split(layout, '\n');
+		world->map->layout = ft_split(layout, '\n');
 		free(layout);
 		layout = NULL;
-		set_axes(scene);
-		normalize_map(scene);
-		if (!validate_layout(scene))
+		set_axes(world);
+		normalize_map(world);
+		if (!validate_layout(world))
 		{
-			scene->status = -1;
+			world->status = -1;
 			return ;
 		}
-		scene->status += 8;
+		world->status += 12;
 	}
 }

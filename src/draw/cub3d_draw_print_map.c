@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 15:35:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 15:42:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:52:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 #include "cub3d_draw.h"
 
-void	print_map(t_scene *scene)
+void	print_map(t_world *world)
 {
 	size_t	ln;
 	char	**layout;
 
 	ln = 0;
-	layout = scene->map->layout;
+	layout = world->map->layout;
 	while (layout[ln] != NULL)
 	{
 		printf("\e[1;31m%s\e[0m\n", layout[ln]);

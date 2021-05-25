@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/05/24 17:49:26 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/05/25 13:00:03 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,17 +51,21 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
+LIBFT =	./src/libs/libft
+
+MLBX = 	./src/libs/minilibx-linux
+
 INCLUDES =	-I src/libs/libft/headers \
+			-I src/libs/minilibx-linux \
 			-I src/core \
 			-I src/error \
 			-I src/draw \
 			-I src/world \
 
-LIBFT =	./src/libs/libft
-
-MLBX = 	./src/libs/minilibx-linux
-
 LIBS =  -L$(LIBFT) -lft \
+		-L$(MLBX) -mlx_Linux \
+		-lX11 \
+		-lXext \
 
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix core/error/, $(notdir $(wildcard ./src/core/error/*.c))) \

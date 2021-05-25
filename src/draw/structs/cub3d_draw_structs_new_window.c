@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_draw_structs_new_window.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:51:05 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/25 13:41:43 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/25 15:10:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Main function.
-** Will create a new window and will start the game, if a error where found the-
-**  program closes.
+** Create a new t_window instance.
 */
 
-#include <cub3d_core.h>
-#include <cub3d_draw.h>
-#include <cub3d_error.h>
+#include "cub3d_draw_structs.h"
 
-int	main(int argc, char **argv)
+t_window	*new_window(void)
 {
-	t_world	*world;
+	t_window	*new;
 
-	world = read_cub(argv[1]);
-	if (world->status == -1)
-	{
-		del_world(world);
-		exit(-1);
-	}
-	print_map(world);
-	del_world(world);
-	return (argc);
+	new = malloc(sizeof *new);
+	if (!new)
+		return (NULL);
+	new->status = 0;
+	new->title = ft_calloc(1, sizeof (char *));
+	new->res[0] = 0;
+	new->res[1] = 0;
+	new->wndw_ptr = NULL;
+	return (new);
 }

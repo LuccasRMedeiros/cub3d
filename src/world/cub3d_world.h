@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 15:19:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 10:58:36 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 
 # define ELEMENTS "012NSWE"
 
-void	set_scene_resolution(char *line, t_scene *scene);
-void	set_tileset(char *line, t_scene *scene);
-void	set_spriteset(char *line, t_scene *scene);
-void	set_floor_color(char *line, t_scene *scene);
-void	set_ceilling_color(char *line, t_scene *scene);
-void	set_layout(char *line, t_scene *scene, size_t gnl_stts);
+void	set_world_resolution(char *line, t_world *world);
+void	set_tileset(char *line, t_world *world);
+void	set_spriteset(char *line, t_world *world);
+void	set_floor_color(char *line, t_world *world);
+void	set_ceilling_color(char *line, t_world *world);
+void	set_layout(char *line, t_world *world, size_t gnl_stts);
 
 #endif

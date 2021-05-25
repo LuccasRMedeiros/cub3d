@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:27:04 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 20:58:45 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 15:33:24 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include "../cub3d_core.h"
 
-void	wrong_order(t_scene *scene);
+void	wrong_order(t_world *world);
+int		validate_cubfile(char *path);
 
 #endif

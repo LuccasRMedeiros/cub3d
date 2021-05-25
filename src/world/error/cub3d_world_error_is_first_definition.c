@@ -6,12 +6,12 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:33:36 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/24 12:47:36 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:04:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Verifies if the scene member that is about to be filled already have some   -
+** Verifies if the world member that is about to be filled already have some   -
 ** data.
 ** Receives an address to member data and the property name. Case the address  -
 ** have some value, the function will emit a error message and sinalize the    -

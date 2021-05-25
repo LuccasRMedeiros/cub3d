@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:17:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 12:49:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:36:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_map	*new_map(void)
 	new = malloc(sizeof *new);
 	if (!new)
 		return (NULL);
+	new->name = NULL;
 	new->tileset = new_tile();
 	new->spriteset = new_sprite();
 	new->floor_color[0] = 0;

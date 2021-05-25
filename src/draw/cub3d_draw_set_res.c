@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_structs_del_scene.c                    :+:      :+:    :+:   */
+/*   cub3d_draw_set_res.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 15:43:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 12:49:49 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/25 14:21:03 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/25 15:03:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Destroy a scene.
+** Configure properly the resolution for a t_window instance.
+** It is assumed that the program enter on this function only when gnl finds a -
+** line that begins with "R".
 */
 
-#include "cub3d_world_structs.h"
-
-void	del_scene(t_scene *del)
+void	set_res(char *line, t_window *window)
 {
-	t_map	*map;
+	char	**values;
 
-	map = del->map;
-	del_map(map);
-	del->status = 0;
-	del->res[0] = 0;
-	del->res[1] = 0;
-	free(del);
+	values = ft_split(line + 1, ' ');
+	if (!validate_res(values))
+	{
+		window->status = -1;
+		return ;
+	}
+	window->res[0] = values[0];
+	window->res[1] = values[1];
+	window->status = 20;
 }

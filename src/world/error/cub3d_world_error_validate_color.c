@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:20:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 12:30:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:54:06 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** message and returns true to sinalize the program to stop.
 */
 
-#include "cub3d_error.h"
+#include "cub3d_world_error.h"
 
 bool	validate_color(char **rgb, char *area)
 {

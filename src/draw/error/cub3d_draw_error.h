@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_draw_error.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:51:05 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/25 14:31:51 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/25 14:56:45 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Main function.
-** Will create a new window and will start the game, if a error where found the-
-**  program closes.
+** Header groups all the error treatment of cub3d_draw functions.
 */
 
-#include <cub3d_core.h>
-#include <cub3d_draw.h>
-#include <cub3d_error.h>
+#ifndef CUB3D_DRAW_ERROR_H
+# define CUB3D_DRAW_ERROR_H
 
-int	main(int argc, char **argv)
-{
-	t_world	*world;
+# include <cub3d_error.h>
 
-	world = read_cub(argv[1]);
-	if (world->status == -1)
-	{
-		del_world(world);
-		exit(-1);
-	}
-	print_map(world);
-	del_world(world);
-	return (argc);
-}
+# include "../cub3d_draw.h"
+
+bool	validade_res(char **values);
+
+#endif

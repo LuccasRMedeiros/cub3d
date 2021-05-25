@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 17:59:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:54:06 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** =============================================================================
 */
 
-#include "cub3d_error.h"
+#include "cub3d_world_error.h"
 
 bool	validate_texture(char *path, char *where)
 {

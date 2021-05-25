@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 12:14:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/24 15:07:43 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:36:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@
 
 void	del_map(t_map *del)
 {
+	char		*name;
 	char		**layout;
 	t_tile		*tileset;
 	t_sprite	*spriteset;
 
+	name = del->name;
 	layout = del->layout;
 	tileset = del->tileset;
 	spriteset = del->spriteset;
 	ft_destroyer((void **)layout);
+	free(name);
+	name = NULL;
 	del_tile(tileset);
 	del_sprite(spriteset);
 	del->tileset = NULL;

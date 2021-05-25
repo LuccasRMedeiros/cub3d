@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/24 19:01:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 11:04:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	walls_at_row(char *layout)
 ** the map.
 */
 
-static int	conf_walls(char **layout, t_scene *scene)
+static int	conf_walls(char **layout, t_world *world)
 {
 	int		walls;
 	size_t	r;
@@ -89,14 +89,14 @@ static int	conf_walls(char **layout, t_scene *scene)
 	walls = 0;
 	r = 0;
 	c = 0;
-	while (r < scene->map->map_y)
+	while (r < world->map->map_y)
 	{
 		walls = walls_at_row(layout[r]);
 		if (walls != 2)
 			return (walls);
 		++r;
 	}
-	while (c < scene->map->map_x)
+	while (c < world->map->map_x)
 	{
 		walls = walls_at_col(layout, c);
 		if (walls != 2)
@@ -108,7 +108,7 @@ static int	conf_walls(char **layout, t_scene *scene)
 
 /*
 ** Check if the layout is invalid.
-** Receives the address for a t_scene instance then look into its layout member-
+** Receives the address for a t_world instance then look into its layout member-
 **  to see if there are errors.
 ** Possible errors are:
 **  - There is a line break between the map layout;
@@ -119,13 +119,13 @@ static int	conf_walls(char **layout, t_scene *scene)
 ** are handled by validate_elements.
 */
 
-bool	validate_layout(t_scene *scene)
+bool	validate_layout(t_world *world)
 {
 	char	**layout;
 	int		cw;
 
-	layout = scene->map->layout;
-	cw = conf_walls(layout, scene);
+	layout = world->map->layout;
+	cw = conf_walls(layout, world);
 	if (cw == 1 || cw == -1)
 	{
 		error_msg("The map must be surrounded by walls", "map layout");

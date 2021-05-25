@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error_validate_res.c                   :+:      :+:    :+:   */
+/*   cub3d_draw_error_validate_res.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 12:30:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 14:52:57 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** message on the screen and return true to sinalize the program to stop.
 */
 
-#include "cub3d_error.h"
+#include "cub3d_draw_error.h"
 
 bool	validate_res(char **values)
 {

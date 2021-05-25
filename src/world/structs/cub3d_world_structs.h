@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:20:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/22 12:49:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/25 12:13:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_sprite
 
 typedef struct s_map
 {
+	char			*name;
 	t_tile			*tileset;
 	t_sprite		*spriteset;
 	unsigned char	floor_color[3];
@@ -46,12 +47,11 @@ typedef struct s_map
 	size_t			map_y;
 }	t_map;
 
-typedef struct s_scene
+typedef struct s_world
 {
 	int		status;
-	size_t	res[2];
 	t_map	*map;
-}	t_scene;
+}	t_world;
 
 t_tile		*new_tile(void);
 void		del_tile(t_tile *del);
@@ -59,7 +59,7 @@ t_sprite	*new_sprite(void);
 void		del_sprite(t_sprite *del);
 t_map		*new_map(void);
 void		del_map(t_map *del);
-t_scene		*new_scene(void);
-void		del_scene(t_scene *del);
+t_world		*new_world(void);
+void		del_world(t_world *del);
 
 #endif
