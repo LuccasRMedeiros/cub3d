@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 14:52:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 14:58:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@
 
 bool	validate_res(char **values)
 {
-	size_t	vi;
+	size_t	sa;
 	size_t	i;
 
-	vi = 0;
-	while (values[vi] != NULL)
+	sa = 0;
+	while (values[sa] != NULL)
 	{
 		i = 0;
-		while (values[vi][i] != '\0')
+		while (values[sa][i] != '\0')
 		{
-			if (ft_isalpha(values[vi][i]) || values[vi][i] == '-')
+			if (ft_isalpha(values[sa][i]) || values[sa][i] == '-')
 			{
 				error_msg("Invalid value for resolution", "resolution");
 				return (false);
 			}
 			++i;
 		}
-		++vi;
+		++sa;
 	}
-	if (vi < 2 || vi > 2)
+	if (sa < 2 || sa > 2)
 	{
 		error_msg("Resolution must have width and height", "resolution");
 		return (false);

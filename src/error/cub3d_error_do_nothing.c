@@ -6,28 +6,13 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 10:26:17 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/20 13:16:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 12:51:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Doesn't do anything, really.
-**
-**         ____
-**        /    |
-**       /    /
-**      /    /
-**     /     |
-**    /      |___________
-**   |                   \
-**   |           ________|
-**	 |                    \
-**	 |            ________/
-**   |                   |
-**   |            _______/
-**   |                 |
-**   \_________________/ 
-**
+** It is a placeholder. Prints a blue cube in stdout
+** Can be called to help structuring a program part a keep compiling it.
 */
 
 #include "cub3d_error.h"

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:39:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:47:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:55:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 void	wrong_order(t_world *world)
 {
 	world->status = -1;
-	if (world->map->layout)
+	if (world->map)
 	{
 		error_msg("Line break between map layout", "map layout");
 		return ;

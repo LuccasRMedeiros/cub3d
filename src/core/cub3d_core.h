@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 13:38:00 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:51:25 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@
 # include "./error/cub3d_core_error.h"
 
 t_world		*read_cub(char *cub_path);
+t_window	*ret_window(char *line);
 
 #endif

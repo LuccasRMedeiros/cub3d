@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw_structs_new_window.c                    :+:      :+:    :+:   */
+/*   cub3d_draw_create_window.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 13:41:43 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 14:20:29 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/28 14:22:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/28 18:46:49 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Create a new t_window instance.
+** Initialize a connection with a X-server and create a new window.
 */
 
-#include "cub3d_draw_structs.h"
+#include "cub3d_draw.h"
 
-t_window	*new_window(void)
+t_window	*create_window(char **res, const char *title)
 {
-	t_window	*new;
+	t_window	*ret;
+	size_t		ww;
+	size_t		wh;
 
-	new = malloc(sizeof *new);
-	if (!new)
+	if (!validate_res(res))
 		return (NULL);
-	new->con_ptr = NULL;
-	new->wndw_ptr = NULL;
-	return (new);
+	ret = new_window();
+	ww = ft_atoi(res[0]);
+	wh = ft_atoi(res[1]);
+	ret->con_ptr = mlx_init();
+	if (!ret->con_ptr)
+		return (NULL);
+	ret->wndw_ptr = mlx_new_window(ret->con_ptr, ww, wh, (char *)title);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 15:13:22 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 15:54:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 17:56:48 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@
 
 #include "cub3d_core_error.h"
 
-int	validate_cubfile(char *cub_path)
+int	validate_cubfile(char *path)
 {
 	int	fd;
 	
 	fd = 0;
-	if (ft_strcmp(ft_strrchr(path, '.'), ".cub", 4))
+	if (ft_strncmp(ft_strrchr(path, '.'), ".cub", 4))
 	{
 		error_msg("Please inform a valid cub file", path);
 		return (-1);
 	}
-	fd = open(cub_path, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		error_msg("File not found", path);
 	return (fd);

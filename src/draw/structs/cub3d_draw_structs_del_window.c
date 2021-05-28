@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:55:51 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 15:10:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 14:20:29 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,7 @@
 
 void	del_window(t_window *del)
 {
-	char	*title;
-
-	name = del->title;
-	free(name);
-	name = NULL;
-	del->status = 0;
-	del->res[0] = 0;
-	del->res[1] = 0;
+	del->con_ptr = NULL;
 	del->wndw_ptr = NULL;
 	free(del);
 }

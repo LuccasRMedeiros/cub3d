@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 15:06:13 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 10:58:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 19:11:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 bool	validate_res(char **values);
 bool	validate_texture(char *path, char *where);
 bool	validate_color(char **rgb, char *area);
-bool	validate_layout(t_world *world);
-bool	is_first_definition(void *data, char *p_name);
-bool	is_layout_pattern(char *line);
+bool	validate_map(t_world *world);
+bool	is_map_pattern(const char *line);
 
 #endif

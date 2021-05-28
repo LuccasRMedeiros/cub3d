@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 18:33:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 12:42:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 18:48:49 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #include "cub3d_error.h"
 
-void	error_msg(char *msg, char *obj)
+void	error_msg(const char *msg, const char *obj)
 {
 	ft_fprintf(2, "\e[0;31mA problem has occured with/at: %s\e[0m\n", obj);
 	ft_fprintf(2, "%s\n", msg);

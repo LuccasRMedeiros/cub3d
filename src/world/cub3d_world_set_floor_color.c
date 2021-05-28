@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:19:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:01:21 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 19:08:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@
 
 #include "cub3d_world.h"
 
-void	set_floor_color(char *line, t_world *world)
+void	set_floor_color(const char *line, t_world *world)
 {
 	char	**rgb;
 
 	rgb = ft_split(line + 1, ' ');
 	if (!validate_color(rgb, "floor")
-		|| !is_first_definition(&world->map->ceilling_color[0], "F"))
+		|| !is_first_def(&world->ceilling_color[0], "F"))
 	{
 		world->status = -1;
 		return ;
 	}
-	world->map->floor_color[0] = ft_atoi(rgb[0]);
-	world->map->floor_color[1] = ft_atoi(rgb[1]);
-	world->map->floor_color[2] = ft_atoi(rgb[2]);
+	world->floor_color[0] = ft_atoi(rgb[0]);
+	world->floor_color[1] = ft_atoi(rgb[1]);
+	world->floor_color[2] = ft_atoi(rgb[2]);
 	world->status += 1;
 	ft_destroyer((void **)rgb);
 }

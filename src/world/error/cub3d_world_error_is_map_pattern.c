@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error_is_layout_pattern.c              :+:      :+:    :+:   */
+/*   cub3d_world_error_is_map_pattern.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 13:49:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 12:31:13 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 19:11:29 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Confer if a line corresponds to a layout pattern, it means such line have a -
+** Confer if a line corresponds to a map pattern, it means such line have a    -
 ** sequence of elements.
-** Requires a line which will be read. Return true if it is a layout pattern or-
-**  false if not.
+** Requires a line which will be read. Return true if it is a map pattern or   -
+** false if not.
 */
 
 #include "cub3d_world_error.h"
 
-bool	is_layout_pattern(char *line)
+bool	is_map_pattern(const char *line)
 {
 	size_t	i;
 	size_t	y;
@@ -30,6 +30,8 @@ bool	is_layout_pattern(char *line)
 	{
 		if (ft_strhvchr(ELEMENTS, line[i]))
 			++y;
+		else if (line[i] != ' ')
+			return (false);
 		++i;
 	}
 	if (y > 0)

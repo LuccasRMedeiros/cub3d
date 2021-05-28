@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_set_layout.c                           :+:      :+:    :+:   */
+/*   cub3d_world_set_map.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 12:19:15 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 19:08:36 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,21 @@ static char	*filler(int spcs)
 
 static void	normalize_map(t_world *world)
 {
-	char	**layout;
+	char	**map;
 	char	*fill;
 	size_t	l;
 	size_t	lsz;
 
-	layout = world->map->layout;
+	map = world->map;
 	l = 0;
-	while (l < world->map->map_y)
+	while (l < world->map_y)
 	{
-		lsz = ft_strlen(layout[l]);
-		if (lsz < world->map->map_x)
+		lsz = ft_strlen(map[l]);
+		if (lsz < world->map_x)
 		{
-			lsz = (world->map->map_x - lsz) + 1;
+			lsz = (world->map_x - lsz) + 1;
 			fill = filler(lsz);
-			layout[l] = ft_reallocncat(layout[l], fill);
+			map[l] = ft_reallocncat(map[l], fill);
 			free(fill);
 			fill = NULL;
 		}
@@ -62,32 +62,32 @@ static void	normalize_map(t_world *world)
 }
 
 /*
-** set_axes is a part of set_layout where map_x and map_y are defined. It is   -
-** organized this way to allow check_invalid_layout do its verification in the -
+** set_axes is a part of set_map where map_x and map_y are defined. It is      -
+** organized this way to allow check_invalid_map do its verification in the    -
 ** already parsed data, garanting a better use of memory and processing.
 */
 
 static void	set_axes(t_world *world)
 {
-	char	**layout;
+	char	**map;
 	size_t	x;
 	size_t	y;
 
-	layout = world->map->layout;
+	map = world->map;
 	x = 0;
-	y = ft_strstrlen(layout);
-	world->map->map_y = y;
+	y = ft_strstrlen(map);
+	world->map_y = y;
 	while (y > 0)
 	{
-		x = ft_strlen(layout[y]);
-		if (x > world->map->map_x)
-			world->map->map_x = x;
+		x = ft_strlen(map[y]);
+		if (x > world->map_x)
+			world->map_x = x;
 		--y;
 	}
 }
 
 /*
-** Set the map layout, the axes, normalize it, then verify if it is build      - 
+** Set the map map, the axes, normalize it, then verify if it is build         -
 ** correctly.
 ** The verification is only made in the end of the parsing to let ft_gnl finish-
 **  the read of the cub file, avoiding the static buffer to retain unecessary  -
@@ -99,25 +99,25 @@ static void	set_axes(t_world *world)
 ** The world is a address to a t_world instance.
 */
 
-void	set_layout(char *line, t_world *world, size_t gnl_stts)
+void	set_map(const char *line, t_world *world, size_t gnl_stts)
 {
-	static char	*layout;
+	static char	*map;
 
-	if (!layout)
-		layout = ft_calloc(1, sizeof(char));
-	if (gnl_stts && is_layout_pattern(line))
+	if (!map)
+		map = ft_calloc(1, sizeof(char));
+	if (gnl_stts && is_map_pattern(line))
 	{
-		layout = ft_reallocncat(layout, line);
-		layout = ft_reallocncat(layout, "\n");
+		map = ft_reallocncat(map, line);
+		map = ft_reallocncat(map, "\n");
 	}
-	else if (!gnl_stts || *layout)
+	else if (!gnl_stts || *map)
 	{
-		world->map->layout = ft_split(layout, '\n');
-		free(layout);
-		layout = NULL;
+		world->map = ft_split(map, '\n');
+		free(map);
+		map = NULL;
 		set_axes(world);
 		normalize_map(world);
-		if (!validate_layout(world))
+		if (!validate_map(world))
 		{
 			world->status = -1;
 			return ;

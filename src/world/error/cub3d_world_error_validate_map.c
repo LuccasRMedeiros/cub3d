@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:04:07 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:16:41 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 ** Both walls_at_col and walls_at_row looks to each index at what it is meant  -
 ** look at from its beginning to its end and the reverse path also, it will    -
 ** assign 2 to "walls" var each time it find a wall, if it find a INNER element-
-**  (02NSWE) it reduces 1 from "walls" value, but only when "walls" value is 2 -
-** or 0.
+**  (02NSWE) it set walls to 1.
+** So each number returned from "walls_at" functions means:
+**  - 2: There are walls in both extremes and its interior is filled.
+**  - 1: There are no walls surrounding the interiors of the map.
+**  - 0: A empty column was found, and like the break lines between the map    -
+** layout, they are invalid.
 */
 
-static int	walls_at_col(char **layout, size_t col)
+static int	walls_at_col(char **map, size_t col)
 {
 	int		walls;
 	bool	reverse;
@@ -31,14 +35,13 @@ static int	walls_at_col(char **layout, size_t col)
 	i = 0;
 	while (i >= 0 || !reverse)
 	{
-		if (layout[i] == NULL)
+		if (map[i] == NULL)
 			reverse = true;
-		else if (layout[i][col] == '1')
+		else if (map[i][col] == '1')
 			walls = 2;
-		else if (ft_strhvchr(INNER, layout[i][col])
-			&& (walls == 2 || walls == 0))
-			--walls;
-		else if ((layout[i][col] == ' ' && walls == 1) || (walls < 0))
+		else if (ft_strhvchr(INNER, map[i][col]))
+			walls = 1;
+		else if ((map[i][col] == ' ' && walls == 1))
 			return (walls);
 		if (reverse)
 			--i;
@@ -48,7 +51,7 @@ static int	walls_at_col(char **layout, size_t col)
 	return (walls);
 }
 
-static int	walls_at_row(char *layout)
+static int	walls_at_row(char *map)
 {
 	int		walls;
 	bool	reverse;
@@ -59,13 +62,13 @@ static int	walls_at_row(char *layout)
 	i = 0;
 	while (i >= 0 || !reverse)
 	{
-		if (layout[i] == '1')
+		if (map[i] == '1')
 			walls = 2;
-		else if (ft_strhvchr(INNER, layout[i]) && (walls == 2 || walls == 0))
-			--walls;
-		else if ((layout[i] == ' ' && walls == 1) || (walls < 0))
+		else if (ft_strhvchr(INNER, map[i]))
+			walls = 1;
+		else if ((map[i] == ' ' && walls == 1))
 			return (walls);
-		else if (layout[i] == '\0')
+		else if (map[i] == '\0')
 			reverse = true;
 		if (reverse)
 			--i;
@@ -80,7 +83,7 @@ static int	walls_at_row(char *layout)
 ** the map.
 */
 
-static int	conf_walls(char **layout, t_world *world)
+static int	conf_walls(char **map, t_world *world)
 {
 	int		walls;
 	size_t	r;
@@ -89,16 +92,16 @@ static int	conf_walls(char **layout, t_world *world)
 	walls = 0;
 	r = 0;
 	c = 0;
-	while (r < world->map->map_y)
+	while (r < world->map_y)
 	{
-		walls = walls_at_row(layout[r]);
+		walls = walls_at_row(map[r]);
 		if (walls != 2)
 			return (walls);
 		++r;
 	}
-	while (c < world->map->map_x)
+	while (c < world->map_x)
 	{
-		walls = walls_at_col(layout, c);
+		walls = walls_at_col(map, c);
 		if (walls != 2)
 			return (walls);
 		++c;
@@ -107,9 +110,9 @@ static int	conf_walls(char **layout, t_world *world)
 }
 
 /*
-** Check if the layout is invalid.
-** Receives the address for a t_world instance then look into its layout member-
-**  to see if there are errors.
+** Check if the map is invalid.
+** Receives the address for a t_world instance then look into its map member to-
+**  see if there are errors.
 ** Possible errors are:
 **  - There is a line break between the map layout;
 **  - The map isn't surrounded by walls.
@@ -119,14 +122,14 @@ static int	conf_walls(char **layout, t_world *world)
 ** are handled by validate_elements.
 */
 
-bool	validate_layout(t_world *world)
+bool	validate_map(t_world *world)
 {
-	char	**layout;
+	char	**map;
 	int		cw;
 
-	layout = world->map->layout;
-	cw = conf_walls(layout, world);
-	if (cw == 1 || cw == -1)
+	map = world->map;
+	cw = conf_walls(map, world);
+	if (cw == 1)
 	{
 		error_msg("The map must be surrounded by walls", "map layout");
 		return (false);

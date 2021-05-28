@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/05/25 13:00:03 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/05/28 16:34:02 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,13 +63,15 @@ INCLUDES =	-I src/libs/libft/headers \
 			-I src/world \
 
 LIBS =  -L$(LIBFT) -lft \
-		-L$(MLBX) -mlx_Linux \
+		-L$(MLBX) -lmlx_Linux \
 		-lX11 \
 		-lXext \
 
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix core/error/, $(notdir $(wildcard ./src/core/error/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
+		$(addprefix draw/error/, $(notdir $(wildcard ./src/draw/error*.c))) \
+		$(addprefix draw/structs/, $(notdir $(wildcard ./src/draw/structs*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
 		$(addprefix world/structs/, $(notdir $(wildcard ./src/world/structs/*.c))) \
@@ -93,6 +95,8 @@ makeft:
 	@$(MAKE_EXT)
 
 makemlx: MAKEFILE = $(MLBX)
+
+makemlx: RULE = all
 
 makemlx:
 	@echo "Making dependencies 2/2"
@@ -122,13 +126,7 @@ debug: RULE = debug
 
 debug: FLAGS += -g
 
-debug: MAKEFILE = $(LIBFT)
-
-debug:
-	@echo "Preparing the program to debug"
-	@$(MAKE_EXT)
-	@echo "Removing executable"
-	@rm -f $(BIN)
+debug: fclean makeft makemlx
 	@echo "Generating new excutable $(BIN) with -g flag"
 	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(BIN)
 	@echo "$$CUBED"

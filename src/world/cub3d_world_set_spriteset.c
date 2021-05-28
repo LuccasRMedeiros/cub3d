@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:04:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:01:21 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 19:08:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@
 
 #include "cub3d_world.h"
 
-void	set_spriteset(char *line, t_world *world)
+void	set_spriteset(const char *line, t_world *world)
 {
 	char	*path;
 
 	path = ft_strdup(ft_strchr(line, '.'));
-	if (!validate_texture(path, "sprite texture"))
+	if (!validate_texture(path, "sprite texture")
+		|| !is_first_def(world->spriteset->sprite, "sprite texture"))
 	{
 		free(path);
 		path = NULL;
+		world->status = -1;
 		return ;
 	}
-	world->map->spriteset->id = '2';
-	world->map->spriteset->sprite = path;
+	world->spriteset->id = '2';
+	world->spriteset->sprite = path;
 	world->status += 2;
 }

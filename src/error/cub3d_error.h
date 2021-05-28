@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 17:55:02 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/23 12:09:53 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 18:50:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 # include <libft.h>
 
-void		error_msg(char *msg, char *obj);
-void		do_nothing(void);
+void	error_msg(const char *msg, const char *obj);
+void	do_nothing(void);
+bool	is_first_def(void *data, const char *p_name);
 
 #endif

@@ -6,12 +6,11 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 14:54:06 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 11:24:53 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** ABOUT THE FUNCTION ==========================================================
 ** Check for a invalid texture.
 ** Receives a file path and will try to open it, then will verify its extension.
 ** Invalid texture can be:
@@ -19,7 +18,6 @@
 **  - File in any format that isn't .bmp;
 ** Case one of the above situations been verified, the function prints an error-
 **  message and then returns true to sinalize the program to stop.
-** =============================================================================
 */
 
 #include "cub3d_world_error.h"

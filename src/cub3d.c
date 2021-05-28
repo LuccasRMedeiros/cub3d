@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/25 11:51:05 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/28 16:30:06 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 */
 
 #include <cub3d_core.h>
-#include <cub3d_draw.h>
-#include <cub3d_error.h>
 
 int	main(int argc, char **argv)
 {
