@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/05/28 16:34:02 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/05/29 20:16:37 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ define CUBED
 endef
 export CUBED
 
-CC = gcc
+CC = clang
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -70,8 +70,8 @@ LIBS =  -L$(LIBFT) -lft \
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix core/error/, $(notdir $(wildcard ./src/core/error/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
-		$(addprefix draw/error/, $(notdir $(wildcard ./src/draw/error*.c))) \
-		$(addprefix draw/structs/, $(notdir $(wildcard ./src/draw/structs*.c))) \
+		$(addprefix draw/error/, $(notdir $(wildcard ./src/draw/error/*.c))) \
+		$(addprefix draw/structs/, $(notdir $(wildcard ./src/draw/structs/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
 		$(addprefix world/structs/, $(notdir $(wildcard ./src/world/structs/*.c))) \

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 17:52:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 22:10:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 static void	select_case_line(char *line, t_world *world, int gnl_stts)
 {
+	if (world->status == -1)
+		return ;
 	if (!ft_strncmp(line, "R", 1))
 	{
 		if (!ret_window(line))
@@ -37,8 +39,6 @@ static void	select_case_line(char *line, t_world *world, int gnl_stts)
 		set_map(line, world, gnl_stts);
 	else if (is_map_pattern(line))
 		wrong_order(world);
-	if (world->status == -1)
-		exit(-1);
 }
 
 t_world	*read_cub(char *cub_path)
@@ -53,7 +53,7 @@ t_world	*read_cub(char *cub_path)
 	if (fd == -1)
 	{
 		world->status = -1;
-		exit(-1);
+		return (world);
 	}
 	gnl_stts = 1;
 	world->name = ft_strdup(cub_path + 7);

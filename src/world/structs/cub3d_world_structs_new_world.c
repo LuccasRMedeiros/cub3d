@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_structs_new_map.c                      :+:      :+:    :+:   */
+/*   cub3d_world_structs_new_world.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:17:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 10:46:48 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 20:46:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_world	*new_world(void)
 	new->status = 0;
 	new->tileset = new_tile();
 	new->spriteset = new_sprite();
-	new->floor_color[0] = 0;
-	new->floor_color[1] = 0;
-	new->floor_color[2] = 0;
-	new->ceilling_color[0] = 0;
-	new->ceilling_color[1] = 0;
-	new->ceilling_color[2] = 0;
+	new->floor_color[0] = -1;
+	new->floor_color[1] = -1;
+	new->floor_color[2] = -1;
+	new->ceilling_color[0] = -1;
+	new->ceilling_color[1] = -1;
+	new->ceilling_color[2] = -1;
 	new->map = NULL;
 	new->map_x = 0;
 	new->map_y = 0;

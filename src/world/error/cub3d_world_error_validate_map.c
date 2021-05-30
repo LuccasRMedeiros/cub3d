@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world_error_validate_layout.c                :+:      :+:    :+:   */
+/*   cub3d_world_error_validate_map.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 11:16:41 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 21:57:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ static int	walls_at_col(char **map, size_t col)
 	while (i >= 0 || !reverse)
 	{
 		if (map[i] == NULL)
+		{
+			if (walls != 2)
+				return (walls);
 			reverse = true;
+		}
 		else if (map[i][col] == '1')
 			walls = 2;
 		else if (ft_strhvchr(INNER, map[i][col]))

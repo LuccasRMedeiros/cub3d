@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:33:36 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 18:49:24 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 20:49:12 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@
 
 bool	is_first_def(void *data, const char *p_name)
 {
-	unsigned char	*holder;
+	char	*holder;
 
-	holder = (unsigned char *)data;
-	if (*holder)
+	holder = (char *)data;
+	if (holder)
 	{
-		error_msg("Double definition for property", p_name);
-		return (false);
+		if (holder[0] != -1)
+		{
+			error_msg("Double definition for property", p_name);
+			return (false);
+		}
 	}
 	return (true);
 }

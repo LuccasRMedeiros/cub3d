@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 18:24:44 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 19:55:48 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include <libft.h>
 # include <mlx.h>
-# include <cub3d_core.h>
+# include <cub3d_world.h>
 
 # include "./error/cub3d_draw_error.h"
 # include "./structs/cub3d_draw_structs.h"

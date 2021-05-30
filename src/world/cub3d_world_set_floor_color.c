@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:19:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 19:08:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 21:20:29 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	set_floor_color(const char *line, t_world *world)
 {
 	char	**rgb;
 
-	rgb = ft_split(line + 1, ' ');
+	rgb = ft_split(line + 1, ',');
 	if (!validate_color(rgb, "floor")
 		|| !is_first_def(&world->ceilling_color[0], "F"))
 	{

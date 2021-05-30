@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:10:52 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 15:35:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 20:24:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_window	*ret_window(char *line)
 	char			**res;
 
 	if (line)
-		res = ft_split(line + 1, ',');
+		res = ft_split(line + 1, ' ');
 	else
 		res = NULL;
 	if (!window)

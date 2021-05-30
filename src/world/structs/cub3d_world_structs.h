@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 11:20:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 20:00:39 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/29 20:46:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_world
 	int				status;
 	t_tile			*tileset;
 	t_sprite		*spriteset;
-	unsigned char	floor_color[3];
-	unsigned char	ceilling_color[3];
+	int				floor_color[3];
+	int				ceilling_color[3];
 	char			**map;
 	size_t			map_x;
 	size_t			map_y;
