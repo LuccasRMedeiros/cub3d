@@ -6,17 +6,37 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 16:30:06 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/31 17:35:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cub3d_core.h>
+
 /*
-** Main function.
-** Will create a new window and will start the game, if a error where found the-
-**  program closes.
+** Calls for ret_window to receive the main t_window instance (created during  -
+** read_cub call), it is assumed that the program will only enter this function-
+**  if all the needed information was provided in the cub file, what means that-
+**  a window was already created.
 */
 
-#include <cub3d_core.h>
+static void	window(t_world *world)
+{
+	t_window *wndw;
+
+	wndw = ret_window(NULL);
+	mlx_hook(wndw->wndw_ptr, 2, 1L<<0, key_pressed, world);
+	mlx_hook(wndw->wndw_ptr, 3, 1L<<0, key_released, wndw);
+	mlx_loop(wndw->con_ptr);
+	print_map(world);
+}
+
+/*
+** Main function.
+** Call for read_cub to parse the information into a t_world instance. If the  -
+** informed cub file be all right the main function will continue the program  -
+** execution going to "window", but case the world returns with a -1 status it -
+** will delete that t_world instance and then will close the program.
+*/
 
 int	main(int argc, char **argv)
 {
@@ -28,7 +48,6 @@ int	main(int argc, char **argv)
 		del_world(world);
 		exit(-1);
 	}
-	print_map(world);
-	del_world(world);
+	window(world);
 	return (argc);
 }

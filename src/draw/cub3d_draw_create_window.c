@@ -6,12 +6,15 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:22:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 18:46:49 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/30 12:02:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** Initialize a connection with a X-server and create a new window.
+** Needs an pointer to pointer to char "res" and pointer to const char title.
+** Firstly it will verify if the res values are valid, it means, they are both -
+** positive numbers and are up to 2 different values.
 */
 
 #include "cub3d_draw.h"

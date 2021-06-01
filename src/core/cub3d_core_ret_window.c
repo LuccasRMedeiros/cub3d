@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:10:52 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/29 20:24:07 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/31 17:04:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ t_window	*ret_window(char *line)
 	static t_window	*window;
 	char			**res;
 
+	res = NULL;
 	if (line)
 		res = ft_split(line + 1, ' ');
-	else
-		res = NULL;
 	if (!window)
 	{
 		window = create_window(res, "Cub3D");

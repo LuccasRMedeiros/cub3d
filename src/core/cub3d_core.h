@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 17:51:25 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/31 17:34:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@
 
 t_world		*read_cub(char *cub_path);
 t_window	*ret_window(char *line);
+int			close_window(t_world *world);
+int			key_pressed(int key, t_world *world);
+int			key_released(int key, t_window *window);
 
 #endif

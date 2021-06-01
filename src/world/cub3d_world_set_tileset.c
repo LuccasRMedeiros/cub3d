@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:26:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 19:08:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/05/31 21:15:48 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@
 ** case something went wrong.
 */
 
-static void	set_wall(char *wall, char *path, t_world *world)
+static char	*set_wall(char *wall, char *path, t_world *wrld)
 {
 	if (!is_first_def(wall, "wall texture")
-	|| !validate_texture(path, "wall texture"))
+		|| !validate_texture(path, "wall texture"))
 	{
-		world->status = -1;
+		wrld->status = -1;
 		free(path);
 		path = NULL;
-		return ;
+		return (NULL);
 	}
 	wall = path;
-	world->status += 1;
+	wrld->status += 1;
+	return (wall);
 }
 
 /*
@@ -48,18 +49,18 @@ static void	set_wall(char *wall, char *path, t_world *world)
 **  double_def and will exit the function.
 */
 
-void	set_tileset(const char *line, t_world *world)
+void	set_tileset(const char *line, t_world *wrld)
 {
 	char	*path;
 
 	path = ft_strdup(ft_strchr(line, '.'));
-	world->tileset->id = '1';
+	wrld->tileset->id = '1';
 	if (!ft_strncmp(line, "NO", 2))
-		set_wall(world->tileset->wall_no, path, world);
+		wrld->tileset->wall_no = set_wall(wrld->tileset->wall_no, path, wrld);
 	else if (!ft_strncmp(line, "SO", 2))
-		set_wall(world->tileset->wall_so, path, world);
+		wrld->tileset->wall_so = set_wall(wrld->tileset->wall_so, path, wrld);
 	else if (!ft_strncmp(line, "WE", 2))
-		set_wall(world->tileset->wall_we, path, world);
+		wrld->tileset->wall_we = set_wall(wrld->tileset->wall_we, path, wrld);
 	else if (!ft_strncmp(line, "EA", 2))
-		set_wall(world->tileset->wall_ea, path, world);
+		wrld->tileset->wall_ea = set_wall(wrld->tileset->wall_ea, path, wrld);
 }

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw.h                                       :+:      :+:    :+:   */
+/*   cub3d_core_events.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/31 17:13:22 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/05/31 17:31:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header containing functions to draw the map.
+** The functions here are called to deal with events (key been pressed).
 */
 
-#ifndef CUB3D_DRAW_H
-# define CUB3D_DRAW_H
+#include "cub3d_core.h"
 
-# include <libft.h>
-# include <mlx.h>
-# include <cub3d_world.h>
+int	key_pressed(int key, t_world *world)
+{
+	if (key == 0xff1b)
+		close_window(world);
+	return (0);
+}
 
-# include "./error/cub3d_draw_error.h"
-# include "./structs/cub3d_draw_structs.h"
-
-void		print_map(t_world *world);
-t_window	*create_window(char **res, const char *title);
-
-#endif
+int	key_released(int key, t_window *window)
+{
+	printf("Window: \e[0;35m%p\e[0m\n", window->wndw_ptr);
+	printf("Key: \e[0;33m%x\e[0m released\n", key);
+	return (0);
+}
