@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:55:51 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 14:20:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 17:25:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 void	del_window(t_window *del)
 {
+	mlx_destroy_window(del->con_ptr, del->wndw_ptr);
+	del->res_wdt = 0;
+	del->res_hgt = 0;
 	del->con_ptr = NULL;
 	del->wndw_ptr = NULL;
 	free(del);

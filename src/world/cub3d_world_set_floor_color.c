@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:19:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/29 21:20:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 10:43:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	set_floor_color(const char *line, t_world *world)
 	world->floor_color[2] = ft_atoi(rgb[2]);
 	world->status += 1;
 	ft_destroyer((void **)rgb);
+	rgb = NULL;
 }

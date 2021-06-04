@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:22:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/30 12:02:03 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 11:19:09 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,19 @@
 
 #include "cub3d_draw.h"
 
-t_window	*create_window(char **res, const char *title)
+t_window	*create_window(char **res, char *title)
 {
 	t_window	*ret;
-	size_t		ww;
-	size_t		wh;
 
 	if (!validate_res(res))
 		return (NULL);
 	ret = new_window();
-	ww = ft_atoi(res[0]);
-	wh = ft_atoi(res[1]);
+	ret->res_wdt = ft_atoi(res[0]);
+	ret->res_hgt = ft_atoi(res[1]);
 	ret->con_ptr = mlx_init();
 	if (!ret->con_ptr)
 		return (NULL);
-	ret->wndw_ptr = mlx_new_window(ret->con_ptr, ww, wh, (char *)title);
+	ret->wndw_ptr = mlx_new_window(ret->con_ptr, ret->res_wdt,
+		ret->res_hgt, title);
 	return (ret);
 }

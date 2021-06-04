@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_events.c                                :+:      :+:    :+:   */
+/*   cub3d_draw_structs_new_img.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/01 11:11:22 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/04 15:44:46 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/04 16:51:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** The functions here are called to deal with events (key been pressed).
+** Creates a t_img instance.
 */
 
-#include "cub3d_core.h"
+#include "cub3d_draw_structs.h"
 
-int	key_pressed(int key, t_world *world)
+t_img	*new_img(void)
 {
-	if (key == 0xff1b)
-		close_window(world);
-	return (0);
-}
+	t_img	*new;
 
-int	key_released(int key, t_window *window)
-{
-	printf("Window: \e[0;35m%p\e[0m\n", window->wndw_ptr);
-	printf("Key: \e[0;33m%x\e[0m released\n", key);
-	return (0);
+	new = malloc(sizeof *new);
+	new->img = NULL;
+	new->addr = NULL;
+	new->bpp = 0;
+	new->l_len = 0;
+	new->endian = 0;
+	return (new);
 }

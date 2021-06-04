@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/31 17:35:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 10:50:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	window(t_world *world)
 {
 	t_window *wndw;
 
-	wndw = ret_window(NULL);
+	wndw = get_window(NULL);
 	mlx_hook(wndw->wndw_ptr, 2, 1L<<0, key_pressed, world);
 	mlx_hook(wndw->wndw_ptr, 3, 1L<<0, key_released, wndw);
 	mlx_loop(wndw->con_ptr);

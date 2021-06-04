@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/29 22:10:13 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 10:50:40 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	select_case_line(char *line, t_world *world, int gnl_stts)
 		return ;
 	if (!ft_strncmp(line, "R", 1))
 	{
-		if (!ret_window(line))
+		if (!get_window(line))
 			world->status = -1;
 	}
 	else if(!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)

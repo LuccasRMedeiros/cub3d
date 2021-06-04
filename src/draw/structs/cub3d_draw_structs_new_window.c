@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:41:43 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/28 14:20:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 17:25:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_window	*new_window(void)
 	new = malloc(sizeof *new);
 	if (!new)
 		return (NULL);
+	new->res_wdt = 0;
+	new->res_hgt = 0;
 	new->con_ptr = NULL;
 	new->wndw_ptr = NULL;
 	return (new);

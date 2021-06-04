@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_events.c                                :+:      :+:    :+:   */
+/*   cub3d_core_structs.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/01 11:11:22 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/01 17:08:29 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/01 17:19:45 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** The functions here are called to deal with events (key been pressed).
+** Header containing structs of Cub3D Core module.
 */
 
-#include "cub3d_core.h"
+#ifndef CUB3D_CORE_STRUCTS_H
+# define CUB3D_CORE_STRUCTS_H
 
-int	key_pressed(int key, t_world *world)
-{
-	if (key == 0xff1b)
-		close_window(world);
-	return (0);
-}
+# include <unistd.h>
 
-int	key_released(int key, t_window *window)
+typedef struct	s_actor
 {
-	printf("Window: \e[0;35m%p\e[0m\n", window->wndw_ptr);
-	printf("Key: \e[0;33m%x\e[0m released\n", key);
-	return (0);
-}
+	char	id;
+	size_t	pos_x;
+	size_t	pos_y;
+	float	speed;
+}	t_actor;

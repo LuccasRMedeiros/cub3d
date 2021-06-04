@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/31 17:34:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 14:21:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 # include "./error/cub3d_core_error.h"
 
 t_world		*read_cub(char *cub_path);
-t_window	*ret_window(char *line);
-int			close_window(t_world *world);
+int			close_program(t_world *world);
 int			key_pressed(int key, t_world *world);
 int			key_released(int key, t_window *window);
 

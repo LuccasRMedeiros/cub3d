@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_ret_window.c                            :+:      :+:    :+:   */
+/*   cub3d_core_get_window.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 15:10:52 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/31 17:04:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/01 14:21:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 ** Can receive a line or NULL.
 */
 
-#include "cub3d_core.h"
+#include "cub3d_draw.h"
 
-t_window	*ret_window(char *line)
+t_window	*get_window(char *line)
 {
 	static t_window	*window;
 	char			**res;
 
 	res = NULL;
 	if (line)
-		res = ft_split(line + 1, ' ');
-	if (!window)
 	{
+		res = ft_split(line + 1, ' ');
 		window = create_window(res, "Cub3D");
+		ft_destroyer((void **)res);
 		if (!window)
 			return (NULL);
 	}
