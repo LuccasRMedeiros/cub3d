@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/01 14:21:34 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/15 14:13:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "./structs/cub3d_draw_structs.h"
 
 void		print_map(t_world *world);
-t_window	*create_window(char **res, const char *title);
 t_window	*get_window(char *line);
+void		pixel_put(t_img *img, int posx, int posy, int color);
 
 #endif

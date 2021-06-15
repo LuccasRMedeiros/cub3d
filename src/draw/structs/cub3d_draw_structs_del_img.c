@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/04 16:51:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/15 15:10:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	del_img(t_img *del)
 	del->addr  = NULL;
 	del->bpp = 0;
 	del->l_len = 0;
-	del->endian = 0;
+	del->end = 0;
 	free(del);
 }

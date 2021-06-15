@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/01 11:11:22 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/15 17:33:36 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,17 @@
 int	key_pressed(int key, t_world *world)
 {
 	if (key == 0xff1b)
-		close_window(world);
+		close_program(world);
+	else if (key == 0x77)
+		printf("move foward\n");
+	else if (key == 0x64)
+		printf("move right\n");
+	else if (key == 0x73)
+		printf("move back\n");
+	else if (key == 0x61)
+		printf("move left\n");
+	else
+		printf("pressed key: \e[0;35m%x\e[0m\n", key);
 	return (0);
 }
 
