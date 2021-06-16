@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_structs.h                               :+:      :+:    :+:   */
+/*   cub3d_core_structs_del_actor.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/01 17:08:29 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/16 18:16:33 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/16 11:41:20 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/16 13:53:57 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header containing structs of Cub3D Core module.
+** Destroy a t_actor instance.
 */
 
-#ifndef CUB3D_CORE_STRUCTS_H
-# define CUB3D_CORE_STRUCTS_H
+#include "cub3d_core_structs.h"
 
-# include "../../draw/structs/cub3d_draw_structs.h"
-
-typedef struct	s_actor
+void	del_actor(t_actor *del)
 {
-	char	id;
-	size_t	pos_x;
-	size_t	pos_y;
-	t_img	*sprite;
-}	t_actor;
-
-
-t_actor	*new_actor(char	id, int	pos_x, int pos_y);
-void	del_actor(t_actor *del);
-
-#endif
+	del->id = 0;
+	del->pos_x = 0;
+	del->pos_y = 0;
+	del_img(del->sprite);
+	free(del);
+}

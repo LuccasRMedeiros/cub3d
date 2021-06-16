@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_events.c                                :+:      :+:    :+:   */
+/*   cub3d_core_move.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
+/*   Created: 2021/06/16 11:10:14 by lrocigno          #+#    #+#             */
 /*   Updated: 2021/06/16 13:53:57 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** The functions here are called to deal with events (key been pressed).
+** Execute the update of position for moving elements.
 */
 
 #include "cub3d_core.h"
 
-int	key_pressed(int key, t_world *world, t_actor *player)
+void	move(t_actor *obj, float trns_x, float trns_y)
 {
-	if (key == 0xff1b)
-		close_program(world);
-	else if (key == 0x77)
-		move(player, 1, 0);
-	else if (key == 0x64)
-		move(player, 0, 1);
-	else if (key == 0x73)
-		move(player, -1, 0);
-	else if (key == 0x61)
-		move(player, 0, -1);
-	else
-		printf("pressed key: \e[0;35m%x\e[0m\n", key);
-	return (0);
-}
+	t_window	*wndw;
+	int			move_to_x;
+	int			move_to_y;
 
-int	key_released(int key, t_window *window)
-{
-	printf("Window: \e[0;35m%p\e[0m\n", window->wndw_ptr);
-	printf("Key: \e[0;33m%x\e[0m released\n", key);
-	return (0);
+	wndw = get_window(NULL);
+	move_to_x = obj->pos_x + trns_x;
+	move_to_y = obj->pos_y + trns_y;
+	mlx_put_image_to_window(wndw->conn, wndw->wndw_ptr, obj->sprite->img,
+		move_to_x, move_to_y);
 }
