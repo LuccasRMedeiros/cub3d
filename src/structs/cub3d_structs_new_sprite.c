@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world.h                                      :+:      :+:    :+:   */
+/*   cub3d_structs_new_sprite.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:26:27 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/15 11:56:31 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/23 18:36:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header with the difinitions and prototypes for world pre-building functions.
+** Initialize a new t_sprite.
 */
 
-#ifndef CUB3D_WORLD_H
-# define CUB3D_WORLD_H
+#include "cub3d_structs.h"
 
-# include <cub3d_structs.h>
+t_sprite	*new_sprite(void)
+{
+	t_sprite	*new;
 
-t_world	*set_world(t_cub *cub, void *conn);
-
-#endif
+	new = malloc(sizeof *new);
+	if (!new)
+		return (NULL);
+	new->id = '2';
+	new->sprite = NULL;
+	return (new);
+}

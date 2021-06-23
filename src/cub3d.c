@@ -6,43 +6,11 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/16 17:53:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/23 15:31:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_core.h>
-
-/*
-** Will draw a character on the screen. Just a placeholder.
-*/
-
-static void	player(void)
-{
-	t_window	*wndw;
-	t_actor		*player;
-	int			hgt;
-	int			wdt;
-
-	wndw = get_window(NULL);
-	player = new_actor('N', 0, 0);
-	player->sprite = new_image(wndw->conn, 32, 32);
-	t_img		*sprite;
-	hgt = 0;
-	wdt = 0;
-	while (hgt < 32)
-	{
-		while (wdt < 32)
-		{
-			pixel_put(sprite, hgt, wdt, 0xFFFFFF);
-			++wdt;
-		}
-		wdt = 0;
-		pixel_put(sprite, hgt, wdt, 0xFFFFFF);
-		++hgt;
-	}
-	player->sprite = sprite;
-	mlx_put_image_to_window(wndw->conn, wndw->wndw_ptr, player->sprite->img, player->pos_x, player->pos_y);
-}
 
 /*
 ** Calls for ret_window to receive the main t_window instance (created during  -
@@ -51,14 +19,19 @@ static void	player(void)
 **  a window was already created.
 */
 
-static void	cub3d(t_world *world)
+static void	cub3d(t_cub *cub)
 {
-	t_window *wndw;
+	void		*conn;
+	t_window	*wndw;
+	t_world		*world;
 
-	wndw = get_window(NULL);
+	conn = mlx_init();
+	wndw = new_window(cub->res[0], cub->res[1], "Cub3D", conn);
+	world = set_world(cub, conn);
+	del_cub(cub);
 	mlx_hook(wndw->wndw_ptr, 2, 1L<<0, key_pressed, world);
 	mlx_hook(wndw->wndw_ptr, 3, 1L<<0, key_released, wndw);
-	mlx_loop(wndw->conn);
+	mlx_loop();
 }
 
 /*
@@ -71,15 +44,14 @@ static void	cub3d(t_world *world)
 
 int	main(int argc, char **argv)
 {
-	t_world	*world;
+	t_cub	*cub;
 
-	world = read_cub(argv[1]);
-	if (world->status == -1)
+	cub = read_cub(argv[1]);
+	if (cub->status == -1)
 	{
-		del_world(world);
+		del_cub(cub);
 		exit(-1);
 	}
-	player();
-	cub3d(world);
-	return (argc);
+	cub3d(cub);
+	return (0);
 }

@@ -6,63 +6,67 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/15 13:53:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/23 13:54:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "cub3d_core.h"
+
+/*
+** Call the function that deals with certain type of information.
+** The first verification it does is if the cub status is -1 which means an    -
+** error was found on the given cub file. If it happens, the select case return-
+**  to continue the read of the cub file. It is done to prevent to grant the   -
+** program will read a fil till the end, avoiding a memory leak.
+*/
+
+static void	select_case_line(char *line, t_cub *cub, int gnl_stts)
+{
+	if (cub->status == -1)
+		return ;
+	if (!ft_strncmp(line, "R", 1))
+		set_res(line, cub);
+	else if(!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
+		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
+		set_tilesheet(line, cub);
+	else if (!ft_strncmp(line, "S", 1))
+		set_spritesheet(line, cub);
+	else if (!ft_strncmp(line, "F", 1))
+		set_floor_color(line, cub);
+	else if (!ft_strncmp(line, "C", 1))
+		set_ceilling_color(line, cub);
+	else if (cub->status == 8)
+		set_map(line, world, gnl_stts);
+	else if (is_map_pattern(line))
+		wrong_order(world);
+}
 
 /*
 ** Reads a informed .cub file, so it starts to set correct values for world    -
 ** members.
 */
 
-#include "cub3d_core.h"
-
-static void	select_case_line(char *line, t_world *world, int gnl_stts)
+t_cub	*read_cub(char *cub_path)
 {
-	if (world->status == -1)
-		return ;
-	if (!ft_strncmp(line, "R", 1))
-	{
-		if (!get_window(line))
-			world->status = -1;
-	}
-	else if(!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
-		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
-		set_tileset(line, world);
-	else if (!ft_strncmp(line, "S", 1))
-		set_spriteset(line, world);
-	else if (!ft_strncmp(line, "F", 1))
-		set_floor_color(line, world);
-	else if (!ft_strncmp(line, "C", 1))
-		set_ceilling_color(line, world);
-	else if (world->status == 8)
-		set_map(line, world, gnl_stts);
-	else if (is_map_pattern(line))
-		wrong_order(world);
-}
-
-t_world	*read_cub(char *cub_path)
-{
-	t_world	*world;
+	t_cub	*cub;
 	int		fd;
 	int		gnl_stts;
 	char	*line;
 
-	world = new_world();
+	cub = new_cub();
 	fd = validate_cubfile(cub_path);
 	if (fd == -1)
 	{
-		world->status = -1;
-		return (world);
+		cub->status = -1;
+		return (cub);
 	}
 	gnl_stts = 1;
-	world->name = ft_strdup(cub_path + 7);
 	while (gnl_stts)
 	{
 		gnl_stts = ft_gnl(fd, &line);
-		select_case_line(line, world, gnl_stts);
+		select_case_line(line, cub, gnl_stts);
 		free(line);
 	}
 	close(fd);
-	return (world);
+	return (cub);
 }

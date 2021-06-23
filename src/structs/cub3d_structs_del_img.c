@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world.h                                      :+:      :+:    :+:   */
+/*   cub3d_structs_del_img.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:26:27 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header with the difinitions and prototypes for world pre-building functions.
+** Delete the informed t_img instance.
 */
 
-#ifndef CUB3D_WORLD_H
-# define CUB3D_WORLD_H
+#include "cub3d_structs.h"
 
-# include <cub3d_structs.h>
-
-t_world	*set_world(t_cub *cub, void *conn);
-
-#endif
+void	del_img(t_img *del)
+{
+	del->name = NULL;
+	del->img = NULL;
+	del->addr  = NULL;
+	del->bpp = 0;
+	del->l_len = 0;
+	del->end = 0;
+	free(del);
+}

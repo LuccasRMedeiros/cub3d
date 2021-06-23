@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world.h                                      :+:      :+:    :+:   */
+/*   cub3d_structs_del_sheet.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:26:27 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/17 15:41:17 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_structs.h"
+
 /*
-** Header with the difinitions and prototypes for world pre-building functions.
+** Deletes a t_tilesheet instance.
 */
 
-#ifndef CUB3D_WORLD_H
-# define CUB3D_WORLD_H
-
-# include <cub3d_structs.h>
-
-t_world	*set_world(t_cub *cub, void *conn);
-
-#endif
+void	del_tilesheet(t_tilesheet *del)
+{
+	del->is_wall = false;
+	del->wall_no = NULL;
+	del->wall_so = NULL;
+	del->wall_we = NULL;
+	del->wall_ea = NULL;
+	free(del);
+}

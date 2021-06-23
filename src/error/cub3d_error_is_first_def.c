@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:33:36 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/05/29 20:49:12 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/21 12:35:14 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 #include "cub3d_error.h"
 
-bool	is_first_def(void *data, const char *p_name)
+bool	is_first_def(void *data, const char *p_name, int ruler)
 {
 	char	*holder;
 
 	holder = (char *)data;
 	if (holder)
 	{
-		if (holder[0] != -1)
+		if (holder[0] != ruler)
 		{
 			error_msg("Double definition for property", p_name);
 			return (false);

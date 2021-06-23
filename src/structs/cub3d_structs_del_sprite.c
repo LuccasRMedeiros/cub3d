@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world.h                                      :+:      :+:    :+:   */
+/*   cub3d_structs_del_sprite.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:26:27 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/05/15 12:04:02 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header with the difinitions and prototypes for world pre-building functions.
+** Destroy a t_sprite.
 */
 
-#ifndef CUB3D_WORLD_H
-# define CUB3D_WORLD_H
+#include "cub3d_structs.h"
 
-# include <cub3d_structs.h>
-
-t_world	*set_world(t_cub *cub, void *conn);
-
-#endif
+void	del_sprite(t_sprite *del)
+{
+	del->id = 0;
+	del_img(del->sprite);
+	free(del);
+}

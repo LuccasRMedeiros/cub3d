@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_world.h                                      :+:      :+:    :+:   */
+/*   cub3d_structs_del_cub.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:26:27 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/18 12:11:21 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_structs.h"
+
 /*
-** Header with the difinitions and prototypes for world pre-building functions.
+** Delete a cub instance.
 */
 
-#ifndef CUB3D_WORLD_H
-# define CUB3D_WORLD_H
-
-# include <cub3d_structs.h>
-
-t_world	*set_world(t_cub *cub, void *conn);
-
-#endif
+void	del_cub(t_cub *del)
+{
+	free(del->pre_layout);
+	ft_destroyer(del->layout);
+	del->status = 0;
+	del->res = {-1, -1};
+	del_sheet(del->tilesheet);
+	del_sheet(del->spritesheet);
+	del->floor_color = {-1, -1, -1};
+	del->ceilling_color = {-1, -1, -1};
+	del->map_axis = {0, 0, 0};
+	del->player_pos = {0, 0, 0};
+}
