@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 17:55:02 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:22:21 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:02:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define CUB3D_ERROR_H
 
 # include <cub3d_structs.h>
-# include <libft.h>
 
 # define PLAYER "NSWE"
 # define INNER "02NSWE"
@@ -28,7 +27,7 @@
 
 void	error_msg(const char *msg, const char *obj);
 void	do_nothing(void);
-bool	is_first_def(void *data, const char *p_name);
+bool	is_first_def(void *data, const char *p_name, int ruler);
 bool	is_map_pattern(const char *line);
 bool	validate_color(char **rgb, char *area);
 int		validate_cubfile(char *path);

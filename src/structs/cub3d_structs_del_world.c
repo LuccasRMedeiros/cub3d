@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 12:14:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 13:04:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	del_world(t_world *del)
 {
-	ft_destroyer(del->map);
+	ft_destroyer((void **)del->map);
 	del->map_x = 0;
 	del->map_y = 0;
 	free(del);

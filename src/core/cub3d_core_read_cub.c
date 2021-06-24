@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 13:54:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:02:26 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static void	select_case_line(char *line, t_cub *cub, int gnl_stts)
 	else if (!ft_strncmp(line, "C", 1))
 		set_ceilling_color(line, cub);
 	else if (cub->status == 8)
-		set_map(line, world, gnl_stts);
+		set_map(line, cub, gnl_stts);
 	else if (is_map_pattern(line))
-		wrong_order(world);
+		wrong_order(cub);
 }
 
 /*

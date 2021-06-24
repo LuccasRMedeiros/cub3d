@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:22:52 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 15:08:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static int	walls_at_col(char **map, size_t col)
 		}
 		else if (!ft_strhvchr(VLCHR, map[i][col]))
 			return (-1);
+		++i;
 	}
 	return (walls);
 }
@@ -66,6 +67,7 @@ static int	walls_at_row(char *map)
 		}
 		else if (!ft_strhvchr(VLCHR, map[i]))
 			return (-1);
+		++i;
 	}
 	return (walls);
 }
@@ -77,9 +79,9 @@ static int	walls_at_row(char *map)
 
 static int	conf_walls(t_cub *cub)
 {
-	int		walls;
-	size_t	r;
-	size_t	c;
+	int	walls;
+	int	r;
+	int	c;
 	
 	walls = 0;
 	r = 0;

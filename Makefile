@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/06/16 14:03:49 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/06/24 10:50:16 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ INCLUDES =	-I src/libs/libft/headers \
 			-I src/core \
 			-I src/error \
 			-I src/draw \
+			-I src/structs \
 			-I src/world \
 
 LIBS =  -L$(LIBFT) -lft \
@@ -68,15 +69,10 @@ LIBS =  -L$(LIBFT) -lft \
 		-lXext \
 
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
-		$(addprefix core/error/, $(notdir $(wildcard ./src/core/error/*.c))) \
-		$(addprefix core/structs/, $(notdir $(wildcard ./src/core/structs/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
-		$(addprefix draw/error/, $(notdir $(wildcard ./src/draw/error/*.c))) \
-		$(addprefix draw/structs/, $(notdir $(wildcard ./src/draw/structs/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
+		$(addprefix structs/, $(notdir $(wildcard ./src/structs/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
-		$(addprefix world/error/, $(notdir $(wildcard ./src/world/error/*.c))) \
-		$(addprefix world/structs/, $(notdir $(wildcard ./src/world/structs/*.c))) \
 
 SRC_FULL = $(addprefix ./src/, $(SRC))
 

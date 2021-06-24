@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:34:13 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 13:02:09 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #ifndef CUB3D_STRUCTS_H
 # define CUB3D_STRUCTS_H
 
-# include <unistd.h>
+# include <libft.h>
+# include <math.h>
+# include <mlx.h>
 
 typedef struct	s_sheet
 {
@@ -89,11 +91,11 @@ typedef struct s_world
 	int			player_y;
 }	t_world;
 
-t_sheet		*new_sheet(char id);
+t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
 void		del_cub(t_cub *del);
-t_window	*new_window(size_t wdt, size_t hgt, char *title);
+t_window	*new_window(void *conn, size_t wdt, size_t hgt, char *title);
 void		del_window(t_window *del);
 t_img		*new_img(char *name, void *conn, size_t wdt, size_t hgt);
 void		del_img(t_img *del);

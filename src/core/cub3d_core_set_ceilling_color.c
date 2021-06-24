@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 22:47:06 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/21 14:09:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:09:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	set_ceilling_color(const char *line, t_cub *cub)
 
 	rgb = ft_split(line + 1, ',');
 	if (!validate_color(rgb, "ceilling")
-		|| !is_first_def(cub->ceilling_color[0], "Ceilling color", -1))
+		|| !is_first_def(&cub->ceilling_color[0], "Ceilling color", -1))
 	{
-		world->status = -1;
+		cub->status = -1;
 		return ;
 	}
 	cub->ceilling_color[0] = ft_atoi(rgb[0]);

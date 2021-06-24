@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 16:22:40 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 14:30:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 #ifndef CUB3D_CORE_H
 # define CUB3D_CORE_H
 
-# include <libft.h>
-# include <math.h>
-# include <stdio.h>
-# include <mlx.h>
 # include <cub3d_draw.h>
+# include <cub3d_error.h>
+# include <cub3d_structs.h>
 # include <cub3d_world.h>
 
-# include "./error/cub3d_core_error.h"
-# include "./structs/cub3d_core_structs.h"
+typedef struct	s_program
+{
+	t_window	*wndw;
+	t_world		*wrld;
+}	t_program;
 
 t_cub	*read_cub(char *cub_path);
 void	set_res(const char *line, t_cub *cub);
@@ -34,8 +35,9 @@ void	set_spritesheet(const char *line, t_cub *cub);
 void	set_floor_color(const char *line, t_cub *cub);
 void	set_ceilling_color(const char *line, t_cub *cub);
 void	set_map(const char *line, t_cub *cub, size_t gnl_stts);
-int		close_program(t_world *world);
-int		key_pressed(int key, t_world *world);
-int		key_released(int key, t_window *window);
+void	set_player(t_cub *cub);
+int		close_program(t_program *prog);
+int		key_pressed(int key, t_program *prog);
+int		key_released(int key, t_program *prog);
 
 #endif

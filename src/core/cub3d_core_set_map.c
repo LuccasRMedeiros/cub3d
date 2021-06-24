@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 13:54:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:23:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	normalize_map(t_cub *cub)
 {
 	char	**map;
 	char	*fill;
-	size_t	l;
-	size_t	lsz;
+	int		l;
+	int		lsz;
 
 	map = cub->layout;
 	l = 0;
@@ -70,8 +70,8 @@ static void	normalize_map(t_cub *cub)
 static void	set_axes(t_cub *cub)
 {
 	char	**map;
-	size_t	x;
-	size_t	y;
+	int		x;
+	int		y;
 
 	map = cub->layout;
 	x = 0;

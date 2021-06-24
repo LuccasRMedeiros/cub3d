@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:37:12 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:36:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:32:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 t_sheet	*new_sheet(char id, bool is_wall)
 {
-	t_tilesheet	*new;
+	t_sheet	*new;
 	
 	new = malloc(sizeof *new);
 	if (!new)

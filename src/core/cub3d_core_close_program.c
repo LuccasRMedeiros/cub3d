@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 11:50:47 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/15 14:05:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 14:28:41 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@
 
 #include "cub3d_core.h"
 
-int	close_program(t_world *world)
+int	close_program(t_program *prog)
 {
-	t_window *wndw;
+	t_window	*wndw;
+	t_world		*wrld;
 
-	wndw = get_window(NULL);
+	wndw = prog->wndw;
+	wrld = prog->wrld;
 	del_window(wndw);
-	del_world(world);
+	del_world(wrld);
+	prog = NULL;
 	exit(0);
 }

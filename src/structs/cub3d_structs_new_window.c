@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:41:43 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:36:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:00:23 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "cub3d_structs.h"
 
-t_window	*new_window(size_t wdt, size_t hgt, char *title, void *conn)
+t_window	*new_window(void *conn, size_t wdt, size_t hgt, char *title)
 {
 	t_window	*new;
 

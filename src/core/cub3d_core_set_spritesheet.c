@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:04:03 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/22 11:33:44 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:13:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	set_spritesheet(const char *line, t_cub *cub)
 	char	*path;
 
 	path = ft_strdup(ft_strchr(line, '.'));
-	if (!validate_texture(path, "sprite texture", 0)
-		|| !is_first_def(cub->spritesheet->face_no, "sprite texture", 0))
+	if (!validate_texture(path, "sprite texture")
+		|| !is_first_def(cub->spritesheet->no_face, "sprite texture", 0))
 	{
 		free(path);
 		path = NULL;
-		world->status = -1;
+		cub->status = -1;
 		return ;
 	}
-	cub->spritesheet->face_no = path;
+	cub->spritesheet->no_face = path;
 	cub->status += 2;
 }

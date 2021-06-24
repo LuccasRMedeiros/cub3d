@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 15:31:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 15:24:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,17 @@ static void	cub3d(t_cub *cub)
 	void		*conn;
 	t_window	*wndw;
 	t_world		*world;
+	t_program	prog;
 
 	conn = mlx_init();
-	wndw = new_window(cub->res[0], cub->res[1], "Cub3D", conn);
+	wndw = new_window(conn, cub->res[0], cub->res[1], "Cub3D");
 	world = set_world(cub, conn);
 	del_cub(cub);
-	mlx_hook(wndw->wndw_ptr, 2, 1L<<0, key_pressed, world);
-	mlx_hook(wndw->wndw_ptr, 3, 1L<<0, key_released, wndw);
-	mlx_loop();
+	prog.wndw = wndw;
+	prog.wrld = world;
+	mlx_hook(wndw->wndw_ptr, 2, 1L<<0, key_pressed, &prog);
+	mlx_hook(wndw->wndw_ptr, 3, 1L<<0, key_released, &prog);
+	mlx_loop(conn);
 }
 
 /*
@@ -53,5 +56,5 @@ int	main(int argc, char **argv)
 		exit(-1);
 	}
 	cub3d(cub);
-	return (0);
+	return (argc);
 }

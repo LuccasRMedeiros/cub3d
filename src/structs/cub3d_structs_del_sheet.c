@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:41:17 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 13:06:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 ** Deletes a t_tilesheet instance.
 */
 
-void	del_tilesheet(t_tilesheet *del)
+void	del_sheet(t_sheet *del)
 {
 	del->is_wall = false;
-	del->wall_no = NULL;
-	del->wall_so = NULL;
-	del->wall_we = NULL;
-	del->wall_ea = NULL;
+	del->no_face = NULL;
+	del->so_face = NULL;
+	del->we_face = NULL;
+	del->ea_face = NULL;
 	free(del);
 }

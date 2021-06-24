@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:17:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:36:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 11:38:06 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_world	*new_world(void)
 		return (NULL);
 	new->tileset = NULL;
 	new->spriteset = NULL;
-	new->floor = NULL
+	new->floor = NULL;
 	new->ceilling = NULL;
 	new->map = NULL;
 	new->map_x = 0;

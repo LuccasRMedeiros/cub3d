@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:55:23 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/21 13:02:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 14:38:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	set_res(const char *line, t_cub *cub)
 {
 	char	**res;
 
-	res = ft_split(line, ' ');
+	res = ft_split(line + 1, ' ');
 	if (!is_first_def((void *)cub->res, "Window resolution", 0)
 		|| !validate_res(res))
 	{
 		cub->status = -1;
-		ft_destroyer(res);
+		ft_destroyer((void **)res);
 		return ;
 	}
 	cub->res[0] = ft_atoi(res[0]);
 	cub->res[1] = ft_atoi(res[1]);
-	ft_destroyer(res);
+	ft_destroyer((void **)res);
 }

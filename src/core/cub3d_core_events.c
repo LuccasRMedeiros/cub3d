@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/16 13:53:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/24 14:31:54 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 
 #include "cub3d_core.h"
 
-int	key_pressed(int key, t_world *world, t_actor *player)
+int	key_pressed(int key, t_program *prog)
 {
 	if (key == 0xff1b)
-		close_program(world);
+		close_program(prog);
 	else if (key == 0x77)
-		move(player, 1, 0);
+		printf("move foward\n");
 	else if (key == 0x64)
-		move(player, 0, 1);
+		printf("move to right\n");
 	else if (key == 0x73)
-		move(player, -1, 0);
+		printf("move backward\n");
 	else if (key == 0x61)
-		move(player, 0, -1);
+		printf("move to left\n");
 	else
 		printf("pressed key: \e[0;35m%x\e[0m\n", key);
 	return (0);
 }
 
-int	key_released(int key, t_window *window)
+int	key_released(int key, t_program *prog)
 {
-	printf("Window: \e[0;35m%p\e[0m\n", window->wndw_ptr);
+	printf("Window: \e[0;35m%p\e[0m\n", prog->wndw->wndw_ptr);
 	printf("Key: \e[0;33m%x\e[0m released\n", key);
 	return (0);
 }
