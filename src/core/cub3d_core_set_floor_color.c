@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 21:19:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 11:09:33 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 13:39:12 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	set_floor_color(const char *line, t_cub *cub)
 
 	rgb = ft_split(line + 1, ',');
 	if (!validate_color(rgb, "floor")
-		|| !is_first_def(&cub->floor_color[0], "Floor color", -1))
+		|| !is_first_def(&cub->f_color[0], "Floor color", -1))
 	{
 		cub->status = -1;
 		return ;
 	}
-	cub->floor_color[0] = ft_atoi(rgb[0]);
-	cub->floor_color[1] = ft_atoi(rgb[1]);
-	cub->floor_color[2] = ft_atoi(rgb[2]);
+	cub->f_color[0] = ft_atoi(rgb[0]);
+	cub->f_color[1] = ft_atoi(rgb[1]);
+	cub->f_color[2] = ft_atoi(rgb[2]);
 	cub->status += 1;
 	ft_destroyer((void **)rgb);
 	rgb = NULL;

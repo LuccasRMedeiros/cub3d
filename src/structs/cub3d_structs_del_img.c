@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/25 19:28:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 void	del_img(t_img *del)
 {
-	del->name = NULL;
 	del->img = NULL;
 	del->addr  = NULL;
 	del->bpp = 0;

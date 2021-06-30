@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_del_window.c                         :+:      :+:    :+:   */
+/*   cub3d_draw_shift_to_color.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 13:55:51 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 18:35:50 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/27 11:09:21 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/27 11:18:55 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_draw.h"
+
 /*
-** Destroy a t_window instance.
-** Requires the address to the t_window instance to be destroyed.
+** Receive three ints, each corresponding to a primary screen color (red green -
+** blue).
+** It will then bitshift those values, for red it make 16 left shifts, for     -
+** green 8 and dont shift blue.
+** The result will be an int that corresponds to a color value.
 */
 
-#include "cub3d_structs.h"
-
-void	del_window(t_window *del)
+int	shift_to_color(int r, int g, int b)
 {
-	mlx_destroy_window(del->conn, del->wndw_ptr);
-	del->res_wdt = 0;
-	del->res_hgt = 0;
-	del->conn = NULL;
-	del->wndw_ptr = NULL;
-	free(del);
+	return (r << 16 | g << 8 | b);
 }

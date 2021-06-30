@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 14:30:51 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 18:03:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 typedef struct	s_program
 {
-	t_window	*wndw;
-	t_world		*wrld;
+	void	*wndw;
+	t_world	*wrld;
+	t_img	*screen;
 }	t_program;
 
 t_cub	*read_cub(char *cub_path);

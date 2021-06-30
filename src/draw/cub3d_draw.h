@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 10:56:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 13:47:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 # include <cub3d_structs.h>
 
-void		print_map(t_world *world);
-t_window	*get_window(char *line);
-void		pixel_put(t_img *img, int posx, int posy, int color);
+void	pixel_put(t_img *img, int posx, int posy, int color);
+void	draw_image(t_img *img, int org_x, int org_y);
+void	print_map(t_world *world, t_img *screen);
+int		shift_to_color(int r, int g, int b);
 
 #endif

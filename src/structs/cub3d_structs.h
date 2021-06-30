@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 13:02:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 18:03:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,16 @@ typedef	struct	s_cub
 	int		res[2];
 	t_sheet	*tilesheet;
 	t_sheet	*spritesheet;
-	int		floor_color[3];
-	int		ceilling_color[3];
+	int		f_color[3];
+	int		c_color[3];
 	char	*pre_layout;
 	char	**layout;
 	int		map_axis[2];
 	int		player_pos[2];
 }	t_cub;
 
-typedef struct	s_window
-{
-	size_t	res_wdt;
-	size_t	res_hgt;
-	void	*conn;
-	void	*wndw_ptr;
-}	t_window;
-
 typedef struct	s_img
 {
-	char	*name;
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -66,24 +57,24 @@ typedef struct	s_img
 typedef struct s_tile
 {
 	char	id;
-	t_img	*wall_no;
-	t_img	*wall_so;
-	t_img	*wall_we;
-	t_img	*wall_ea;
+	char	*wall_no;
+	char	*wall_so;
+	char	*wall_we;
+	char	*wall_ea;
 }	t_tile;
 
 typedef struct s_sprite
 {
 	char	id;
-	t_img	*sprite;
+	char	*sprite;
 }	t_sprite;
 
 typedef struct s_world
 {
 	t_tile		*tileset;
 	t_sprite	*spriteset;
-	t_img		*floor;
-	t_img		*ceilling;
+	int			floor;
+	int			ceilling;
 	char		**map;
 	int			map_x;
 	int			map_y;
@@ -95,15 +86,13 @@ t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
 void		del_cub(t_cub *del);
-t_window	*new_window(void *conn, size_t wdt, size_t hgt, char *title);
-void		del_window(t_window *del);
-t_img		*new_img(char *name, void *conn, size_t wdt, size_t hgt);
+t_img		*new_img(void *conn, size_t wdt, size_t hgt);
 void		del_img(t_img *del);
-t_tile		*new_tile(void);
+t_tile		*new_tile(t_sheet *tilesheet);
 void		del_tile(t_tile *del);
-t_sprite	*new_sprite(void);
+t_sprite	*new_sprite(t_sheet *spritesheet);
 void		del_sprite(t_sprite *del);
-t_world		*new_world(void);
+t_world		*new_world(t_cub *cub);
 void		del_world(t_world *del);
 
 #endif

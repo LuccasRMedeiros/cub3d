@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:26:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 14:58:53 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/25 15:53:15 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 static void	set_wall(t_cub *cub, char *path, char **face)
 {
-	if (!is_first_def(face, "wall texture", 0)
+	if (!is_first_def(*face, "wall texture", 0)
 		|| !validate_texture(path, "wall texture"))
 	{
 		cub->status = -1;

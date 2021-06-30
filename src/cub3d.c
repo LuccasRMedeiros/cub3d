@@ -6,11 +6,29 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 15:24:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 18:06:14 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_core.h>
+
+/*
+** Create window and world instances using the information obtained from the cub -
+** buffer.
+** When it finishes, destroy the cub and return a t_program containing the window-
+**  and the world addresses.
+*/
+
+static t_program	prog_config(t_cub *cub, void *conn)
+{
+	t_program	prog;
+
+	prog.wndw = mlx_new_window(conn, cub->res[0], cub->res[1], "Cub3D");
+	prog.wrld = new_world(cub);
+	prog.screen = new_img(conn, cub->res[0], cub->res[1]);
+	del_cub(cub);
+	return (prog);
+}
 
 /*
 ** Calls for ret_window to receive the main t_window instance (created during  -
@@ -22,18 +40,13 @@
 static void	cub3d(t_cub *cub)
 {
 	void		*conn;
-	t_window	*wndw;
-	t_world		*world;
 	t_program	prog;
 
 	conn = mlx_init();
-	wndw = new_window(conn, cub->res[0], cub->res[1], "Cub3D");
-	world = set_world(cub, conn);
-	del_cub(cub);
-	prog.wndw = wndw;
-	prog.wrld = world;
-	mlx_hook(wndw->wndw_ptr, 2, 1L<<0, key_pressed, &prog);
-	mlx_hook(wndw->wndw_ptr, 3, 1L<<0, key_released, &prog);
+	prog = prog_config(cub, conn);
+	pixel_put(prog.screen, 0, 0, 0xFFFFFF);
+	mlx_hook(prog.wndw, 2, 1L<<0, key_pressed, &prog);
+	mlx_hook(prog.wndw, 3, 1L<<0, key_released, &prog);
 	mlx_loop(conn);
 }
 

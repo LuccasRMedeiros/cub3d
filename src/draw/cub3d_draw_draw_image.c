@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_new_window.c                         :+:      :+:    :+:   */
+/*   cub3d_draw_draw_image.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 13:41:43 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 11:00:23 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/25 15:03:34 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/06/27 13:14:00 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_draw.h"
+
 /*
-** Create a new t_window instance.
+** Uses pixel_put to draw a image on the screen.
 */
 
-#include "cub3d_structs.h"
-
-t_window	*new_window(void *conn, size_t wdt, size_t hgt, char *title)
+void	draw_image(t_img *frame, int org_x, int org_y)
 {
-	t_window	*new;
+	size_t	col;
+	size_t	row;
 
-	new = malloc(sizeof *new);
-	if (!new)
-		return (NULL);
-	new->res_wdt = wdt;
-	new->res_hgt = hgt;
-	new->conn = conn;
-	if (!new->conn)
+	col = 0;
+	row = 0;
+	while (row < 32)
 	{
-		free(new);
-		return (NULL);
+		while (col < 32)
+		{
+			pixel_put(frame, row + org_x, col + org_y, 0xFFFFFF);
+			++col;
+		}
+		col = 0;
+		++row;
 	}
-	new->wndw_ptr = mlx_new_window(conn, new->res_wdt, new->res_hgt, title);
-	return (new);
 }

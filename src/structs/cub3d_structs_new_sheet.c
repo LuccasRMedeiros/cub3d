@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 15:37:12 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 11:32:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/25 14:24:44 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_sheet	*new_sheet(char id, bool is_wall)
 		return (NULL);
 	new->id = id;
 	new->is_wall = is_wall;
-	new->no_face = NULL;
-	new->so_face = NULL;
-	new->we_face = NULL;
-	new->ea_face = NULL;
+	new->no_face = ft_calloc(1, sizeof(char));
+	new->so_face = ft_calloc(1, sizeof(char));
+	new->we_face = ft_calloc(1, sizeof(char));
+	new->ea_face = ft_calloc(1, sizeof(char));
 	return (new);
 }

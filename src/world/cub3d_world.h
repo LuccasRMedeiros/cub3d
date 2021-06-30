@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:26:27 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 15:24:24 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,5 @@
 # define CUB3D_WORLD_H
 
 # include <cub3d_structs.h>
-
-t_world	*set_world(t_cub *cub, void *conn);
 
 #endif

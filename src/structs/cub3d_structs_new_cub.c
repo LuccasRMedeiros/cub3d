@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:39:09 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 14:35:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/06/27 13:49:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_cub	*new_cub(void)
 	new->res[1] = 0;
 	new->tilesheet = new_sheet('1', true);
     new->spritesheet = new_sheet('2', false);
-    new->floor_color[0] = -1;
-    new->floor_color[1] = -1;
-    new->floor_color[2] = -1;
-    new->ceilling_color[0] = -1;
-    new->ceilling_color[1] = -1;
-    new->ceilling_color[2] = -1;
+    new->f_color[0] = -1;
+    new->f_color[1] = -1;
+    new->f_color[2] = -1;
+    new->c_color[0] = -1;
+    new->c_color[1] = -1;
+    new->c_color[2] = -1;
 	new->pre_layout = ft_calloc(1, sizeof(char));
     new->layout = NULL;
     new->map_axis[0] = 0;
