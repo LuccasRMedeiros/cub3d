@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 18:06:14 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/01 21:33:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@
 **  and the world addresses.
 */
 
-static t_program	prog_config(t_cub *cub, void *conn)
+static t_program	prog_config(t_cub *cub)
 {
 	t_program	prog;
 
-	prog.wndw = mlx_new_window(conn, cub->res[0], cub->res[1], "Cub3D");
+	prog.wndw = new_window(cub->res[0], cub->res[1], "Cub3D");
 	prog.wrld = new_world(cub);
-	prog.screen = new_img(conn, cub->res[0], cub->res[1]);
 	del_cub(cub);
 	return (prog);
 }
@@ -39,15 +38,13 @@ static t_program	prog_config(t_cub *cub, void *conn)
 
 static void	cub3d(t_cub *cub)
 {
-	void		*conn;
 	t_program	prog;
 
-	conn = mlx_init();
-	prog = prog_config(cub, conn);
-	pixel_put(prog.screen, 0, 0, 0xFFFFFF);
-	mlx_hook(prog.wndw, 2, 1L<<0, key_pressed, &prog);
-	mlx_hook(prog.wndw, 3, 1L<<0, key_released, &prog);
-	mlx_loop(conn);
+	prog = prog_config(cub);
+	print_map(prog.wrld, prog.wndw);
+	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
+	mlx_hook(prog.wndw->wndw, 3, 1L<<0, key_released, &prog);
+	mlx_loop(prog.wndw->conn);
 }
 
 /*

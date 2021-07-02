@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 11:50:47 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 18:05:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/01 19:54:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@
 
 int	close_program(t_program *prog)
 {
-	t_world		*wrld;
-
-	wrld = prog->wrld;
-	del_world(wrld);
+	del_world(prog->wrld);
+	del_window(prog->wndw);
 	prog = NULL;
 	exit(0);
 }

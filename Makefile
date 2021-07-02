@@ -67,6 +67,8 @@ LIBS =  -L$(LIBFT) -lft \
 		-L$(MLBX) -lmlx_Linux \
 		-lX11 \
 		-lXext \
+		-lm \
+		-lz \
 
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \

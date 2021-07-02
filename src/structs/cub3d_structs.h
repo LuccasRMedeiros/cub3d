@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 18:03:11 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/01 21:18:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ typedef struct	s_img
 	int		end;
 }	t_img;
 
+typedef struct	s_wndw
+{
+	void	*conn;
+	void	*wndw;
+	t_img	*screen;
+}	t_wndw;
+
 typedef struct s_tile
 {
 	char	id;
@@ -87,7 +94,9 @@ void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
 void		del_cub(t_cub *del);
 t_img		*new_img(void *conn, size_t wdt, size_t hgt);
-void		del_img(t_img *del);
+void		del_img(void *conn, t_img *del);
+t_wndw		*new_window(int wdt, int hgt, char *title);
+void		del_window(t_wndw *del);
 t_tile		*new_tile(t_sheet *tilesheet);
 void		del_tile(t_tile *del);
 t_sprite	*new_sprite(t_sheet *spritesheet);
