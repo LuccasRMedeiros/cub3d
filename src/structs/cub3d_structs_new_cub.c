@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 11:39:09 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 13:49:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/02 12:06:40 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_cub	*new_cub(void)
     new->c_color[0] = -1;
     new->c_color[1] = -1;
     new->c_color[2] = -1;
-	new->pre_layout = ft_calloc(1, sizeof(char));
+	new->pre_lyt = ft_calloc(1, sizeof(char));
     new->layout = NULL;
     new->map_axis[0] = 0;
     new->map_axis[1] = 0;

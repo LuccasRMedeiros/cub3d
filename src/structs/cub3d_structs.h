@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/01 21:18:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/02 18:25:55 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef	struct	s_cub
 	t_sheet	*spritesheet;
 	int		f_color[3];
 	int		c_color[3];
-	char	*pre_layout;
+	char	*pre_lyt;
 	char	**layout;
 	int		map_axis[2];
 	int		player_pos[2];
@@ -49,6 +49,8 @@ typedef struct	s_img
 {
 	void	*img;
 	char	*addr;
+	int		wdt;
+	int		hgt;
 	int		bpp;
 	int		l_len;
 	int		end;

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 11:23:30 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/02 12:06:36 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,14 @@ static void	set_axes(t_cub *cub)
 
 void	set_map(const char *line, t_cub *cub, size_t gnl_stts)
 {
-	char	*pre_layout;
-
-	pre_layout = cub->pre_layout;
 	if (gnl_stts && is_map_pattern(line))
 	{
-		pre_layout = ft_reallocncat(pre_layout, line);
-		pre_layout = ft_reallocncat(pre_layout, "\n");
+		cub->pre_lyt = ft_reallocncat(cub->pre_lyt, line);
+		cub->pre_lyt = ft_reallocncat(cub->pre_lyt, "\n");
 	}
-	else if (!gnl_stts || *pre_layout)
+	else if (!gnl_stts || *cub->pre_lyt)
 	{
-		cub->layout = ft_split(pre_layout, '\n');
+		cub->layout = ft_split(cub->pre_lyt, '\n');
 		set_axes(cub);
 		normalize_map(cub);
 		if (!validate_map(cub))

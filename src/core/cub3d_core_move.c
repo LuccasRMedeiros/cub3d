@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw_pixel_put.c                             :+:      :+:    :+:   */
+/*   cub3d_core_move.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 12:49:05 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/03 13:06:57 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/03 18:58:42 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/03 19:25:21 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3d_core.h"
+
 /*
-** Because the mlx_pixel_put function is very slow, it is necessary to create a
-** similar function.
-** This one keeps the pixels into a buffer and send it to the window.
+** Those functions controls the movement of the character.
 */
 
-#include "cub3d_draw.h"
-
-void	pixel_put(t_img *img, int posx, int posy, int color)
+void	move(t_program *prog)
 {
-	char	*dst;
-
-	if (posx > img->wdt || posy > img->hgt)
-		return ;
-	dst = img->addr + (posy * img->l_len + posx * (img->bpp / 8));
-	*(unsigned int *)dst = color;
+	draw_map(prog->wrld, prog->wndw);
 }

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/01 21:33:19 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/03 17:00:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	cub3d(t_cub *cub)
 	t_program	prog;
 
 	prog = prog_config(cub);
-	print_map(prog.wrld, prog.wndw);
+	draw_map(prog.wrld, prog.wndw);
 	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
 	mlx_hook(prog.wndw->wndw, 3, 1L<<0, key_released, &prog);
 	mlx_loop(prog.wndw->conn);

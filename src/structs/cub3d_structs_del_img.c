@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/01 18:54:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/02 18:05:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 void	del_img(void *conn, t_img *del)
 {
+	if (!conn || !del->img)
+		return ;
 	mlx_destroy_image(conn, del->img);
 	free(del);
 	del->img = NULL;

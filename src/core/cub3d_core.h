@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/01 18:54:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/03 19:23:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	set_player(t_cub *cub);
 int		close_program(t_program *prog);
 int		key_pressed(int key, t_program *prog);
 int		key_released(int key, t_program *prog);
+void	move(t_program *prog);
 
 #endif
