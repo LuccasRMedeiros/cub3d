@@ -6,24 +6,10 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 12:49:05 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/03 13:06:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/04 11:16:13 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Because the mlx_pixel_put function is very slow, it is necessary to create a
-** similar function.
-** This one keeps the pixels into a buffer and send it to the window.
-*/
 
 #include "cub3d_draw.h"
 
-void	pixel_put(t_img *img, int posx, int posy, int color)
-{
-	char	*dst;
-
-	if (posx > img->wdt || posy > img->hgt)
-		return ;
-	dst = img->addr + (posy * img->l_len + posx * (img->bpp / 8));
-	*(unsigned int *)dst = color;
-}

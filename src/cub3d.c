@@ -6,27 +6,42 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/03 17:00:03 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/04 19:30:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d_core.h>
 
 /*
-** Create window and world instances using the information obtained from the cub -
-** buffer.
-** When it finishes, destroy the cub and return a t_program containing the window-
-**  and the world addresses.
+** Create window and world instances using the information obtained from the   -
+** cub buffer.
+** When it finishes, destroy the cub and return a t_program containing the     -
+** window and the world addresses.
 */
 
 static t_program	prog_config(t_cub *cub)
 {
 	t_program	prog;
 
+	prog.running = true;
 	prog.wndw = new_window(cub->res[0], cub->res[1], "Cub3D");
 	prog.wrld = new_world(cub);
 	del_cub(cub);
 	return (prog);
+}
+
+/*
+** Update the window by replacing the image that is on the screen.
+*/
+
+void	update_frame(t_wndw *wndw, t_world *wrld)
+{
+	t_img	*n_frame;
+	
+	n_frame = frame(wrld, wndw);
+	ft_lstadd_front(&wndw->frame, ft_lstnew(n_frame));
+	ft_lstdelone(wndw->frame->next, &del_img);
+	mlx_put_image_to_window(wndw->conn, wndw->wndw, n_frame->conn, 0, 0);
 }
 
 /*
@@ -36,14 +51,12 @@ static t_program	prog_config(t_cub *cub)
 **  a window was already created.
 */
 
-static void	cub3d(t_cub *cub)
+static void	cub3d(t_program prog)
 {
-	t_program	prog;
-
-	prog = prog_config(cub);
-	draw_map(prog.wrld, prog.wndw);
 	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
 	mlx_hook(prog.wndw->wndw, 3, 1L<<0, key_released, &prog);
+	if (prog.running)
+		update_frame(prog.wndw, prog.wrld);
 	mlx_loop(prog.wndw->conn);
 }
 
@@ -65,6 +78,6 @@ int	main(int argc, char **argv)
 		del_cub(cub);
 		exit(-1);
 	}
-	cub3d(cub);
+	cub3d(prog_config(cub));
 	return (argc);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_structs_new_window.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 17:05:08 by user42            #+#    #+#             */
-/*   Updated: 2021/07/01 21:33:19 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/04 20:17:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ t_wndw	*new_window(int wdt, int hgt, char *title)
 	if (!new)
 		return (NULL);
 	new->conn = mlx_init();
+	new->wdt = wdt;
+	new->hgt = hgt;
 	new->wndw = mlx_new_window(new->conn, wdt, hgt, title);
-	new->screen = new_img(new->conn, wdt, hgt);
+	new->frame = ft_lstnew(new_img(new));
 	return (new);
 }

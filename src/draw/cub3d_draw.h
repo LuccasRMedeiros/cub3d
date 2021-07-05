@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/03 20:00:22 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/04 19:14:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@
 
 # define PLAYER "NSWE"
 
-void	pixel_put(t_img *img, int posx, int posy, int color);
-void	draw_image(t_wndw *wndw, char *el, int org_x, int org_y);
-void	draw_map(t_world *wrld, t_wndw *wndw);
-void	draw_player(t_wndw *wndw, t_world *wrld);
-int		shift_to_color(int r, int g, int b);
+void	draw_image(t_img *img, char *el, int org_x, int org_y);
+t_img	*frame(t_world *wrld, t_wndw *wndw);
 
 #endif

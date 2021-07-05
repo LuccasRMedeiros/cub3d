@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/02 18:05:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/04 19:32:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 #include "cub3d_structs.h"
 
-void	del_img(void *conn, t_img *del)
+void	del_img(void *v_del)
 {
-	if (!conn || !del->img)
-		return ;
-	mlx_destroy_image(conn, del->img);
+	t_img	*del;
+
+	del = v_del;
+	mlx_destroy_image(del->conn, del->img);
 	free(del);
 	del->img = NULL;
 	del->addr  = NULL;

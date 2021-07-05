@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 15:37:32 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/03 19:26:50 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:09:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	key_pressed(int key, t_program *prog)
 
 int	key_released(int key, t_program *prog)
 {
-	move(prog);
+	printf("watching the window: \e[1;33m%p\e[0m\n", prog->wndw->conn);
+	printf("you just realeased the key: \e[1;35m%i\e[0m\n", key);
 	return (key);
 }

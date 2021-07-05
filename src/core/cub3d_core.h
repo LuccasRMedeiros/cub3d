@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/03 19:23:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/04 19:12:39 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 typedef struct	s_program
 {
+	bool	running;
 	t_wndw	*wndw;
 	t_world	*wrld;
 }	t_program;
@@ -39,6 +40,5 @@ void	set_player(t_cub *cub);
 int		close_program(t_program *prog);
 int		key_pressed(int key, t_program *prog);
 int		key_released(int key, t_program *prog);
-void	move(t_program *prog);
 
 #endif
