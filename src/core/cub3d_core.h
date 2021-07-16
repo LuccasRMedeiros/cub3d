@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/04 19:12:39 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/09 14:58:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_program
 	bool	running;
 	t_wndw	*wndw;
 	t_world	*wrld;
+	t_actor	*player;
 }	t_program;
 
 t_cub	*read_cub(char *cub_path);

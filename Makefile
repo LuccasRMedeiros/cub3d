@@ -6,7 +6,7 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/06/24 10:50:16 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/07/16 00:14:50 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,21 +70,33 @@ LIBS =  -L$(LIBFT) -lft \
 		-lm \
 		-lz \
 
+ROOT_SRC = ./src
+
+ROOT_OBJ = ./obj
+
 SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix draw/, $(notdir $(wildcard ./src/draw/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 		$(addprefix structs/, $(notdir $(wildcard ./src/structs/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
 
-SRC_FULL = $(addprefix ./src/, $(SRC))
+SRC_FULL = $(addprefix $(ROOT_SRC)/, $(SRC))
+
+OBJ = $(SRC%.c=%.o)
+
+OBJ_FULL = $(addprefix $(ROOT_OBJ)/, $(OBJ))
 
 all: $(BIN)
 	@echo "$$CUBED"
 	@$(MSG_DONE)
 
-$(BIN): makeft makemlx
+$(ROOT_OBJ)/%.o: $(ROOT_SRC)/%.c
+	@echo "Creating $@"
+	@$(CC) $(FLAGS) -c $< -o $@
+
+$(BIN): makeft makemlx objdir $(OBJ)
 	@echo "Generating excutable $(BIN)"
-	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(BIN)
+	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(BIN) $(OBJ)
 	@echo "To use it call ./$(BIN) maps/map.cub"
 
 makeft: MAKEFILE = $(LIBFT)
@@ -100,6 +112,21 @@ makemlx: RULE = all
 makemlx:
 	@echo "Making dependencies 2/2"
 	@$(MAKE_EXT)
+
+objdir:
+	@echo "Creating object directories"
+	@mkdir -p obj
+	@echo "Created: 1/6"
+	@mkdir -p obj/core
+	@echo "Created: 2/6"
+	@mkdir -p obj/draw
+	@echo "Created: 3/6"
+	@mkdir -p obj/error
+	@echo "Created: 4/6"
+	@mkdir -p obj/structs
+	@echo "Created: 5/6"
+	@mkdir -p obj/world
+	@echo "Created: 6/6 - Done!"
 
 cleanft: MAKEFILE = $(LIBFT)
 
@@ -120,14 +147,17 @@ cleanmlx:
 clean: RULE = clean
 
 clean: cleanft cleanmlx
+	@echo "Removing objects"
+	@echo "NOTE: Both source code and executable will be preserved"
+	@rm -rf $(ROOT_OBJ)
+	@$(MSG_DONE)
 
 debug: RULE = debug
 
 debug: FLAGS += -g
 
-debug: fclean makeft makemlx
-	@echo "Generating new excutable $(BIN) with -g flag"
-	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(BIN)
+debug: fclean makeft makemlx $(BIN)
+	@echo "Generated new excutable $(BIN) with -g flag"
 	@echo "$$CUBED"
 	@echo " -- Ready to debug!"
 
@@ -146,7 +176,7 @@ fcleanmlx: RULE = fclean
 fclean: RULE = fclean
 
 fclean: fcleanft cleanmlx
-	@echo "Removing executable"
+	@echo "Removing objects and executable"
 	@echo "Source code will be preserved"
 	@rm -f $(BIN)
 	@$(MSG_DONE)

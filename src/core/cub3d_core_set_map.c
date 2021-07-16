@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:59:44 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/02 12:06:36 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/05 16:50:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,12 @@ void	set_map(const char *line, t_cub *cub, size_t gnl_stts)
 {
 	if (gnl_stts && is_map_pattern(line))
 	{
+		if (!cub->pre_lyt)
+			cub->pre_lyt = ft_calloc(1, sizeof(char *));
 		cub->pre_lyt = ft_reallocncat(cub->pre_lyt, line);
 		cub->pre_lyt = ft_reallocncat(cub->pre_lyt, "\n");
 	}
-	else if (!gnl_stts || *cub->pre_lyt)
+	else if (!gnl_stts || cub->pre_lyt)
 	{
 		cub->layout = ft_split(cub->pre_lyt, '\n');
 		set_axes(cub);

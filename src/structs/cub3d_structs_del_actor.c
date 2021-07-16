@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_del_world.c                          :+:      :+:    :+:   */
+/*   cub3d_structs_del_actor.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 12:14:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/06 22:29:07 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/06 22:10:59 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/11 15:51:05 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Destroy a world.
-*/
-
 #include "cub3d_structs.h"
 
-void	del_world(t_world *del)
+/*
+**	Delete a t_actor instance.
+*/
+
+void	del_actor(t_actor *del)
 {
-	del_tile(del->tileset);
-	del->tileset = NULL;
-	del_sprite(del->spriteset);
-	del->spriteset = NULL;
-	del->floor = 0;
-	del->ceilling = 0;
-	ft_destroyer((void **)del->map);
+	del->id = 0;
 	del->map_x = 0;
 	del->map_y = 0;
+	del->abs_x = 0;
+	del->abs_y = 0;
+	del->dir = 0;
+	del->delta_x = 0;
+	del->delta_y = 0;
 	free(del);
 }

@@ -6,12 +6,14 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/04 19:32:19 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/16 01:02:09 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Header for all the structs used in the program.
+** This is the base header for all the program. Here are the structs, defines  -
+** and enums that are meant to be shared to all the modules of this program.
+** It also have all the others libraries that are used in this project.
 */
 
 #ifndef CUB3D_STRUCTS_H
@@ -21,7 +23,30 @@
 # include <math.h>
 # include <mlx.h>
 
-typedef struct	s_sheet
+# define PI 3.14159265
+# define TPI 6.2831853
+# define RDR 0.0174533
+# define TILESIZE 32
+
+typedef enum e_axis
+{
+	X,
+	Y
+}	t_axis;
+
+typedef enum e_dirs
+{
+	UPDN,
+	RTLT,
+}	t_dirs;
+
+typedef enum e_screen_measure
+{
+	WDT,
+	HGT
+}	t_measure;
+
+typedef struct s_sheet
 {
 	char	id;
 	bool	is_wall;
@@ -31,7 +56,7 @@ typedef struct	s_sheet
 	char	*ea_face;
 }	t_sheet;
 
-typedef	struct	s_cub
+typedef struct s_cub
 {
 	int		status;
 	int		res[2];
@@ -45,7 +70,7 @@ typedef	struct	s_cub
 	int		player_pos[2];
 }	t_cub;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*conn;
 	void	*img;
@@ -55,13 +80,12 @@ typedef struct	s_img
 	int		end;
 }	t_img;
 
-typedef struct	s_wndw
+typedef struct s_wndw
 {
 	void	*conn;
 	void	*wndw;
 	int		wdt;
 	int		hgt;
-	t_list	*frame ;
 }	t_wndw;
 
 typedef struct s_tile
@@ -88,16 +112,41 @@ typedef struct s_world
 	char		**map;
 	int			map_x;
 	int			map_y;
-	int			player_x;
-	int			player_y;
 }	t_world;
+
+typedef struct s_actor
+{
+	char	id;
+	int		map_x;
+	int		map_y;
+	double	abs_x;
+	double	abs_y;
+	double	dir;
+	double	delta_x;
+	double	delta_y;
+}	t_actor;
+
+typedef struct s_ray
+{
+	double	ang;
+	int		dirs[2];
+	double	yo;
+	double	xo;
+	double	ry;
+	double	rx;
+	int		hx;
+	int		hy;
+	int		vx;
+	int		vy;
+	double	dist;
+}	t_ray;
 
 t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
 void		del_cub(t_cub *del);
 t_img		*new_img(t_wndw *wndw);
-void		del_img(void *v_del);
+void		del_img(t_img *del);
 t_wndw		*new_window(int wdt, int hgt, char *title);
 void		del_window(t_wndw *del);
 t_tile		*new_tile(t_sheet *tilesheet);
@@ -106,5 +155,8 @@ t_sprite	*new_sprite(t_sheet *spritesheet);
 void		del_sprite(t_sprite *del);
 t_world		*new_world(t_cub *cub);
 void		del_world(t_world *del);
+t_actor		*new_actor(char id, int pos_x, int pos_y);
+void		del_actor(t_actor *del);
+t_ray		new_ray(double ang);
 
 #endif

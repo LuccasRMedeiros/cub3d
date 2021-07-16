@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/04 19:30:34 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/16 01:27:09 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,9 @@ static t_program	prog_config(t_cub *cub)
 	prog.running = true;
 	prog.wndw = new_window(cub->res[0], cub->res[1], "Cub3D");
 	prog.wrld = new_world(cub);
+	prog.player = new_actor('P', cub->player_pos[0], cub->player_pos[1]);
 	del_cub(cub);
 	return (prog);
-}
-
-/*
-** Update the window by replacing the image that is on the screen.
-*/
-
-void	update_frame(t_wndw *wndw, t_world *wrld)
-{
-	t_img	*n_frame;
-	
-	n_frame = frame(wrld, wndw);
-	ft_lstadd_front(&wndw->frame, ft_lstnew(n_frame));
-	ft_lstdelone(wndw->frame->next, &del_img);
-	mlx_put_image_to_window(wndw->conn, wndw->wndw, n_frame->conn, 0, 0);
 }
 
 /*
@@ -53,10 +40,9 @@ void	update_frame(t_wndw *wndw, t_world *wrld)
 
 static void	cub3d(t_program prog)
 {
+	update_frame(prog.wndw, prog.wrld);
 	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
 	mlx_hook(prog.wndw->wndw, 3, 1L<<0, key_released, &prog);
-	if (prog.running)
-		update_frame(prog.wndw, prog.wrld);
 	mlx_loop(prog.wndw->conn);
 }
 

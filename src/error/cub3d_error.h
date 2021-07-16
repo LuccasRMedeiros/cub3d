@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 17:55:02 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 11:02:51 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/09 10:32:16 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define VLCHR " 012NSWE"
 
 void	error_msg(const char *msg, const char *obj);
-void	do_nothing(void);
+void	do_nothing(int args, ...);
 bool	is_first_def(void *data, const char *p_name, int ruler);
 bool	is_map_pattern(const char *line);
 bool	validate_color(char **rgb, char *area);

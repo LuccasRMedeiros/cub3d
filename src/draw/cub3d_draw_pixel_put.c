@@ -5,11 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/10 12:49:05 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/04 11:16:13 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/08 18:32:18 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/08 18:33:05 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d_draw.h"
 
+/*
+** Because the mlx_pixel_put function is very slow, it is necessary to create a-
+**  similar function.
+** In this version, the pixels are stored into a buffer before been pushed to  -
+** the screen.
+** Receives a t_img containing important informations about the frame where it -
+** is to draw, posx refers to the screen column, posy, the screen row and color-
+**  is a shifted integer that corresponds to a RGB color.
+*/
+
+void	pixel_put(t_img *img, int posx, int posy, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (posy * img->l_len + posx * (img->bpp / 8));
+	*(unsigned int *)dst = color;
+}
