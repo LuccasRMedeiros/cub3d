@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/16 01:27:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/17 17:31:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@
 
 static t_program	prog_config(t_cub *cub)
 {
+	int			px;
+	int			py;
 	t_program	prog;
 
+	px = cub->player_pos[X];
+	py = cub->player_pos[Y];
 	prog.running = true;
 	prog.wndw = new_window(cub->res[0], cub->res[1], "Cub3D");
 	prog.wrld = new_world(cub);
-	prog.player = new_actor('P', cub->player_pos[0], cub->player_pos[1]);
+	prog.player = new_actor(cub->layout[py][px], px, py);
 	del_cub(cub);
 	return (prog);
 }
@@ -40,7 +44,7 @@ static t_program	prog_config(t_cub *cub)
 
 static void	cub3d(t_program prog)
 {
-	update_frame(prog.wndw, prog.wrld);
+	update_frame(prog.wndw, prog.wrld, prog.player);
 	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
 	mlx_hook(prog.wndw->wndw, 3, 1L<<0, key_released, &prog);
 	mlx_loop(prog.wndw->conn);

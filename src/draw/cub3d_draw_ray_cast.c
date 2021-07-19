@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 13:46:49 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/15 18:43:05 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/19 00:06:51 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@
 
 static double	normalize_angle(double ang)
 {
-	ang = remainder(ang, TPI);
-	if (ang < TPI)
-		ang += TPI;
+	while (ang > EAST)
+		ang -= EAST;
+	while (ang < 0)
+		ang += EAST;
 	return (ang);
+}
+
+/*
+** Calculate the distance between two points.
+*/
+
+static float	calc_dist(float x1, float y1, float x2, float y2)
+{
+	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
 /*
@@ -34,18 +44,18 @@ static double	normalize_angle(double ang)
 ** The travelled distance is calculated by using the hypot funciontion.
 */
 
-static t_ray	cast_ray(t_world *wrld, t_actor *player, double ang)
+static t_ray	cast_rays(t_world *wrld, t_actor *p, double ang)
 {
 	t_ray	h_ray;
 	t_ray	v_ray;
 
-	h_ray = h_cast_ray(player, wrld, ang);
-	v_ray = v_cast_ray(player, wrld, ang);
-	if (h_ray.hx && h_ray.hy)
-		h_ray.dist = hypot(player->abs_x - h_ray.hx, player->abs_y - h_ray.hy);
-	if (v_ray.hx && v_ray.hy)
-		v_ray.dist = hypot(player->abs_x - h_ray.hx, player->abs_y - h_ray.hy);
-	if (h_ray.dist > v_ray.dist)
+	h_ray = h_cast_ray(p, wrld, ang);
+	v_ray = v_cast_ray(p, wrld, ang);
+	if (h_ray.hx != -1 && h_ray.hy != -1)
+		h_ray.dist = calc_dist(p->abs_x, h_ray.hx, p->abs_y, h_ray.hy);
+	if (v_ray.hx != -1 && v_ray.hy != -1)
+		v_ray.dist = calc_dist(p->abs_x, v_ray.hx, p->abs_y, v_ray.hy);
+	if (h_ray.dist < v_ray.dist)
 		return (h_ray);
 	return (v_ray);
 }
@@ -53,21 +63,21 @@ static t_ray	cast_ray(t_world *wrld, t_actor *player, double ang)
 /*
 ** Cast a rays from the player position to the direction it is facing. It will -
 ** use each casted ray to draw a column of pixels that correponds to the wall  -
-** section it finds.
+** section it finds. 
 */
 
-void	ray_cast(t_world *wrld, t_actor *player)
+void	ray_cast(t_world *wrld, t_actor *p)
 {
 	double	ang;
 	size_t	nray;
-	t_ray	rays[60];
 
-	ang = player->dir - RDR * 30;
+	ang = p->dir - RDR * 30;
 	ang = normalize_angle(ang);
 	nray = 0;
 	while (nray < 60)
 	{
-		rays[nray] = cast_ray(wrld, player, ang);
+		p->rays[nray] = cast_rays(wrld, p, ang);
 		ang = normalize_angle(ang + RDR);
+		++nray;
 	}
 }

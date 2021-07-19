@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 11:58:53 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/02 13:11:36 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/16 16:57:45 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	set_player(t_cub *cub)
 		cub->status = -1;
 		return ;
 	}
-	while (map_y < cub->map_axis[1])
+	while (map_y < cub->map_axis[Y])
 	{
-		while (map_x < cub->map_axis[0])
+		while (map_x < cub->map_axis[X])
 		{
 			if (ft_strhvchr(PLAYER, cub->layout[map_y][map_x]))
 			{
-				cub->player_pos[0] = map_x;
-				cub->player_pos[1] = map_y;
+				cub->player_pos[X] = map_x;
+				cub->player_pos[Y] = map_y;
 			}
 			++map_x;
 		}

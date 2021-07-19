@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/16 01:02:09 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/19 00:07:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,22 @@
 # include <math.h>
 # include <mlx.h>
 
-# define PI 3.14159265
-# define TPI 6.2831853
+# define NORTH 4.71228975
+# define SOUTH 1.570796325
+# define WEST 3.14159265
+# define EAST 6.2831853
 # define RDR 0.0174533
-# define TILESIZE 32
+# define TILESIZE 64
+# define FOV 60
+# define FOV_ANG (FOV * (WEST / 180))
+
+# define EXIT 0xff1b
+# define FWRD 0x77
+# define REAR 0x73
+# define RGHT 0x64
+# define LEFT 0x61
+# define TRGT 0xff53
+# define TLFT 0xff51
 
 typedef enum e_axis
 {
@@ -114,18 +126,6 @@ typedef struct s_world
 	int			map_y;
 }	t_world;
 
-typedef struct s_actor
-{
-	char	id;
-	int		map_x;
-	int		map_y;
-	double	abs_x;
-	double	abs_y;
-	double	dir;
-	double	delta_x;
-	double	delta_y;
-}	t_actor;
-
 typedef struct s_ray
 {
 	double	ang;
@@ -134,12 +134,26 @@ typedef struct s_ray
 	double	xo;
 	double	ry;
 	double	rx;
-	int		hx;
-	int		hy;
-	int		vx;
-	int		vy;
-	double	dist;
+	double	hx;
+	double	hy;
+	int		map_x;
+	int		map_y;
+	float	dist;
+	int		color;
 }	t_ray;
+
+typedef struct s_actor
+{
+	char	id;
+	int		map_x;
+	int		map_y;
+	float	abs_x;
+	float	abs_y;
+	float	dir;
+	float	delta_x;
+	float	delta_y;
+	t_ray	rays[FOV];
+}	t_actor;
 
 t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);

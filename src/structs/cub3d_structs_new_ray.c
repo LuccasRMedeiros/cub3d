@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:14:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/15 20:09:54 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/19 00:36:31 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ t_ray	new_ray(double ang)
 	new.ang = ang;
 	new.dirs[UPDN] = 0;
 	new.dirs[RTLT] = 0;
-	if (ang > PI)
+	if (ang > WEST)
 		new.dirs[UPDN] = 1;
-	if (ang < PI / 2 || ang > 3 * PI / 2)
+	if (ang < SOUTH || ang > NORTH)
 		new.dirs[RTLT] = 1;
 	new.yo = 0;
 	new.xo = 0;
@@ -35,8 +35,7 @@ t_ray	new_ray(double ang)
 	new.rx = 0;
 	new.hx = -1;
 	new.hy = -1;
-	new.vx = -1;
-	new.vy = -1;
 	new.dist = INT_MAX;
+	new.color = 0x000000;
 	return (new);
 }

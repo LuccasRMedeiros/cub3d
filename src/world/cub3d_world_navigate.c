@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:18:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/16 01:11:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/18 22:27:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 static void	player_turn(t_actor *player, double dir)
 {
 	player->dir += dir;
-	if (player->dir > 2*PI)
-		player->dir -= 2*PI;
+	if (player->dir > EAST)
+		player->dir -= EAST;
 	else if (player->dir < 0)
-		player->dir += 2*PI;
+		player->dir += EAST;
 	player->delta_x = cos(player->dir) * 5;
 	player->delta_y = sin(player->dir) * 5;
 }
@@ -51,8 +51,8 @@ static void	player_move_fr(t_actor *player, t_world *wrld, int sig)
 
 	n_ax = player->abs_x + (player->delta_x * sig);
 	n_ay = player->abs_y + (player->delta_y * sig);
-	n_mx = round(n_ax);
-	n_my = round(n_ay);
+	n_mx = round(n_ax / TILESIZE);
+	n_my = round(n_ay / TILESIZE);
 	if (wrld->map[player->map_y][n_mx] != '1')
 	{
 		player->abs_x = n_ax;
@@ -78,8 +78,8 @@ static void	player_move_lr(t_actor *player, t_world *wrld, int sig)
 
 	n_ax = player->abs_y + (player->delta_x * sig);
 	n_ay = player->abs_x + (player->delta_y * sig);
-	n_mx = round(n_ax);
-	n_my = round(n_ay);
+	n_mx = round(n_ax / TILESIZE);
+	n_my = round(n_ay / TILESIZE);
 	if (wrld->map[player->map_y][n_mx] != '1')
 	{
 		player->abs_x = n_ax;
@@ -113,7 +113,7 @@ void    navigate(t_world *wrld, t_actor *player, int key)
 	else if (key == LEFT)
 		player_move_lr(player, wrld, -1);
 	else if (key == TRGT)
-		player_turn(player, 0.1);
+		player_turn(player, RDR);
 	else if (key == TLFT)
-		player_turn(player, -0.1);
+		player_turn(player, -RDR);
 }

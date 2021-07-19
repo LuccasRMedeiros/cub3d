@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:16:04 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/15 19:11:25 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/19 00:49:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,54 +20,51 @@
 
 static t_ray	create_h_ray(t_actor *player, double ang)
 {
-	int		acc;
 	t_ray	ray;
+	float	a_tan;
+	int		acc;
 
+	ray = new_ray(ang);
+	a_tan = -1 / tan(ray.ang);
 	acc = 0;
 	if (!ray.dirs[UPDN])
 		acc = TILESIZE;
-	ray = new_ray(ang);
 	ray.yo = TILESIZE;
 	if (ray.dirs[UPDN])
 		ray.yo *= -1;
-	ray.xo = ray.yo / tan(ang);
-	ray.ry = floor(player->abs_y / TILESIZE) * TILESIZE + acc;
-	ray.rx = player->abs_x + (ray.ry - player->abs_y) / tan(ang);
-	if ((!ray.dirs[RTLT] && ray.xo > 0) || (ray.dirs[RTLT] && ray.xo < 0))
-		ray.rx = -ray.rx;
+	ray.xo = -ray.yo * a_tan;
+	ray.ry = floor((player->abs_y / TILESIZE) * TILESIZE) + acc;
+	ray.rx = (player->abs_y - ray.ry) * a_tan + player->abs_x;
 	return (ray);
 }
 
 /*
 ** Cast a single ray horizontally through the map.
-** When the ray does not find a horizontal wall, return null.
 */
 
 t_ray	h_cast_ray(t_actor *player, t_world *wrld, double ang)
 {
 	t_ray	ray;
-	int		map_x;
-	int		map_y;
 
 	ray = create_h_ray(player, ang);
-	map_x = (int)floor(ray.rx / TILESIZE);
-	map_y = (int)floor(ray.ry / TILESIZE);
-	while ((map_x >= 0 && map_x <= wrld->map_x)
-		&& (map_y >= 0 && map_y <= wrld->map_y))
+	if (ray.ang == EAST || ray.ang == WEST)
+		return (ray);
+	ray.map_x = (int)floor(ray.rx / TILESIZE);
+	ray.map_y = (int)floor(ray.ry / TILESIZE);
+	while ((ray.map_x >= 0 && ray.map_x < wrld->map_x)
+		&& (ray.map_y >= 0 && ray.map_y < wrld->map_y))
 	{
-		if (wrld->map[map_y][map_x] == '1')
+		if (wrld->map[ray.map_y][ray.map_x] == '1')
 		{
 			ray.hx = ray.rx;
 			ray.hy = ray.ry;
+			ray.color = 0xFF0000;
 			return (ray);
 		}
-		else
-		{
-			ray.rx += ray.xo;
-			ray.ry += ray.yo;
-			map_x = (int)floor(ray.rx / TILESIZE);
-			map_y = (int)floor(ray.ry / TILESIZE);
-		}
+		ray.rx += ray.xo;
+		ray.ry += ray.yo;
+		ray.map_x = (int)floor(ray.rx / TILESIZE);
+		ray.map_y = (int)floor(ray.ry / TILESIZE);
 	}
 	return (ray);
 }
