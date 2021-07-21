@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:51:56 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/20 11:53:37 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 02:25:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@
 
 void	update_frame(t_wndw *wndw, t_world *wrld, t_actor *p)
 {
-	t_img	*f;
-
-	f = new_img(wndw);
-	render_projection(f, wndw, wrld, p);
-	mlx_put_image_to_window(wndw->conn, wndw->wndw, f->img, 0, 0);
-	print_map(wrld, p);
-	del_img(f);
+	ray_cast(wrld, p);
+	render_projection(wndw, p);
+	//print_map(wrld, p);
 }

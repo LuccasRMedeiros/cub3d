@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/20 23:40:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 02:22:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,17 @@ typedef struct s_actor
 	t_ray	rays[FOV];
 }	t_actor;
 
+typedef struct s_column
+{
+	float	d_proj;
+	float	perp_d;
+	int		hgt;
+	int		wdt;
+	int		org_sy;
+	int		end_sy;
+	int		color;
+}	t_column;
+
 t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
@@ -170,5 +181,6 @@ void		del_world(t_world *del);
 t_actor		*new_actor(char id, int pos_x, int pos_y);
 void		del_actor(t_actor *del);
 t_ray		new_ray(double ang);
+t_column	new_column(const t_wndw *wndw, const t_ray *ray, float dir);
 
 #endif

@@ -6,33 +6,31 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 15:03:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/21 01:04:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 02:22:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_draw.h"
 
-static void	draw_column(t_img *f, int org_y, int org_x, int h_wall, int l_col, int color)
+static void	draw_column(t_img *f, t_column w_col, int org_sx)
 {
-	int	wdt;
-	int	hgt;
-	int	act_y;
+	int			n_col;
+	int			sx;
+	int			sy;
 
-	wdt = 0;
-	hgt = 0;
-	act_y = org_y;
-	while (wdt <= l_col)
+	n_col = 0;
+	sx = org_sx;
+	sy = w_col.org_sy;
+	while (n_col < 13)
 	{
-		while (hgt <= h_wall)
+		while (sy <= w_col.end_sy)
 		{
-			pixel_put(f, org_x, act_y, color);
-			++hgt;
-			++act_y;
+			pixel_put(f, sx, sy, w_col.color);
+			++sy;
 		}
-		++wdt;
-		++org_x;
-		act_y = org_y;
-		hgt = 0;
+		sy = w_col.org_sy;
+		++sx;
+		++n_col;
 	}
 }
 
@@ -45,28 +43,21 @@ static void	draw_column(t_img *f, int org_y, int org_x, int h_wall, int l_col, i
 ** pushed to the screen.
 */
 
-void	render_projection(t_img *f, t_wndw *wndw, t_world *wrld, t_actor *p)
+void	render_projection(t_wndw *wndw, t_actor *p)
 {
-	size_t	n_ray;
-	int		l_col;
-	int		h_wall;
-	int		org_y;
-	int		org_x;
+	size_t		n_ray;
+	t_img		*f;
+	t_column	w_col;
 
-	ray_cast(wrld, p);
 	n_ray = 0;
-	l_col = wndw->wdt / 60;
-	h_wall = 0;
-	org_y = 0;
-	org_x = 0;
+	f = new_img(wndw);
+	w_col = new_column(wndw, &p->rays[n_ray], p->dir);
 	while (n_ray < 60)
 	{
-		h_wall = (TILESIZE * wndw->hgt) / p->rays[n_ray].dist;
-		if (h_wall > wndw->hgt)
-			h_wall = wndw->hgt;
-		org_y = wndw->hgt / 2 + h_wall / 2;
-		draw_column(f, org_y, org_x, h_wall, l_col, p->rays[n_ray].color);
+		draw_column(f, w_col, n_ray * 13);
+		w_col = new_column(wndw, &p->rays[n_ray], p->dir);
 		++n_ray;
-		org_x += l_col;
 	}
+	mlx_put_image_to_window(wndw->conn, wndw->wndw, f->img, 0, 0);
+	del_img(f);
 }
