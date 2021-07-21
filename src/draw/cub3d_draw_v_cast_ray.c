@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 21:10:31 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/19 01:07:37 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 00:56:20 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,33 @@
 ** left or right;
 */
 
-static t_ray	create_v_ray(t_actor *player, double ang)
+static t_ray	create_v_ray(t_actor *player, float ang)
 {
-	int		acc;
-	float	n_tan;
 	t_ray	ray;
+	double	ra_tan;
+	int		acc;
 
-	acc = TILESIZE;
 	ray = new_ray(ang);
-	n_tan = -tan(ray.ang);
+	ra_tan = tan(ray.ang);
+	acc = 0;
+	if (ray.dirs[RTLT])
+		acc = TILESIZE;
+	ray.rx = (floor(player->abs_x / TILESIZE) * TILESIZE) + acc;
+	ray.ry = player->abs_y + (ray.rx - player->abs_x) * ra_tan;
 	ray.xo = TILESIZE;
 	if (!ray.dirs[RTLT])
-	{
-		acc = 0;
 		ray.xo *= -1;
-	}
-	ray.yo = -ray.xo * n_tan;
-	ray.rx = floor(player->abs_x / TILESIZE) * TILESIZE + acc;
-	ray.ry = (player->abs_x - ray.rx) * n_tan + player->abs_y;
+	ray.yo = TILESIZE * ra_tan;
+	if ((ray.dirs[UPDN] && ray.yo > 0) || (!ray.dirs[UPDN] && ray.yo < 0))
+		ray.yo *= -1;
 	return (ray);
 }
 
 /*
-** Cast a single ray vertically through the map.
+** Cast a single ray that make verifications on vertical grid of the map.
 */
 
-t_ray	v_cast_ray(t_actor *player, t_world *wrld, double ang)
+t_ray	v_cast_ray(t_actor *player, t_world *wrld, float ang)
 {
 	t_ray	ray;
 
@@ -57,15 +58,17 @@ t_ray	v_cast_ray(t_actor *player, t_world *wrld, double ang)
 	{
 		if (wrld->map[ray.map_y][ray.map_x] == '1')
 		{
-			ray.hx = ray.rx;
-			ray.hy = ray.ry;
-			ray.color = 0x0000FF;
+			ray.color = 0xF00000;
 			return (ray);
 		}
 		ray.rx += ray.xo;
 		ray.ry += ray.yo;
+		if (!ray.dirs[RTLT])
+			ray.rx -= 1;
 		ray.map_x = (int)floor(ray.rx / TILESIZE);
 		ray.map_y = (int)floor(ray.ry / TILESIZE);
+		if (ray.map_x < 0)
+			ray.map_x = 0;
 	}
 	return (ray);
 }

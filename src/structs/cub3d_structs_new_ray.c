@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:14:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/19 00:36:31 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 23:51:43 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ t_ray	new_ray(double ang)
 	new.xo = 0;
 	new.ry = 0;
 	new.rx = 0;
-	new.hx = -1;
-	new.hy = -1;
 	new.dist = INT_MAX;
-	new.color = 0x000000;
+	new.color = -1;
 	return (new);
 }

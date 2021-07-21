@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 15:13:22 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:22:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 14:06:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	validate_cubfile(char *path)
 {
 	int	fd;
 	
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		error_msg("File not found", path);
 	if (ft_strncmp(ft_strrchr(path, '.'), ".cub", 4))
 	{
 		error_msg("Please inform a valid cub file", path);
 		return (-1);
 	}
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		error_msg("File not found", path);
 	return (fd);
 }

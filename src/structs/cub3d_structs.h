@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/19 00:07:52 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 23:40:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,12 @@ typedef struct s_world
 
 typedef struct s_ray
 {
-	double	ang;
+	float	ang;
 	int		dirs[2];
-	double	yo;
-	double	xo;
-	double	ry;
-	double	rx;
-	double	hx;
-	double	hy;
+	float	yo;
+	float	xo;
+	float	ry;
+	float	rx;
 	int		map_x;
 	int		map_y;
 	float	dist;

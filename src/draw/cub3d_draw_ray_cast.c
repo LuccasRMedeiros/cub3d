@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 13:46:49 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/19 00:06:51 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 00:46:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@
 ** often generates angles "above/below" a complete turn (that would be 2PI or  -
 ** zero).
 ** It attempt to regulate the value of angle keeping it more than zero and less-
-**  than 2PI.
+**  than 2PI (aka EAST).
 */
 
-static double	normalize_angle(double ang)
+static float	normalize_angle(float ang)
 {
-	while (ang > EAST)
-		ang -= EAST;
-	while (ang < 0)
+	ang = remainder(ang, EAST);
+	if (ang < 0)
 		ang += EAST;
 	return (ang);
 }
@@ -51,10 +50,10 @@ static t_ray	cast_rays(t_world *wrld, t_actor *p, double ang)
 
 	h_ray = h_cast_ray(p, wrld, ang);
 	v_ray = v_cast_ray(p, wrld, ang);
-	if (h_ray.hx != -1 && h_ray.hy != -1)
-		h_ray.dist = calc_dist(p->abs_x, h_ray.hx, p->abs_y, h_ray.hy);
-	if (v_ray.hx != -1 && v_ray.hy != -1)
-		v_ray.dist = calc_dist(p->abs_x, v_ray.hx, p->abs_y, v_ray.hy);
+	if (h_ray.color != -1)
+		h_ray.dist = calc_dist(p->abs_x, p->abs_y, h_ray.rx, h_ray.ry);
+	if (v_ray.color != -1)
+		v_ray.dist = calc_dist(p->abs_x, p->abs_y, v_ray.rx, v_ray.ry);
 	if (h_ray.dist < v_ray.dist)
 		return (h_ray);
 	return (v_ray);
@@ -68,7 +67,7 @@ static t_ray	cast_rays(t_world *wrld, t_actor *p, double ang)
 
 void	ray_cast(t_world *wrld, t_actor *p)
 {
-	double	ang;
+	float	ang;
 	size_t	nray;
 
 	ang = p->dir - RDR * 30;

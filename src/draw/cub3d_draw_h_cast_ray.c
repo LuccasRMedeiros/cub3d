@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:16:04 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/19 00:49:42 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 00:53:41 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,30 @@
 static t_ray	create_h_ray(t_actor *player, double ang)
 {
 	t_ray	ray;
-	float	a_tan;
+	double	ra_tan;
 	int		acc;
 
 	ray = new_ray(ang);
-	a_tan = -1 / tan(ray.ang);
+	ra_tan = tan(ray.ang);
 	acc = 0;
 	if (!ray.dirs[UPDN])
 		acc = TILESIZE;
+	ray.ry = (floor(player->abs_y / TILESIZE) * TILESIZE) + acc;
+	ray.rx = player->abs_x + (ray.ry - player->abs_y) / ra_tan;
 	ray.yo = TILESIZE;
 	if (ray.dirs[UPDN])
 		ray.yo *= -1;
-	ray.xo = -ray.yo * a_tan;
-	ray.ry = floor((player->abs_y / TILESIZE) * TILESIZE) + acc;
-	ray.rx = (player->abs_y - ray.ry) * a_tan + player->abs_x;
+	ray.xo = TILESIZE / ra_tan;
+	if ((!ray.dirs[RTLT] && ray.xo > 0) || (ray.dirs[RTLT] && ray.xo < 0))
+		ray.xo *= -1;	
 	return (ray);
 }
 
 /*
-** Cast a single ray horizontally through the map.
+** Cast a single ray that make verifications on horizontal grid of the map.
 */
 
-t_ray	h_cast_ray(t_actor *player, t_world *wrld, double ang)
+t_ray	h_cast_ray(t_actor *player, t_world *wrld, float ang)
 {
 	t_ray	ray;
 
@@ -56,15 +58,17 @@ t_ray	h_cast_ray(t_actor *player, t_world *wrld, double ang)
 	{
 		if (wrld->map[ray.map_y][ray.map_x] == '1')
 		{
-			ray.hx = ray.rx;
-			ray.hy = ray.ry;
 			ray.color = 0xFF0000;
 			return (ray);
 		}
 		ray.rx += ray.xo;
 		ray.ry += ray.yo;
+		if (ray.dirs[UPDN])
+			ray.ry -= 1;
 		ray.map_x = (int)floor(ray.rx / TILESIZE);
 		ray.map_y = (int)floor(ray.ry / TILESIZE);
+		if (ray.map_y < 0)
+			ray.map_y = 0;
 	}
 	return (ray);
 }

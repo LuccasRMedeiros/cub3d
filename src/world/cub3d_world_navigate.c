@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:18:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/18 22:27:34 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/20 14:55:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	player_move_fr(t_actor *player, t_world *wrld, int sig)
 
 	n_ax = player->abs_x + (player->delta_x * sig);
 	n_ay = player->abs_y + (player->delta_y * sig);
-	n_mx = round(n_ax / TILESIZE);
-	n_my = round(n_ay / TILESIZE);
+	n_mx = (int)round(n_ax / TILESIZE);
+	n_my = (int)round(n_ay / TILESIZE);
 	if (wrld->map[player->map_y][n_mx] != '1')
 	{
 		player->abs_x = n_ax;
@@ -78,8 +78,8 @@ static void	player_move_lr(t_actor *player, t_world *wrld, int sig)
 
 	n_ax = player->abs_y + (player->delta_x * sig);
 	n_ay = player->abs_x + (player->delta_y * sig);
-	n_mx = round(n_ax / TILESIZE);
-	n_my = round(n_ay / TILESIZE);
+	n_mx = (int)round(n_ax / TILESIZE);
+	n_my = (int)round(n_ay / TILESIZE);
 	if (wrld->map[player->map_y][n_mx] != '1')
 	{
 		player->abs_x = n_ax;

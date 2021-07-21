@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 15:03:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/19 01:55:31 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 01:04:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	draw_column(t_img *f, int org_y, int org_x, int h_wall, int l_col, i
 		++wdt;
 		++org_x;
 		act_y = org_y;
+		hgt = 0;
 	}
 }
 
@@ -63,7 +64,7 @@ void	render_projection(t_img *f, t_wndw *wndw, t_world *wrld, t_actor *p)
 		h_wall = (TILESIZE * wndw->hgt) / p->rays[n_ray].dist;
 		if (h_wall > wndw->hgt)
 			h_wall = wndw->hgt;
-		org_y = wndw->hgt / 2 - h_wall / 2;
+		org_y = wndw->hgt / 2 + h_wall / 2;
 		draw_column(f, org_y, org_x, h_wall, l_col, p->rays[n_ray].color);
 		++n_ray;
 		org_x += l_col;
