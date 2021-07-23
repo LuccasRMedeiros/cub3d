@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw_draw_background.c                       :+:      :+:    :+:   */
+/*   cub3d_draw_draw_wall.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 11:26:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 19:32:10 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/23 18:16:09 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/23 20:10:14 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_draw.h"
 
 /*
-** Draw the entire background using the colors of ceilling and floor.
+** Select a proper texture to be drawn on the screen.
 */
 
-void	draw_background(t_screen *bg, t_wndw *wndw, t_world *wrld)
+char	*select_wall(t_world *wrld, t_wndw *wndw, t_ray ray)
 {
-	int	sx;
-	int	sy;
-	int	color;
+	char	*img_path;
 
-	sx = 0;
-	sy = 0;
-	color = wrld->ceilling;
-	while (sy < wndw->hgt)
+	if (ray.id == 'H')
 	{
-		if (sy > wndw->hgt / 2)
-			color = wrld->floor;
-		while (sx < wndw->wdt)
-		{
-			pixel_put(bg, sx, sy, color);
-			++sx;
-		}
-		sx = 0;
-		++sy;
+		if (ray.dirs[UPDN])
+			img_path = wrld->tileset->wall_so;
+		else
+			img_path = wrld->tileset->wall_no;
 	}
+	else if (ray.id == 'V')
+	{
+		if (ray.dirs[LTRT])
+			img_path = wrld->tileset->wall_ea;
+		else
+			img_path = wrld->tileset->wall_we;
+	}
+	return (img_path);
 }

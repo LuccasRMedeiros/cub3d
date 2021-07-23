@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 22:14:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/22 23:18:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 19:29:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 ** values are merely initialized.
 */
 
-t_ray	new_ray(double ang)
+t_ray	new_ray(char id, double ang)
 {
 	t_ray	new;
 
+	new.id = id;
 	new.ang = ang;
 	new.dirs[UPDN] = 0;
 	new.dirs[LTRT] = 0;
@@ -36,6 +37,5 @@ t_ray	new_ray(double ang)
 	new.map_x = 0;
 	new.map_y = 0;
 	new.dist = INT_MAX;
-	new.color = -1;
 	return (new);
 }

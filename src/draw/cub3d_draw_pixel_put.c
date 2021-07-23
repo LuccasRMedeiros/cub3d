@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 18:32:18 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/08 18:33:05 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 19:37:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 **  similar function.
 ** In this version, the pixels are stored into a buffer before been pushed to  -
 ** the screen.
-** Receives a t_img containing important informations about the frame where it -
-** is to draw, posx refers to the screen column, posy, the screen row and color-
-**  is a shifted integer that corresponds to a RGB color.
+** Receives a t_screen containing important informations about the frame that  -
+** is being drawn, posx refers to the screen column, posy, the screen row and  -
+** color is a shifted integer that corresponds to a RGB color.
 */
 
-void	pixel_put(t_img *img, int posx, int posy, int color)
+void	pixel_put(t_screen *f, int posx, int posy, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (posy * img->l_len + posx * (img->bpp / 8));
+	dst = f->addr + (posy * f->l_len + posx * (f->bpp / 8));
 	*(unsigned int *)dst = color;
 }

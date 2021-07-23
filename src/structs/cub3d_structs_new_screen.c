@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw_draw_background.c                       :+:      :+:    :+:   */
+/*   cub3d_structs_new_screen.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 11:26:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 19:32:10 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/06/04 15:44:46 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/23 20:08:03 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_draw.h"
-
 /*
-** Draw the entire background using the colors of ceilling and floor.
+** Creates a t_screen instance.
 */
 
-void	draw_background(t_screen *bg, t_wndw *wndw, t_world *wrld)
-{
-	int	sx;
-	int	sy;
-	int	color;
+#include "cub3d_structs.h"
 
-	sx = 0;
-	sy = 0;
-	color = wrld->ceilling;
-	while (sy < wndw->hgt)
-	{
-		if (sy > wndw->hgt / 2)
-			color = wrld->floor;
-		while (sx < wndw->wdt)
-		{
-			pixel_put(bg, sx, sy, color);
-			++sx;
-		}
-		sx = 0;
-		++sy;
-	}
+t_screen	*new_screen(t_wndw *wndw)
+{
+	t_screen	*new;
+
+	new = malloc(sizeof *new);
+	if (!new)
+		return (NULL);
+	new->conn = wndw->conn;
+	new->img = mlx_new_image(wndw->conn, wndw->wdt, wndw->hgt);
+	new->addr = mlx_get_data_addr(new->img, &new->bpp, &new->l_len, &new->end);
+	return (new);
 }

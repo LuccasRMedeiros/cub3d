@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 21:10:31 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/22 22:55:30 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 19:29:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static t_ray	create_v_ray(t_actor *p, float ang)
 	double	ra_tan;
 	int		acc;
 
-	ray = new_ray(ang);
-	ray.color = 0x9C0000;
+	ray = new_ray('V', ang);
 	ra_tan = tan(ray.ang);
 	acc = 0;
 	if (!ray.dirs[LTRT])

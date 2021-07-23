@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 00:02:24 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 20:37:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,14 @@ typedef struct s_cub
 	int		player_pos[2];
 }	t_cub;
 
-typedef struct s_img
+typedef struct s_texture
+{
+	void	*file;
+	int		wdt;
+	int		hgt;
+}	t_texture;
+
+typedef struct s_screen
 {
 	void	*conn;
 	void	*img;
@@ -90,7 +97,7 @@ typedef struct s_img
 	int		bpp;
 	int		l_len;
 	int		end;
-}	t_img;
+}	t_screen;
 
 typedef struct s_wndw
 {
@@ -130,6 +137,7 @@ typedef struct s_world
 
 typedef struct s_ray
 {
+	char	id;
 	float	ang;
 	int		dirs[2];
 	float	yo;
@@ -139,7 +147,6 @@ typedef struct s_ray
 	int		map_x;
 	int		map_y;
 	float	dist;
-	int		color;
 }	t_ray;
 
 typedef struct s_actor
@@ -162,18 +169,18 @@ typedef struct s_column
 	float	d_proj;
 	float	perp_d;
 	int		hgt;
-	int		wdt;
 	int		org_sy;
 	int		end_sy;
-	int		color;
+	char	*texture;
+	int		tex_x;
 }	t_column;
 
 t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
 void		del_cub(t_cub *del);
-t_img		*new_img(t_wndw *wndw);
-void		del_img(t_img *del);
+t_screen	*new_screen(t_wndw *wndw);
+void		del_screen(t_screen *del);
 t_wndw		*new_window(int wdt, int hgt, char *title);
 void		del_window(t_wndw *del);
 t_tile		*new_tile(t_sheet *tilesheet);

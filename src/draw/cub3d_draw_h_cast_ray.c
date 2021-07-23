@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:16:04 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/22 22:49:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 19:29:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static t_ray	create_h_ray(t_actor *p, double ang)
 	double	ra_tan;
 	int		acc;
 
-	ray = new_ray(ang);
-	ray.color = 0xFF0000;
+	ray = new_ray('H', ang);
 	ra_tan = tan(ray.ang);
 	acc = 0;
 	if (!ray.dirs[UPDN])

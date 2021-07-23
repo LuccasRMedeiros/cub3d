@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:13:40 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 13:30:48 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	validate_texture(char *path, char *where)
 	}
 	close(fd);
 	ext_pos = ft_strlen(path) - 4;
-	if (ft_strncmp(path + ext_pos, ".bmp", 4) != 0)
+	if (ft_strncmp(path + ext_pos, ".xpm", 4) != 0)
 	{
 		error = ft_strcomb(3, "file: ", path, " have invalid format.");
 		error_msg(error, where);

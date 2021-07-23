@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_new_img.c                            :+:      :+:    :+:   */
+/*   cub3d_structs_new_texture.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/04 15:44:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/06 11:00:48 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/23 20:24:23 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/23 20:37:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Creates a t_img instance.
-*/
-
 #include "cub3d_structs.h"
 
-t_img	*new_img(t_wndw *wndw)
-{
-	t_img	*new;
+/*
+** Create a t_texture instance from a informed relative file path.
+*/
 
-	new = malloc(sizeof *new);
-	if (!new)
-		return (NULL);
-	new->conn = wndw->conn;
-	new->img = mlx_new_image(wndw->conn, wndw->wdt, wndw->hgt);
-	new->addr = mlx_get_data_addr(new->img, &new->bpp, &new->l_len, &new->end);
+t_texture	*new_texture(void *conn, char *file_path);
+{
+	t_texture	*new;
+
+	new->file = mlx_xpm_file_to_image(conn, file_path, &new->wdt, &new->hgt);
 	return (new);
 }

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_del_img.c                            :+:      :+:    :+:   */
+/*   cub3d_structs_del_screen.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/06 10:58:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 20:04:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Delete the informed t_img instance.
+** Delete the informed t_screen instance.
 */
 
 #include "cub3d_structs.h"
 
-void	del_img(t_img *del)
+void	del_screen(t_screen *del)
 {
 	if (!del)
 		return ;
