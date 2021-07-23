@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/21 22:01:38 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 01:48:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ static t_program	prog_config(t_cub *cub)
 
 static void	cub3d(t_program prog)
 {
-	update_frame(prog.wndw, prog.wrld, prog.player);
+	update_frame(&prog);
+	mlx_loop_hook(prog.wndw->conn, update_frame, &prog);
 	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
-	mlx_hook(prog.wndw->wndw, 3, 1L<<0, key_released, &prog);
+	mlx_hook(prog.wndw->wndw, 3, 1L<<1, key_released, &prog);
+	mlx_hook(prog.wndw->wndw, 33, 1L<<17, close_pressed, &prog);
 	mlx_loop(prog.wndw->conn);
 }
 
