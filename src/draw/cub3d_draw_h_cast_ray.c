@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:16:04 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/21 00:53:41 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/22 22:49:01 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,26 @@
 ** left or right;
 */
 
-static t_ray	create_h_ray(t_actor *player, double ang)
+static t_ray	create_h_ray(t_actor *p, double ang)
 {
 	t_ray	ray;
 	double	ra_tan;
 	int		acc;
 
 	ray = new_ray(ang);
+	ray.color = 0xFF0000;
 	ra_tan = tan(ray.ang);
 	acc = 0;
 	if (!ray.dirs[UPDN])
 		acc = TILESIZE;
-	ray.ry = (floor(player->abs_y / TILESIZE) * TILESIZE) + acc;
-	ray.rx = player->abs_x + (ray.ry - player->abs_y) / ra_tan;
+	ray.ry = (floor(p->abs_y / TILESIZE) * TILESIZE) + acc;
+	ray.rx = p->abs_x + (ray.ry - p->abs_y) / ra_tan;
 	ray.yo = TILESIZE;
 	if (ray.dirs[UPDN])
 		ray.yo *= -1;
 	ray.xo = TILESIZE / ra_tan;
-	if ((!ray.dirs[RTLT] && ray.xo > 0) || (ray.dirs[RTLT] && ray.xo < 0))
-		ray.xo *= -1;	
+	if ((ray.dirs[LTRT] && ray.xo > 0) || (!ray.dirs[LTRT] && ray.xo < 0))
+		ray.xo *= -1;
 	return (ray);
 }
 
@@ -44,31 +45,26 @@ static t_ray	create_h_ray(t_actor *player, double ang)
 ** Cast a single ray that make verifications on horizontal grid of the map.
 */
 
-t_ray	h_cast_ray(t_actor *player, t_world *wrld, float ang)
+t_ray	h_cast_ray(t_actor *p, t_world *wrld, float ang)
 {
 	t_ray	ray;
 
-	ray = create_h_ray(player, ang);
-	if (ray.ang == EAST || ray.ang == WEST)
-		return (ray);
-	ray.map_x = (int)floor(ray.rx / TILESIZE);
-	ray.map_y = (int)floor(ray.ry / TILESIZE);
+	ray = create_h_ray(p, ang);
 	while ((ray.map_x >= 0 && ray.map_x < wrld->map_x)
 		&& (ray.map_y >= 0 && ray.map_y < wrld->map_y))
 	{
+		ray.map_x = ((int)ray.rx) / TILESIZE;
+		ray.map_y = ((int)ray.ry - ray.dirs[UPDN]) / TILESIZE;
+		if ((ray.map_y < 0 || ray.map_y >= wrld->map_y) 
+			|| (ray.map_x < 0 || ray.map_x >= wrld->map_x))
+			break ;
 		if (wrld->map[ray.map_y][ray.map_x] == '1')
 		{
-			ray.color = 0xFF0000;
+			ray.dist = hypot((ray.rx - p->abs_x), (ray.ry - p->abs_y));
 			return (ray);
 		}
 		ray.rx += ray.xo;
 		ray.ry += ray.yo;
-		if (ray.dirs[UPDN])
-			ray.ry -= 1;
-		ray.map_x = (int)floor(ray.rx / TILESIZE);
-		ray.map_y = (int)floor(ray.ry / TILESIZE);
-		if (ray.map_y < 0)
-			ray.map_y = 0;
 	}
 	return (ray);
 }

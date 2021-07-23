@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:32:21 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/18 22:12:30 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 00:21:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static double	select_dir(char dir)
 
 /*
 ** Create a new t_actor instance.
+** NOTE: Contain funny joke.
 */
 
 t_actor	*new_actor(char dir, int pos_x, int pos_y)
@@ -49,10 +50,12 @@ t_actor	*new_actor(char dir, int pos_x, int pos_y)
 	new->id = 'P';
 	new->map_x = pos_x;
 	new->map_y = pos_y;
-	new->abs_x = pos_x * TILESIZE;
-	new->abs_y = pos_y * TILESIZE;
+	new->abs_x = pos_x * TILESIZE + (TILESIZE / 2);
+	new->abs_y = pos_y * TILESIZE + (TILESIZE / 2);
 	new->dir = select_dir(dir);
 	new->delta_x = cos(new->dir) * 5;
 	new->delta_y = sin(new->dir) * 5;
+	new->delta_xl = cos(normalize_angle(new->dir - (RDR * 90))) * 5;
+	new->delta_yl = sin(normalize_angle(new->dir - (RDR * 90))) * 5;
 	return (new);
 }

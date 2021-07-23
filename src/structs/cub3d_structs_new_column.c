@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 01:29:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/21 02:24:15 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 11:01:48 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ t_column	new_column(const t_wndw *wndw, const t_ray *ray, float dir)
 	new.hgt = (int)((TILESIZE / new.perp_d) * new.d_proj);
 	new.wdt = wndw->wdt / 60;
 	new.org_sy = (wndw->hgt / 2) - (new.hgt / 2);
+	if (new.org_sy < 0)
+		new.org_sy = 0;
 	new.end_sy = (wndw->hgt / 2) + (new.hgt / 2);
+	if (new.end_sy > wndw->hgt)
+		new.end_sy = wndw->hgt;
 	new.color = ray->color;
 	return (new);
 }

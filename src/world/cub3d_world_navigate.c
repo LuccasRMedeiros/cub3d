@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:18:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/20 14:55:03 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 00:21:06 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@
 
 static void	player_turn(t_actor *player, double dir)
 {
-	player->dir += dir;
-	if (player->dir > EAST)
-		player->dir -= EAST;
-	else if (player->dir < 0)
-		player->dir += EAST;
+	player->dir = normalize_angle(player->dir + dir);
 	player->delta_x = cos(player->dir) * 5;
 	player->delta_y = sin(player->dir) * 5;
+	player->delta_xl = cos(normalize_angle(player->dir - (RDR * 90))) * 5;
+	player->delta_yl = sin(normalize_angle(player->dir - (RDR * 90))) * 5;
 }
 
 /*
@@ -51,8 +49,8 @@ static void	player_move_fr(t_actor *player, t_world *wrld, int sig)
 
 	n_ax = player->abs_x + (player->delta_x * sig);
 	n_ay = player->abs_y + (player->delta_y * sig);
-	n_mx = (int)round(n_ax / TILESIZE);
-	n_my = (int)round(n_ay / TILESIZE);
+	n_mx = n_ax / TILESIZE;
+	n_my = n_ay / TILESIZE;
 	if (wrld->map[player->map_y][n_mx] != '1')
 	{
 		player->abs_x = n_ax;
@@ -76,10 +74,10 @@ static void	player_move_lr(t_actor *player, t_world *wrld, int sig)
 	int		n_mx;
 	int		n_my;
 
-	n_ax = player->abs_y + (player->delta_x * sig);
-	n_ay = player->abs_x + (player->delta_y * sig);
-	n_mx = (int)round(n_ax / TILESIZE);
-	n_my = (int)round(n_ay / TILESIZE);
+	n_ax = player->abs_x + (player->delta_xl * sig);
+	n_ay = player->abs_y + (player->delta_yl * sig);
+	n_mx = n_ax / TILESIZE;
+	n_my = n_ay / TILESIZE;
 	if (wrld->map[player->map_y][n_mx] != '1')
 	{
 		player->abs_x = n_ax;
@@ -109,9 +107,9 @@ void    navigate(t_world *wrld, t_actor *player, int key)
 	else if (key == REAR)
 		player_move_fr(player, wrld, -1);
 	else if (key == RGHT)
-		player_move_lr(player, wrld, 1);
-	else if (key == LEFT)
 		player_move_lr(player, wrld, -1);
+	else if (key == LEFT)
+		player_move_lr(player, wrld, 1);
 	else if (key == TRGT)
 		player_turn(player, RDR);
 	else if (key == TLFT)

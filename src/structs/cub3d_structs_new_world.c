@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:17:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/06 22:29:07 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/22 13:30:46 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ t_world	*new_world(t_cub *cub)
 	new->map = cub->layout;
 	new->map_x = cub->map_axis[0];
 	new->map_y = cub->map_axis[1];
+	new->abs_x = new->map_x * TILESIZE;
+	new->abs_y = new->map_y * TILESIZE;
 	return (new);
 }

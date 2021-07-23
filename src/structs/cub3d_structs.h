@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/21 02:22:43 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 00:02:24 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # include <math.h>
 # include <mlx.h>
 
-# define NORTH 4.71228975
-# define SOUTH 1.570796325
-# define WEST 3.14159265
-# define EAST 6.2831853
-# define RDR 0.0174533
+# define PI 3.14159265
+# define RDR (PI / 180)
+# define FOV_ANG (60 * RDR)
+# define NORTH (3 * PI / 2)
+# define SOUTH (PI / 2)
+# define WEST (PI)
+# define EAST (2 * PI)
 # define TILESIZE 64
-# define FOV 60
-# define FOV_ANG (FOV * (WEST / 180))
 
 # define EXIT 0xff1b
 # define FWRD 0x77
@@ -49,7 +49,7 @@ typedef enum e_axis
 typedef enum e_dirs
 {
 	UPDN,
-	RTLT,
+	LTRT,
 }	t_dirs;
 
 typedef enum e_screen_measure
@@ -124,6 +124,8 @@ typedef struct s_world
 	char		**map;
 	int			map_x;
 	int			map_y;
+	int			abs_x;
+	int			abs_y;
 }	t_world;
 
 typedef struct s_ray
@@ -149,8 +151,10 @@ typedef struct s_actor
 	float	abs_y;
 	float	dir;
 	float	delta_x;
+	float	delta_xl;
 	float	delta_y;
-	t_ray	rays[FOV];
+	float	delta_yl;
+	t_ray	*rays;
 }	t_actor;
 
 typedef struct s_column
@@ -182,5 +186,6 @@ t_actor		*new_actor(char id, int pos_x, int pos_y);
 void		del_actor(t_actor *del);
 t_ray		new_ray(double ang);
 t_column	new_column(const t_wndw *wndw, const t_ray *ray, float dir);
+float		normalize_angle(float ang);
 
 #endif

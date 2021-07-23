@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:36:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/20 12:44:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/21 23:29:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 ** Print the map and where the rays are hitting.
 */
 
-void print_map(t_world *wrld, t_actor *player) {
+void print_map(t_world *wrld, t_actor *player, int n_rays) {
 	int n_ray;
 	int x, y;
 
     for (y = 0; y < wrld->map_y; ++y) {
 		for (x = 0; x <= wrld->map_x; ++x) {
 			n_ray = 0;
-			while (n_ray < 60) {
+			while (n_ray < n_rays) {
 				if (x == player->rays[n_ray].map_x && y == player->rays[n_ray].map_y) {
 					if (player->rays[n_ray].color == 0xFF0000) {
 						printf("\e[1;31m%c\e[0m", wrld->map[y][x]);
