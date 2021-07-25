@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:51:56 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 20:08:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 01:57:20 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@
 
 int	update_frame(t_program *prog)
 {
-	t_screen	*frame;
+	t_img	*frame;
 
-	frame = new_screen(prog->wndw);
+	frame = new_img(prog->wndw, prog->wndw->wdt, prog->wndw->wdt, NULL);
 	ray_cast(prog->wrld, prog->player, prog->wndw->wdt);
 	draw_background(frame, prog->wndw, prog->wrld);
-	render_projection(frame, prog->wndw, prog->player);
+	render_projection(frame, prog->wrld, prog->wndw, prog->player);
 	mlx_put_image_to_window(prog->wndw->conn,
 		prog->wndw->wndw, frame->img, 0, 0);
-	del_screen(frame);
+	del_img(frame);
+	free(prog->player->rays);
 	return (0);
 }

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_del_world.c                          :+:      :+:    :+:   */
+/*   cub3d_structs_color_picker.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 12:14:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 21:18:40 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/24 20:35:46 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/24 21:14:33 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Destroy a world.
-*/
-
 #include "cub3d_structs.h"
 
-void	del_world(t_world *del)
+/*
+** Return a color code.
+** This color code is obtained by bit shifting the array rgb values.
+*/
+
+int	color_picker(int rgb[3])
 {
-	del_tile(del->tileset);
-	del->tileset = NULL;
-	del_sprite(del->spriteset);
-	del->spriteset = NULL;
-	del->ceilling= 0;
-	del->floor = 0;
-	del->ceilling = 0;
-	ft_destroyer((void **)del->map);
-	del->map_x = 0;
-	del->map_y = 0;
-	del->abs_x = 0;
-	del->abs_y = 0;
-	free(del);
+	int	r;
+	int	g;
+	int	b;
+
+	r = rgb[0];
+	g = rgb[1];
+	b = rgb[2];
+	return (r << 16 | g << 8 | b);
 }

@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_structs_new_texture.c                        :+:      :+:    :+:   */
+/*   cub3d_structs_del_column.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/23 20:24:23 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 20:37:10 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/25 00:12:17 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/25 01:15:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_structs.h"
 
 /*
-** Create a t_texture instance from a informed relative file path.
+** Delete a t_column instance.
 */
 
-t_texture	*new_texture(void *conn, char *file_path);
+void    del_column(t_column *del)
 {
-	t_texture	*new;
-
-	new->file = mlx_xpm_file_to_image(conn, file_path, &new->wdt, &new->hgt);
-	return (new);
+    del->d_proj = 0;
+    del->perp_d = 0;
+    del->hgt = 0;
+	del->org_sy = 0;
+	del->end_sy = 0;
+	del->ox = 0;
+	free(del);
 }

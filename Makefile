@@ -6,11 +6,11 @@
 #    By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 15:24:43 by lrocigno          #+#    #+#              #
-#    Updated: 2021/07/16 14:31:58 by lrocigno         ###   ########.fr        #
+#    Updated: 2021/07/23 23:42:16 by lrocigno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BIN = cub3D
+NAME = cub3D
 
 RULE = all
 
@@ -86,15 +86,15 @@ OBJ = $(SRC:%.c=%.o)
 
 OBJ_FULL = $(addprefix $(ROOT_OBJ)/, $(OBJ))
 
-all: $(BIN)
+all: $(NAME)
 	@echo "$$CUBED"
 	@$(MSG_DONE)
 
-$(BIN): makeft makemlx
+$(NAME): makeft makemlx
 	@echo "\n"
-	@echo "Generating excutable $(BIN)"
-	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(BIN)
-	@echo "To use it call ./$(BIN) maps/map.cub"
+	@echo "Generating excutable $(NAME)"
+	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(NAME)
+	@echo "To use it call ./$(NAME) maps/map.cub"
 	@echo "\n"
 
 makeft: MAKEFILE = $(LIBFT)
@@ -139,8 +139,8 @@ debug: RULE = debug
 
 debug: FLAGS += -g
 
-debug: fclean $(BIN)
-	@echo "Generated new excutable $(BIN) with -g flag"
+debug: fclean $(NAME)
+	@echo "Generated new excutable $(NAME) with -g flag"
 	@echo "$$CUBED"
 	@echo " -- Ready to debug!"
 
@@ -162,7 +162,7 @@ fclean: fcleanft cleanmlx
 	@echo "Removing objects and executable"
 	@echo "NOTE: Source code will be preserved"
 	@rm -rf $(ROOT_OBJ)
-	@rm -f $(BIN)
+	@rm -f $(NAME)
 	@$(MSG_DONE)
 
 re: fclean all

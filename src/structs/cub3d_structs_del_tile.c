@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:51:22 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 11:04:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/24 13:14:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@
 void	del_tile(t_tile *del)
 {
 	del->id = 0;
-	free(del->wall_no);
-	del->wall_no = NULL;
-	free(del->wall_so);
-	del->wall_so = NULL;
-	free(del->wall_we);
-	del->wall_we = NULL;
-	free(del->wall_ea);
-	del->wall_ea = NULL;
+	del_img(del->wall_no);
+	del_img(del->wall_so);
+	del_img(del->wall_we);
+	del_img(del->wall_ea);
 	free(del);
 }

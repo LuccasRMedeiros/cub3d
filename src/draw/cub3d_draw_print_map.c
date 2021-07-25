@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:36:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/21 23:29:52 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/24 21:02:56 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void print_map(t_world *wrld, t_actor *player, int n_rays) {
 			n_ray = 0;
 			while (n_ray < n_rays) {
 				if (x == player->rays[n_ray].map_x && y == player->rays[n_ray].map_y) {
-					if (player->rays[n_ray].color == 0xFF0000) {
+					if (player->rays[n_ray].id == 'H') {
 						printf("\e[1;31m%c\e[0m", wrld->map[y][x]);
 					} else {
 						printf("\e[0;31m%c\e[0m", wrld->map[y][x]);

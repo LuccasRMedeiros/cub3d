@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:36:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 11:04:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/24 13:14:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "cub3d_structs.h"
 
-t_tile	*new_tile(t_sheet *tilesheet)
+t_tile	*new_tile(t_sheet *tilesheet, t_wndw *wndw)
 {
 	t_tile	*new;
 
@@ -24,9 +24,9 @@ t_tile	*new_tile(t_sheet *tilesheet)
 	if (!new)
 		return (NULL);
 	new->id = tilesheet->id;
-	new->wall_no = ft_strdup(tilesheet->no_face);
-	new->wall_so = ft_strdup(tilesheet->so_face);
-	new->wall_we = ft_strdup(tilesheet->we_face);
-	new->wall_ea = ft_strdup(tilesheet->ea_face);
+	new->wall_no = new_img(wndw, 0, 0, tilesheet->no_face);
+	new->wall_so = new_img(wndw, 0, 0, tilesheet->so_face);
+	new->wall_we = new_img(wndw, 0, 0, tilesheet->we_face);
+	new->wall_ea = new_img(wndw, 0, 0, tilesheet->ea_face);
 	return (new);
 }

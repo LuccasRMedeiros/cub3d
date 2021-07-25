@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 20:37:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/24 22:10:57 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,17 @@ typedef enum e_dirs
 	LTRT,
 }	t_dirs;
 
-typedef enum e_screen_measure
+typedef enum e_measure
 {
 	WDT,
 	HGT
 }	t_measure;
+
+typedef enum e_img_type
+{
+	SMP,
+	TEX
+}	t_img_type;
 
 typedef struct s_sheet
 {
@@ -82,22 +88,17 @@ typedef struct s_cub
 	int		player_pos[2];
 }	t_cub;
 
-typedef struct s_texture
-{
-	void	*file;
-	int		wdt;
-	int		hgt;
-}	t_texture;
-
-typedef struct s_screen
+typedef struct s_img
 {
 	void	*conn;
 	void	*img;
 	char	*addr;
+	int		wdt;
+	int		hgt;
 	int		bpp;
 	int		l_len;
 	int		end;
-}	t_screen;
+}	t_img;
 
 typedef struct s_wndw
 {
@@ -110,16 +111,16 @@ typedef struct s_wndw
 typedef struct s_tile
 {
 	char	id;
-	char	*wall_no;
-	char	*wall_so;
-	char	*wall_we;
-	char	*wall_ea;
+	t_img	*wall_no;
+	t_img	*wall_so;
+	t_img	*wall_we;
+	t_img	*wall_ea;
 }	t_tile;
 
 typedef struct s_sprite
 {
 	char	id;
-	char	*sprite;
+	t_img	*sprite;
 }	t_sprite;
 
 typedef struct s_world
@@ -171,28 +172,30 @@ typedef struct s_column
 	int		hgt;
 	int		org_sy;
 	int		end_sy;
-	char	*texture;
-	int		tex_x;
+	int		ox;
+	t_img	*texture;
 }	t_column;
 
 t_sheet		*new_sheet(char id, bool is_wall);
 void		del_sheet(t_sheet *del);
 t_cub		*new_cub(void);
 void		del_cub(t_cub *del);
-t_screen	*new_screen(t_wndw *wndw);
-void		del_screen(t_screen *del);
+t_img		*new_img(t_wndw *wndw, int wdt, int hgt, char *file_path);
+void		del_img(t_img *del);
 t_wndw		*new_window(int wdt, int hgt, char *title);
 void		del_window(t_wndw *del);
-t_tile		*new_tile(t_sheet *tilesheet);
+t_tile		*new_tile(t_sheet *tilesheet, t_wndw *wndw);
 void		del_tile(t_tile *del);
-t_sprite	*new_sprite(t_sheet *spritesheet);
+t_sprite	*new_sprite(t_sheet *spritesheet, t_wndw *wndw);
 void		del_sprite(t_sprite *del);
-t_world		*new_world(t_cub *cub);
+t_world		*new_world(t_cub *cub, t_wndw *wndw);
 void		del_world(t_world *del);
 t_actor		*new_actor(char id, int pos_x, int pos_y);
 void		del_actor(t_actor *del);
-t_ray		new_ray(double ang);
-t_column	new_column(const t_wndw *wndw, const t_ray *ray, float dir);
+t_ray		new_ray(char id, double ang);
+t_column	*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float dir);
+void		del_column(t_column *del);
 float		normalize_angle(float ang);
+int			color_picker(int rgb[3]);
 
 #endif

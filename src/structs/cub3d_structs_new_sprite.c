@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:56:31 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/27 11:07:55 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/24 13:14:42 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "cub3d_structs.h"
 
-t_sprite	*new_sprite(t_sheet *spritesheet)
+t_sprite	*new_sprite(t_sheet *spritesheet, t_wndw *wndw)
 {
 	t_sprite	*new;
 
@@ -24,6 +24,6 @@ t_sprite	*new_sprite(t_sheet *spritesheet)
 	if (!new)
 		return (NULL);
 	new->id = spritesheet->id;
-	new->sprite = ft_strdup(spritesheet->no_face);
+	new->sprite = new_img(wndw, 0, 0, spritesheet->no_face);
 	return (new);
 }

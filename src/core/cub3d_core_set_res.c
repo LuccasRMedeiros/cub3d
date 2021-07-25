@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 14:55:23 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 14:38:30 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/23 22:23:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_res(const char *line, t_cub *cub)
 		ft_destroyer((void **)res);
 		return ;
 	}
-	cub->res[0] = ft_atoi(res[0]);
-	cub->res[1] = ft_atoi(res[1]);
+	cub->res[WDT] = ft_atoi(res[0]);
+	cub->res[HGT] = ft_atoi(res[1]);
 	ft_destroyer((void **)res);
 }
