@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 22:10:57 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 23:29:58 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define PI 3.14159265
 # define RDR (PI / 180)
+# define FOV 1.047198
 # define FOV_ANG (60 * RDR)
 # define NORTH (3 * PI / 2)
 # define SOUTH (PI / 2)
@@ -92,7 +93,7 @@ typedef struct s_img
 {
 	void	*conn;
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		wdt;
 	int		hgt;
 	int		bpp;
@@ -123,19 +124,6 @@ typedef struct s_sprite
 	t_img	*sprite;
 }	t_sprite;
 
-typedef struct s_world
-{
-	t_tile		*tileset;
-	t_sprite	*spriteset;
-	int			floor;
-	int			ceilling;
-	char		**map;
-	int			map_x;
-	int			map_y;
-	int			abs_x;
-	int			abs_y;
-}	t_world;
-
 typedef struct s_ray
 {
 	char	id;
@@ -150,20 +138,45 @@ typedef struct s_ray
 	float	dist;
 }	t_ray;
 
-typedef struct s_actor
+typedef struct s_obj
+{
+	float	dist;
+	float	ang;
+	int		prl_x;
+	int		wdt;
+	int		hgt;
+	int		org_sy;
+	int		end_sy;
+	int		org_sx;
+	int		end_sx;
+	bool	visible;
+	int		ox;
+}	t_obj;
+
+typedef struct s_static_obj
 {
 	char	id;
+	t_img	*texture;
 	int		map_x;
 	int		map_y;
 	float	abs_x;
 	float	abs_y;
-	float	dir;
-	float	delta_x;
-	float	delta_xl;
-	float	delta_y;
-	float	delta_yl;
-	t_ray	*rays;
-}	t_actor;
+	t_obj	obj;
+}	t_static_obj;
+
+typedef struct s_world
+{
+	t_tile		*tileset;
+	t_sprite	*spriteset;
+	int			floor;
+	int			ceilling;
+	char		**map;
+	int			map_x;
+	int			map_y;
+	int			n_sprites;
+	int			abs_x;
+	int			abs_y;
+}	t_world;
 
 typedef struct s_column
 {
@@ -176,26 +189,47 @@ typedef struct s_column
 	t_img	*texture;
 }	t_column;
 
-t_sheet		*new_sheet(char id, bool is_wall);
-void		del_sheet(t_sheet *del);
-t_cub		*new_cub(void);
-void		del_cub(t_cub *del);
-t_img		*new_img(t_wndw *wndw, int wdt, int hgt, char *file_path);
-void		del_img(t_img *del);
-t_wndw		*new_window(int wdt, int hgt, char *title);
-void		del_window(t_wndw *del);
-t_tile		*new_tile(t_sheet *tilesheet, t_wndw *wndw);
-void		del_tile(t_tile *del);
-t_sprite	*new_sprite(t_sheet *spritesheet, t_wndw *wndw);
-void		del_sprite(t_sprite *del);
-t_world		*new_world(t_cub *cub, t_wndw *wndw);
-void		del_world(t_world *del);
-t_actor		*new_actor(char id, int pos_x, int pos_y);
-void		del_actor(t_actor *del);
-t_ray		new_ray(char id, double ang);
-t_column	*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float dir);
-void		del_column(t_column *del);
-float		normalize_angle(float ang);
-int			color_picker(int rgb[3]);
+typedef struct s_actor
+{
+	char	id;
+	int		map_x;
+	int		map_y;
+	float	abs_x;
+	float	abs_y;
+	float	dir;
+	float	delta_x;
+	float	delta_xl;
+	float	delta_y;
+	float	delta_yl;
+	int		move_frrr;
+	int		move_lfrt;
+	int		vsn_turn;
+	t_ray	*rays;
+}	t_actor;
+
+t_sheet			*new_sheet(char id, bool is_wall);
+void			del_sheet(t_sheet *del);
+t_cub			*new_cub(void);
+void			del_cub(t_cub *del);
+t_img			*new_img(t_wndw *wndw, int wdt, int hgt, char *file_path);
+void			del_img(t_img *del);
+t_wndw			*new_window(int wdt, int hgt, char *title);
+void			del_window(t_wndw *del);
+t_tile			*new_tile(t_sheet *tilesheet, t_wndw *wndw);
+void			del_tile(t_tile *del);
+t_sprite		*new_sprite(t_sheet *spritesheet, t_wndw *wndw);
+void			del_sprite(t_sprite *del);
+t_world			*new_world(t_cub *cub, t_wndw *wndw);
+void			del_world(t_world *del);
+t_actor			*new_actor(char id, int pos_x, int pos_y);
+void			del_actor(t_actor *del);
+t_ray			new_ray(char id, double ang);
+t_column		*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float dir);
+void			del_column(t_column *del);
+t_static_obj	*list_static_obj(t_world *wrld, int n_actors);
+t_obj 			new_obj(int wndw_wdt, int wndw_hgt, t_actor *p, t_static_obj obj);
+void			del_static_obj(t_static_obj *del);
+float			normalize_angle(float ang);
+int				color_picker(int rgb[3]);
 
 #endif

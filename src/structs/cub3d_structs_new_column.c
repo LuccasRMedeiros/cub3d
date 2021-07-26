@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 01:29:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 03:50:01 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:15:19 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	calcule_ox(t_img *texture, t_ray *ray)
 	else if (ray->id == 'V')
 		ox = (int)ray->ry % TILESIZE;
 	ox = (double)ox * step;
-	return (ox + 8);
+	return (ox);
 }
 
 /*
@@ -69,11 +69,7 @@ t_column	*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float p_dir)
 	new->perp_d = ray->dist * cos(ray->ang - p_dir);
 	new->hgt = ((TILESIZE / new->perp_d) * new->d_proj);
 	new->org_sy = (wndw->hgt / 2) - (new->hgt / 2);
-	if (new->org_sy < 0)
-		new->org_sy = 0;
 	new->end_sy = (wndw->hgt / 2) + (new->hgt / 2);
-	if (new->end_sy > wndw->hgt)
-		new->end_sy = wndw->hgt;
 	new->texture = select_texture(wrld, ray);
 	new->ox = calcule_ox(new->texture, ray);
 	return (new);

@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw_draw_background.c                       :+:      :+:    :+:   */
+/*   cub3d_draw_get_color.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 11:26:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 12:26:31 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/25 22:33:44 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/25 22:34:35 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_draw.h"
 
 /*
-** Draw the images of ceilling and floor.
+** Get the pixel on the texture. To decide what pixel it is looking for, it    -
+** needs the wall projected height and "distribute" to the texture height,     -
+** taking in consideration of course what "line" of the column it is drawing.
 */
 
-void	draw_background(t_img *f, t_wndw *wndw, t_world *wrld)
+int	get_color(t_img *texture, int hgt, int ox, int tx_row)
 {
-	int	sx;
-	int	sy;
+	int	oy;
+	int	color;
 
-	sx = 0;
-	sy = 0;
-	while (sy < wndw->hgt)
-	{
-		while (sx < wndw->wdt)
-		{
-			if (sy > wndw->hgt / 2)
-				pixel_put(f, sx, sy, wrld->ceilling);
-			else
-				pixel_put(f, sx, sy, wrld->floor);
-			++sx;
-		}
-		sx = 0;
-		++sy;
-	}	
+	oy = tx_row * texture->hgt / (double)hgt;
+	color = texture->addr[oy * texture->wdt + ox];
+	return (color);
 }

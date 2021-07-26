@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_draw_draw_background.c                       :+:      :+:    :+:   */
+/*   cub3d_structs_del_static_obj.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/21 11:26:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 12:26:31 by lrocigno         ###   ########.fr       */
+/*   Created: 2021/07/25 16:56:51 by lrocigno          #+#    #+#             */
+/*   Updated: 2021/07/25 19:23:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_draw.h"
+#include "cub3d_structs.h"
 
 /*
-** Draw the images of ceilling and floor.
+** Destroy the entire static_actor list. In future changes it will destroy only-
+**  one.
 */
 
-void	draw_background(t_img *f, t_wndw *wndw, t_world *wrld)
+void	del_static_obj(t_static_obj *del)
 {
-	int	sx;
-	int	sy;
-
-	sx = 0;
-	sy = 0;
-	while (sy < wndw->hgt)
-	{
-		while (sx < wndw->wdt)
-		{
-			if (sy > wndw->hgt / 2)
-				pixel_put(f, sx, sy, wrld->ceilling);
-			else
-				pixel_put(f, sx, sy, wrld->floor);
-			++sx;
-		}
-		sx = 0;
-		++sy;
-	}	
+	free(del);
 }

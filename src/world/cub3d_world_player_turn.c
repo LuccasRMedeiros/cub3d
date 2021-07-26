@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 00:36:41 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 12:58:18 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:50:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@
 ** NOTE⁴: SOUTH is equal PI divided by 2, it is defined in cub3d_structs.h.
 */
 
-void	player_turn(t_actor *player, int key)
+void	player_turn(t_actor *player)
 {
 	float	dir;
 
-	dir = RDR;
-	if (key == TLFT)
-		dir *= -1;
+	dir = RDR * player->vsn_turn;
 	player->dir = normalize_angle(player->dir + dir);
 	player->delta_x = cos(player->dir) * 5;
 	player->delta_y = sin(player->dir) * 5;

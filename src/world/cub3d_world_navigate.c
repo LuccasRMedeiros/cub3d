@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:18:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 00:58:52 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:50:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 ** direction it is going to.
 */
 
-static void	player_move_fr(t_actor *player, t_world *wrld, int sig)
+static void	player_move_frrr(t_world *wrld, t_actor *player)
 {
 	double	n_ax;
 	double	n_ay;
 	int		n_mx;
 	int		n_my;
 
-	n_ax = player->abs_x + (player->delta_x * sig);
-	n_ay = player->abs_y + (player->delta_y * sig);
+	n_ax = player->abs_x + (player->delta_x * player->move_frrr);
+	n_ay = player->abs_y + (player->delta_y * player->move_frrr);
 	n_mx = n_ax / TILESIZE;
 	n_my = n_ay / TILESIZE;
 	if (wrld->map[player->map_y][n_mx] != '1')
@@ -46,15 +46,15 @@ static void	player_move_fr(t_actor *player, t_world *wrld, int sig)
 ** Similar to player_move_fr, but to make sidewalks.
 */
 
-static void	player_move_lr(t_actor *player, t_world *wrld, int sig)
+static void	player_move_lfrt(t_world *wrld, t_actor *player)
 {
 	double	n_ax;
 	double	n_ay;
 	int		n_mx;
 	int		n_my;
 
-	n_ax = player->abs_x + (player->delta_xl * sig);
-	n_ay = player->abs_y + (player->delta_yl * sig);
+	n_ax = player->abs_x + (player->delta_xl * player->move_lfrt);
+	n_ay = player->abs_y + (player->delta_yl * player->move_lfrt);
 	n_mx = n_ax / TILESIZE;
 	n_my = n_ay / TILESIZE;
 	if (wrld->map[player->map_y][n_mx] != '1')
@@ -79,14 +79,8 @@ static void	player_move_lr(t_actor *player, t_world *wrld, int sig)
 ** The last "else if" of the branch exists to make the code humanly readable.
 */
 
-void    navigate(t_world *wrld, t_actor *player, int key)
+void    navigate(t_world *wrld, t_actor *player)
 {
-	if (key == FWRD)
-		player_move_fr(player, wrld, 1);
-	else if (key == REAR)
-		player_move_fr(player, wrld, -1);
-	else if (key == RGHT)
-		player_move_lr(player, wrld, -1);
-	else if (key == LEFT)
-		player_move_lr(player, wrld, 1);
+	player_move_frrr(wrld, player);
+	player_move_lfrt(wrld, player);
 }

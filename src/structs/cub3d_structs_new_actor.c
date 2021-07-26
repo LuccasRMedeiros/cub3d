@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 21:32:21 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 00:21:37 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 18:36:53 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,8 @@ t_actor	*new_actor(char dir, int pos_x, int pos_y)
 	new->delta_y = sin(new->dir) * 5;
 	new->delta_xl = cos(normalize_angle(new->dir - (RDR * 90))) * 5;
 	new->delta_yl = sin(normalize_angle(new->dir - (RDR * 90))) * 5;
+	new->move_frrr = 0;
+	new->move_lfrt = 0;
+	new->vsn_turn = 0;
 	return (new);
 }

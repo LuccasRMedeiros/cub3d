@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 18:32:18 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 21:24:24 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 12:10:00 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	pixel_put(t_img *img, int posx, int posy, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (posy * img->l_len + posx * (img->bpp / 8));
+	dst = (char *)img->addr + (posy * img->l_len + posx * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }

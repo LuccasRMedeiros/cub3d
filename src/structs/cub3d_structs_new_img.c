@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 15:44:46 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 23:56:17 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/25 12:07:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_img	*new_img(t_wndw *wndw, int wdt, int hgt, char *file_path)
 		new->img = mlx_xpm_file_to_image(new->conn, file_path,
 			&new->wdt, &new->hgt);
 	}
-	new->addr = mlx_get_data_addr(new->img, &new->bpp,
+	new->addr = (int *)mlx_get_data_addr(new->img, &new->bpp,
 		&new->l_len, &new->end);
 	return (new);
 }
