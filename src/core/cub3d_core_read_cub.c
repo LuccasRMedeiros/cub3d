@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/05 14:29:26 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/26 20:46:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	select_case_line(char *line, t_cub *cub, int gnl_stts)
 ** members.
 */
 
-t_cub	*read_cub(char *cub_path)
+t_cub	*read_cub(int argc, char **argv)
 {
 	t_cub	*cub;
 	int		fd;
@@ -54,12 +54,14 @@ t_cub	*read_cub(char *cub_path)
 	char	*line;
 
 	cub = new_cub();
-	fd = validate_cubfile(cub_path);
+	fd = validate_args(argc, argv);
 	if (fd == -1)
 	{
 		cub->status = -1;
 		return (cub);
 	}
+	if (argc == 3)
+		cub->save = true;
 	gnl_stts = 1;
 	while (gnl_stts)
 	{

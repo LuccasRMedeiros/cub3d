@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 23:29:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/26 20:27:45 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_sheet
 typedef struct s_cub
 {
 	int		status;
+	bool	save;
 	int		res[2];
 	t_sheet	*tilesheet;
 	t_sheet	*spritesheet;

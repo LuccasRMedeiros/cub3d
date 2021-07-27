@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 23:44:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/26 20:49:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 {
 	t_cub	*cub;
 
-	cub = read_cub(argv[1]);
+	cub = read_cub(argc, argv);
 	if (cub->status == -1)
 	{
 		del_cub(cub);

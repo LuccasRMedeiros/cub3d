@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 23:43:46 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/26 20:46:32 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_program
 	int				nspt;
 }					t_program;
 
-t_cub			*read_cub(char *cub_path);
+t_cub			*read_cub(int argc, char **argv);
 void			set_res(const char *line, t_cub *cub);
 void			set_tilesheet(const char *line, t_cub *cub);
 void			set_spritesheet(const char *line, t_cub *cub);

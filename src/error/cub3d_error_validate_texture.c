@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 17:48:48 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 13:30:48 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/26 22:00:12 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ bool	validate_texture(char *path, char *where)
 	{
 		error = ft_strcomb(3, "file: ", path, " was not found.");
 		error_msg(error, where);
-		error = NULL;
 		free(error);
+		error = NULL;
 		return (false);
 	}
 	close(fd);
@@ -44,8 +44,8 @@ bool	validate_texture(char *path, char *where)
 	{
 		error = ft_strcomb(3, "file: ", path, " have invalid format.");
 		error_msg(error, where);
-		error = NULL;
 		free(error);
+		error = NULL;
 		return (false);
 	}
 	return (true);
