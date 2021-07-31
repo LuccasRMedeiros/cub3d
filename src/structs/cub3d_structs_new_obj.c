@@ -6,11 +6,33 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 20:06:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 20:58:00 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:31:02 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_structs.h"
+
+/*
+** Find the begginings and the ends.
+*/
+
+static void	sage(t_wndw *wndw, t_obj *obj, t_actor *p)
+{
+	int	org_sx;
+	int	end_sx;
+
+	org_sx = (wndw->wdt / 2) + obj->p_rl_x;
+	end_sx = -ft_igreater((org_sx + obj->wdt) * -1, -wndw->wdt);
+	org_sx = ft_igreater(org_sx, 0);
+	while (p->rays[org_sx].dist <= obj->dist && org_sx < end_sx)
+		++org_sx;
+	while (p->rays[end_sx].dist <= obj->dist && end_sx > org_sx)
+		--end_sx;
+	obj->org_sx = org_sx;
+	obj->end_sx = end_sx;
+	if (org_sx >= end_sx)
+		obj->visible = false;
+}
 
 /*
 ** The player relative angle is the product of the difference between the      -
@@ -41,26 +63,23 @@ static float	get_p_rl_ang(t_static_obj obj, t_actor *p)
 ** sprites.
 */
 
-t_obj new_obj(t_wndw *wndw, t_actor *p, t_static_obj obj)
+t_obj	new_obj(t_wndw *wndw, t_actor *p, t_static_obj obj)
 {
-	float	d_proj;
 	t_obj	new;
 
-	d_proj = (wndw->wdt / 2) / tan(FOV_ANG / 2);
 	new.p_rl_ang = get_p_rl_ang(obj, p);
-	if (new.p_rl_ang < (FOV_ANG / 2) + 0.2)
+	if (new.p_rl_ang < ((FOV_ANG / 2) + 0.2))
 	{
 		new.visible = true;
-		new.dist = hypot((obj.abs_x - p->abs_x), (obj.abs_y - p->abs_y));
-		new.s_rl_ang = atan2((obj.abs_y - p->abs_y), (obj.abs_x - p->abs_x));
-		new.s_rl_ang = normalize_angle(new.s_rl_ang - p->dir);
-		new.p_rl_x = tan(new.s_rl_ang) * d_proj;
-		new.hgt = (TILESIZE / new.dist) * d_proj;
+		new.dist = hypot(obj.abs_x - p->abs_x, obj.abs_y - p->abs_y);
+		new.s_rl_ang = atan2(obj.abs_y - p->abs_y, obj.abs_x - p->abs_x);
+		new.s_rl_ang -= p->dir;
+		new.p_rl_x = (tan(new.s_rl_ang) * p->d_proj) - TILESIZE;
+		new.hgt = (TILESIZE / new.dist) * p->d_proj;
 		new.wdt = new.hgt;
 		new.org_sy = (wndw->hgt / 2) - (new.hgt / 2);
 		new.end_sy = new.org_sy + new.hgt;
-		new.org_sx = ft_igreater(wndw->wdt / 2 + new.p_rl_x, 0);
-		new.end_sx = -ft_igreater(-wndw->wdt, (new.org_sx + new.wdt) * -1);
+		sage(wndw, &new, p);
 	}
 	else
 	{

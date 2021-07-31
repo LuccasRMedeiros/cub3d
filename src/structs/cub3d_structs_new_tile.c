@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:36:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 13:14:42 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:15:55 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_tile	*new_tile(t_sheet *tilesheet, t_wndw *wndw)
 {
 	t_tile	*new;
 
-	new = malloc(sizeof *new);
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->id = tilesheet->id;

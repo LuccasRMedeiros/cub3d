@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 20:36:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 21:02:56 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:37:30 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void print_map(t_world *wrld, t_actor *player, int n_rays) {
 			}		
 		}
     }
-	printf("\n player abs_x: %f | player abs_y: %f | player direction: %f \n", player->abs_x, player->abs_y, player->dir);
+	printf("\n player abs_x: %i | player abs_y: %i | player direction: %f \n", player->abs_x, player->abs_y, player->dir);
 	printf("\n player map_x: %i | player map_y: %i\n\n", player->map_x, player->map_y);
 }

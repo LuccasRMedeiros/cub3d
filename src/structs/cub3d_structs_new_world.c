@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:17:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 14:46:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:33:17 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_world	*new_world(t_cub *cub, t_wndw *wndw)
 {
 	t_world	*new;
 
-	new = malloc(sizeof *new);
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->tileset = new_tile(cub->tilesheet, wndw);

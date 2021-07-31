@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 17:47:25 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:53:18 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 
 void	pixel_put(t_img *f, int posx, int posy, int color);
 void	render_projection(t_img *f, t_world *wrld, t_wndw *wndw, t_actor *p);
-void    render_sprites(t_img *f, t_static_obj *spt_lst, int n_spts);
+void	render_sprites(t_img *f, t_static_obj *spt_lst, int n_spts);
 void	ray_cast(t_world *wrld, t_actor *player, int n_rays);
 t_ray	h_cast_ray(t_actor *player, t_world *wrld, float ang);
 t_ray	v_cast_ray(t_actor *player, t_world *wrld, float ang);
-void 	print_map(t_world *wrld, t_actor *player, int n_rays);
+void	print_map(t_world *wrld, t_actor *player, int n_rays);
 void	draw_background(t_img *bg, t_wndw *wndw, t_world *wrld);
-int	    get_color(t_img *texture, int hgt, int ox, int tx_row);
+int		get_color(t_img *texture, int hgt, int ox, int tx_row);
 
 #endif

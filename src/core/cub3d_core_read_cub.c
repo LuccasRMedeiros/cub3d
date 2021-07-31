@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:10:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/26 20:46:30 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:44:37 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	select_case_line(char *line, t_cub *cub, int gnl_stts)
 		return ;
 	if (!ft_strncmp(line, "R", 1))
 		set_res(line, cub);
-	else if(!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
+	else if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2)
 		|| !ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
 		set_tilesheet(line, cub);
 	else if (!ft_strncmp(line, "S", 1))

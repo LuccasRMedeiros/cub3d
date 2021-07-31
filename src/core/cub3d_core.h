@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 18:01:40 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:42:52 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <cub3d_structs.h>
 # include <cub3d_world.h>
 
-typedef struct	s_program
+typedef struct s_program
 {
-	bool	running;
+	bool			running;
 	t_wndw			*wndw;
 	t_world			*wrld;
 	t_actor			*player;

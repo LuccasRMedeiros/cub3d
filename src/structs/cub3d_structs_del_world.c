@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 12:14:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/24 21:18:40 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:58:55 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	del_world(t_world *del)
 	del->tileset = NULL;
 	del_sprite(del->spriteset);
 	del->spriteset = NULL;
-	del->ceilling= 0;
+	del->ceilling = 0;
 	del->floor = 0;
 	del->ceilling = 0;
 	ft_destroyer((void **)del->map);

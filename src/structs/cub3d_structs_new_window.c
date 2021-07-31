@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 17:05:08 by user42            #+#    #+#             */
-/*   Updated: 2021/07/23 22:28:29 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:17:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_wndw	*new_window(int wdt, int hgt, char *title)
 	int		max_wdt;
 	int		max_hgt;
 
-	new = malloc(sizeof *new);
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->conn = mlx_init();

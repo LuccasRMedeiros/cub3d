@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 13:49:34 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/23 19:24:20 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:56:26 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ bool	is_map_pattern(const char *line)
 		return (true);
 	return (false);
 }
-

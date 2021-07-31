@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 19:16:04 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/28 17:39:37 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:50:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_ray	h_cast_ray(t_actor *p, t_world *wrld, float ang)
 	{
 		ray.map_x = ((int)ray.rx) / TILESIZE;
 		ray.map_y = ((int)ray.ry - ray.dirs[UPDN]) / TILESIZE;
-		if ((ray.map_y < 0 || ray.map_y >= wrld->map_y) 
+		if ((ray.map_y < 0 || ray.map_y >= wrld->map_y)
 			|| (ray.map_x < 0 || ray.map_x >= wrld->map_x))
 			break ;
 		if (wrld->map[ray.map_y][ray.map_x] == '1')

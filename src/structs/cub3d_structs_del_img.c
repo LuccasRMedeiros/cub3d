@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 16:49:24 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/23 22:28:58 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:24:38 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	del_img(t_img *del)
 		return ;
 	mlx_destroy_image(del->conn, del->img);
 	del->img = NULL;
-	del->addr  = NULL;
+	del->addr = NULL;
 	del->wdt = 0;
 	del->hgt = 0;
 	del->bpp = 0;
@@ -30,4 +30,3 @@ void	del_img(t_img *del)
 	del->end = 0;
 	free(del);
 }
- 

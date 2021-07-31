@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/21 01:29:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 18:15:19 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:10:11 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static int	calcule_ox(t_img *texture, t_ray *ray)
 t_column	*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float p_dir)
 {
 	t_column	*new;
-	
-	new = malloc(sizeof *new);
+
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->d_proj = (wndw->wdt / 2) / tan(FOV_ANG / 2);

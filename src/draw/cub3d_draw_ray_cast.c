@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 13:46:49 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/28 17:39:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:51:27 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ray_cast(t_world *wrld, t_actor *p, int n_rays)
 	dist_proj = ((n_rays / 2) / tan(FOV_ANG / 2));
 	ang = 0;
 	ray = 0;
-	aray = (t_ray *)ft_calloc(n_rays, sizeof *aray);
+	aray = (t_ray *)ft_calloc(n_rays, sizeof(*aray));
 	while (ray < n_rays)
 	{
 		ang = normalize_angle(p->dir + atan((ray - n_rays / 2) / dist_proj));

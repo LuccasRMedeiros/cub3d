@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:18:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 18:50:59 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 19:03:21 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void	player_move_lfrt(t_world *wrld, t_actor *player)
 ** The last "else if" of the branch exists to make the code humanly readable.
 */
 
-void    navigate(t_world *wrld, t_actor *player)
+void	navigate(t_world *wrld, t_actor *player)
 {
 	player_move_frrr(wrld, player);
 	player_move_lfrt(wrld, player);

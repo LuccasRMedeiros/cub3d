@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 19:23:25 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/26 21:48:51 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:56:10 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	check_save(char *arg)
 static int	validate_cubfile(char *path)
 {
 	int	fd;
-	
+
 	if (ft_strncmp(ft_strrchr(path, '.'), ".cub", 4))
 	{
 		error_msg("Please inform a valid cub file", path);

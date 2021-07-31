@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 12:11:21 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/05 20:21:10 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:12:07 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	del_cub(t_cub *del)
 	del->res[1] = 0;
 	del_sheet(del->tilesheet);
 	del_sheet(del->spritesheet);
-  	del->tilesheet = NULL;
+	del->tilesheet = NULL;
 	del->spritesheet = NULL;
 	del->f_color[0] = -1;
 	del->f_color[1] = -1;

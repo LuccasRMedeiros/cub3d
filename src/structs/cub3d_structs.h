@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 14:46:08 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 19:01:26 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <mlx.h>
 
 # define PI 3.14159265
-# define TPI (2 * PI)
-# define RDR (PI / 180)
-# define FOV_ANG (60 * RDR)
-# define NORTH (3 * PI / 2)
-# define SOUTH (PI / 2)
-# define WEST (PI)
-# define EAST (TPI)
+# define TPI 6.2831853
+# define RDR 0.0174532925
+# define FOV_ANG 1.04719755
+# define NORTH 4.712388975
+# define SOUTH 1.570796325
+# define WEST 3.14159265
+# define EAST 6.2831853
 # define TILESIZE 64
 
 # define EXIT 0xff1b
@@ -160,8 +160,8 @@ typedef struct s_static_obj
 	t_img	*texture;
 	int		map_x;
 	int		map_y;
-	float	abs_x;
-	float	abs_y;
+	int		abs_x;
+	int		abs_y;
 	t_obj	obj;
 }	t_static_obj;
 
@@ -195,9 +195,10 @@ typedef struct s_actor
 	char	id;
 	int		map_x;
 	int		map_y;
-	float	abs_x;
-	float	abs_y;
+	int		abs_x;
+	int		abs_y;
 	float	dir;
+	float	d_proj;
 	float	delta_x;
 	float	delta_xl;
 	float	delta_y;
@@ -222,13 +223,13 @@ t_sprite		*new_sprite(t_sheet *spritesheet, t_wndw *wndw);
 void			del_sprite(t_sprite *del);
 t_world			*new_world(t_cub *cub, t_wndw *wndw);
 void			del_world(t_world *del);
-t_actor			*new_actor(char id, int pos_x, int pos_y);
+t_actor			*new_actor(char id, t_wndw *wndw, int pos_x, int pos_y);
 void			del_actor(t_actor *del);
 t_ray			new_ray(char id, double ang);
 t_column		*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float dir);
 void			del_column(t_column *del);
 t_static_obj	*list_static_obj(t_world *wrld);
-t_obj 			new_obj(t_wndw *wndw,t_actor *p, t_static_obj obj);
+t_obj			new_obj(t_wndw *wndw, t_actor *p, t_static_obj obj);
 void			del_static_obj(t_static_obj *del);
 float			normalize_angle(float ang);
 int				color_picker(int rgb[3]);

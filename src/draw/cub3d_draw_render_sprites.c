@@ -6,11 +6,26 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 19:07:12 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 17:45:43 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:53:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_draw.h"
+
+/*
+** Calculate the offset x;
+*/
+
+static int	calc_ox(t_static_obj spt, int sx)
+{
+	double	step;
+	int		ox;
+
+	step = ((double)spt.texture->wdt) / ((double)spt.obj.wdt);
+	ox = sx - spt.obj.org_sx;
+	ox = ((double)ox) * step;
+	return (ox);
+}
 
 /*
 ** Caulculate what row of the texture it is looking for.
@@ -38,22 +53,21 @@ static void	draw_sprite(t_img *f, t_static_obj spt)
 {
 	int	tx_row;
 	int	sy;
-    int sx;
-    int ox;
+	int	sx;
+	int	ox;
 	int	color;
 
 	tx_row = calc_tx_row(f, &spt.obj);
 	sy = spt.obj.org_sy;
 	while (sy <= spt.obj.end_sy)
 	{
-        sx = spt.obj.org_sx;
+		sx = spt.obj.org_sx;
 		while (sx < spt.obj.end_sx)
 		{
-            ox = sx * (double)spt.texture->wdt / (double)spt.obj.wdt;
-			// color = get_color(spt.texture, spt.obj.hgt, ox, tx_row);
-			color = 0x00FF00;
-            if (color)
-			    pixel_put(f, sx, sy, color);
+			ox = calc_ox(spt, sx);
+			color = get_color(spt.texture, spt.obj.hgt, ox, tx_row);
+			if (color)
+				pixel_put(f, sx, sy, color);
 			++sx;
 		}
 		++sy;
@@ -68,7 +82,7 @@ static void	draw_sprite(t_img *f, t_static_obj spt)
 ** sprites on the screen.
 */
 
-void    render_sprites(t_img *f, t_static_obj *spt_lst, int n_spts)
+void	render_sprites(t_img *f, t_static_obj *spt_lst, int n_spts)
 {
 	int	si;
 

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 12:46:55 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/06/24 15:08:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 17:55:50 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	conf_walls(t_cub *cub)
 	int	walls;
 	int	r;
 	int	c;
-	
+
 	walls = 0;
 	r = 0;
 	c = 0;

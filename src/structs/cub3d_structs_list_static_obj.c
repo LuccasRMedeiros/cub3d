@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 16:37:51 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 18:06:14 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 18:09:28 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_static_obj	*list_static_obj(t_world *wrld)
 	int				el;
 	int				map_x;
 	int				map_y;
-	
-	ret_list = ft_calloc(wrld->n_sprites, sizeof *ret_list);
+
+	ret_list = ft_calloc(wrld->n_sprites, sizeof(*ret_list));
 	el = 0;
 	map_x = 0;
 	map_y = 0;

@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 15:19:26 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/30 17:28:49 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 11:52:44 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_program	prog_config(t_cub *cub)
 	prog.running = true;
 	prog.wndw = new_window(cub->res[WDT], cub->res[HGT], "Cub3D");
 	prog.wrld = new_world(cub, prog.wndw);
-	prog.player = new_actor(cub->layout[py][px], px, py);
+	prog.player = new_actor(cub->layout[py][px], prog.wndw, px, py);
 	prog.sprite_list = list_static_obj(prog.wrld);
 	del_cub(cub);
 	return (prog);
