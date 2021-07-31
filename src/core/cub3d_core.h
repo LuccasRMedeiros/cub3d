@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 19:17:39 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/26 20:46:32 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/30 18:01:40 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct	s_program
 	t_world			*wrld;
 	t_actor			*player;
 	t_static_obj	*sprite_list;
-	int				nspt;
 }					t_program;
 
 t_cub			*read_cub(int argc, char **argv);
@@ -40,7 +39,6 @@ void			set_floor_color(const char *line, t_cub *cub);
 void			set_ceilling_color(const char *line, t_cub *cub);
 void			set_map(const char *line, t_cub *cub, size_t gnl_stts);
 void			set_player(t_cub *cub);
-t_static_obj	*get_obj_list(t_world *wrld, int *nspt);
 int				close_program(t_program *prog);
 int				key_pressed(int key, t_program *prog);
 int				key_released(int key, t_program *prog);

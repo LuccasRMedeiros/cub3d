@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:35:28 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 23:00:52 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/30 17:47:25 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 void	pixel_put(t_img *f, int posx, int posy, int color);
 void	render_projection(t_img *f, t_world *wrld, t_wndw *wndw, t_actor *p);
-void    render_sprite(t_img *f, t_static_obj *sprite_list, t_actor *p, int nspt);
+void    render_sprites(t_img *f, t_static_obj *spt_lst, int n_spts);
 void	ray_cast(t_world *wrld, t_actor *player, int n_rays);
 t_ray	h_cast_ray(t_actor *player, t_world *wrld, float ang);
 t_ray	v_cast_ray(t_actor *player, t_world *wrld, float ang);

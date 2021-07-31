@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:41:45 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/26 20:27:45 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/30 14:46:08 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <mlx.h>
 
 # define PI 3.14159265
+# define TPI (2 * PI)
 # define RDR (PI / 180)
-# define FOV 1.047198
 # define FOV_ANG (60 * RDR)
 # define NORTH (3 * PI / 2)
 # define SOUTH (PI / 2)
 # define WEST (PI)
-# define EAST (2 * PI)
+# define EAST (TPI)
 # define TILESIZE 64
 
 # define EXIT 0xff1b
@@ -141,9 +141,10 @@ typedef struct s_ray
 
 typedef struct s_obj
 {
+	float	p_rl_ang;
+	float	s_rl_ang;
 	float	dist;
-	float	ang;
-	int		prl_x;
+	int		p_rl_x;
 	int		wdt;
 	int		hgt;
 	int		org_sy;
@@ -151,7 +152,6 @@ typedef struct s_obj
 	int		org_sx;
 	int		end_sx;
 	bool	visible;
-	int		ox;
 }	t_obj;
 
 typedef struct s_static_obj
@@ -174,9 +174,9 @@ typedef struct s_world
 	char		**map;
 	int			map_x;
 	int			map_y;
-	int			n_sprites;
 	int			abs_x;
 	int			abs_y;
+	int			n_sprites;
 }	t_world;
 
 typedef struct s_column
@@ -227,8 +227,8 @@ void			del_actor(t_actor *del);
 t_ray			new_ray(char id, double ang);
 t_column		*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float dir);
 void			del_column(t_column *del);
-t_static_obj	*list_static_obj(t_world *wrld, int n_actors);
-t_obj 			new_obj(int wndw_wdt, int wndw_hgt, t_actor *p, t_static_obj obj);
+t_static_obj	*list_static_obj(t_world *wrld);
+t_obj 			new_obj(t_wndw *wndw,t_actor *p, t_static_obj obj);
 void			del_static_obj(t_static_obj *del);
 float			normalize_angle(float ang);
 int				color_picker(int rgb[3]);

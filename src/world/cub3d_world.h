@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 11:44:11 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 18:50:14 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/30 17:21:05 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,9 @@
 
 void    navigate(t_world *wrld, t_actor *player);
 void	player_turn(t_actor *player);
+void	analyze_sprites(t_wndw *wndw,
+						t_world *wrld,
+						t_actor *p,
+						t_static_obj *spt_list);
 
 #endif

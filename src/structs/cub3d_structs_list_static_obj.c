@@ -6,7 +6,7 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 16:37:51 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/25 19:23:35 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/30 18:06:14 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,42 @@
 ** set_actor create a t_actor copy with values filled.
 */
 
-t_static_obj	set_obj(t_world *wrld, int map_x, int map_y)
+static t_static_obj	get_static_obj(t_world *wrld, int map_x, int map_y)
 {
 	t_static_obj	new;
 
 	new.id = wrld->spriteset->id;
 	new.map_x = map_x;
 	new.map_y = map_y;
-	new.abs_x = map_x * TILESIZE;
-	new.abs_y = map_y * TILESIZE;
+	new.abs_x = (map_x * TILESIZE) + (TILESIZE / 2);
+	new.abs_y = (map_y * TILESIZE) + (TILESIZE / 2);
 	new.texture = wrld->spriteset->sprite;
 	return (new);
 }
 
 /*
-** Look into the world map for sprites, then return a list of them.
+** Look for the counted sprites to get its map x and map y positions and its   -
+** absolutes positions.
 */
 
-t_static_obj	*list_static_obj(t_world *wrld, int n_objs)
+t_static_obj	*list_static_obj(t_world *wrld)
 {
-	t_static_obj	*list;
+	t_static_obj	*ret_list;
 	int				el;
 	int				map_x;
 	int				map_y;
-
-	list = (t_static_obj *)ft_calloc(n_objs, sizeof *list);
+	
+	ret_list = ft_calloc(wrld->n_sprites, sizeof *ret_list);
 	el = 0;
 	map_x = 0;
 	map_y = 0;
-	while (map_y < wrld->map_y)
+	while (map_y < wrld->map_y && el < wrld->n_sprites)
 	{
-		while (map_x < wrld->map_x)
+		while (map_x < wrld->map_x && el < wrld->n_sprites)
 		{
 			if (wrld->map[map_y][map_x] == '2')
 			{
-				list[el] = set_obj(wrld, map_x, map_y);
+				ret_list[el] = get_static_obj(wrld, map_x, map_y);
 				++el;
 			}
 			++map_x;
@@ -58,5 +59,5 @@ t_static_obj	*list_static_obj(t_world *wrld, int n_objs)
 		map_x = 0;
 		++map_y;
 	}
-	return (list);
+	return (ret_list);
 }
