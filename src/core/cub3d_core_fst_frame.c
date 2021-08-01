@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_core_update_frame.c                          :+:      :+:    :+:   */
+/*   cub3d_core_fst_frame.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 17:51:56 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/31 19:56:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2021/07/31 23:06:34 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_core.h"
 
 /*
-** Ask to ray_caster cast rays from the plaer postion then loop through the ray-
-**  array and call draw_column to draw each column correspondent to each ray.
+** Basicaly this is a copy of update_frame, but receive a the "save" argument  -
+** to take a screenshot (or not).
 */
 
-int	update_frame(t_program *prog)
+void	fst_frame(t_program *prog, bool save)
 {
 	t_img	*frame;
 
@@ -37,7 +37,8 @@ int	update_frame(t_program *prog)
 	}
 	mlx_put_image_to_window(prog->wndw->conn,
 		prog->wndw->wndw, frame->img, 0, 0);
+	if (save)
+		screenshot(frame);
 	del_img(frame);
 	free(prog->player->rays);
-	return (0);
 }
