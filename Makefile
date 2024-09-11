@@ -47,7 +47,7 @@ define CUBED
 endef
 export CUBED
 
-CC = clang
+CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 

@@ -43,7 +43,7 @@ static void	write_header(int fd, t_bmp_h header)
 {
 	write(fd, &header.type, 2);
 	write(fd, &header.size, 4);
-	write(fd, &header.reserved, 4);
+	write(fd, &header.reserved, 2);
 	write(fd, &header.offset, 4);
 	write(fd, &header.hdr_sz, 4);
 	write(fd, &header.wdt, 4);

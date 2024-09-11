@@ -6,11 +6,22 @@
 /*   By: lrocigno <lrocigno@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 20:06:01 by lrocigno          #+#    #+#             */
-/*   Updated: 2021/07/31 18:31:02 by lrocigno         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:32:59 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_structs.h"
+
+/**
+ * Return which value is greater
+ *
+ * NOTE: This function was added after i quited 42, it might not conform to the
+ * norm.
+ */
+static int get_greater(int a, int b)
+{
+    return a > b ? a : b;
+}
 
 /*
 ** Find the begginings and the ends.
@@ -22,8 +33,8 @@ static void	sage(t_wndw *wndw, t_obj *obj, t_actor *p)
 	int	end_sx;
 
 	org_sx = (wndw->wdt / 2) + obj->p_rl_x;
-	end_sx = -ft_igreater((org_sx + obj->wdt) * -1, -wndw->wdt);
-	org_sx = ft_igreater(org_sx, 0);
+	end_sx = -get_greater((org_sx + obj->wdt) * -1, -wndw->wdt);
+	org_sx = get_greater(org_sx, 0);
 	while (p->rays[org_sx].dist <= obj->dist && org_sx < end_sx)
 		++org_sx;
 	while (p->rays[end_sx].dist <= obj->dist && end_sx > org_sx)
