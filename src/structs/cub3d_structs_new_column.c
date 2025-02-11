@@ -12,65 +12,67 @@
 
 #include "cub3d_structs.h"
 
-/*
-** Select what wall texture it will use.
-*/
-
-static t_img	*select_texture(t_world *wrld, t_ray *ray)
+/**
+ * Select what wall texture it will use.
+ */
+static st_img *select_texture(st_world *wrld, st_ray *ray)
 {
-	if (ray->id == 'H')
-	{
-		if (ray->dirs[UPDN])
-			return (wrld->tileset->wall_so);
-		else
-			return (wrld->tileset->wall_no);
-	}
-	else if (ray->id == 'V')
-	{
-		if (ray->dirs[LTRT])
-			return (wrld->tileset->wall_ea);
-		else
-			return (wrld->tileset->wall_we);
-	}
-	return (NULL);
+    if (ray->id == 'H')
+    {
+        if (ray->dirs[UPDN])
+            return wrld->tileset->wall_so;
+        else
+            return wrld->tileset->wall_no;
+    }
+    else if (ray->id == 'V')
+    {
+        if (ray->dirs[LTRT])
+            return wrld->tileset->wall_ea;
+        else
+            return wrld->tileset->wall_we;
+    }
+    return NULL;
 }
 
-/*
-** Calcule the column where to start drawing the texture.
-*/
-
-static int	calcule_ox(t_img *texture, t_ray *ray)
+/**
+ * Calculate the column where to start drawing the texture.
+ */
+static int calculate_ox(t_img *texture, t_ray *ray)
 {
-	double	step;
-	int		ox;
+    double  step;
+    int     ox;
 
-	step = ((double)texture->wdt / (double)TILESIZE);
-	ox = 0;
-	if (ray->id == 'H')
-		ox = (int)ray->rx % TILESIZE;
-	else if (ray->id == 'V')
-		ox = (int)ray->ry % TILESIZE;
-	ox = (double)ox * step;
-	return (ox);
+    step = ((double)texture->wdt / (double)TILESIZE);
+    ox = 0;
+    
+    if (ray->id == 'H')
+        ox = (int)ray->rx % TILESIZE;
+    else if (ray->id == 'V')
+        ox = (int)ray->ry % TILESIZE;
+    ox = (double)ox * step;
+    
+    return ox;
 }
 
 /*
 ** Create a new column instance with values already setted.
 */
-
-t_column	*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float p_dir)
+t_column *new_column(st_wndw *wndw, st_world *wrld, st_ray *ray, float p_dir)
 {
-	t_column	*new;
+    st_column *new;
 
-	new = malloc(sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->d_proj = (wndw->wdt / 2) / tan(FOV_ANG / 2);
-	new->perp_d = ray->dist * cos(ray->ang - p_dir);
-	new->hgt = ((TILESIZE / new->perp_d) * new->d_proj);
-	new->org_sy = (wndw->hgt / 2) - (new->hgt / 2);
-	new->end_sy = (wndw->hgt / 2) + (new->hgt / 2);
-	new->texture = select_texture(wrld, ray);
-	new->ox = calcule_ox(new->texture, ray);
-	return (new);
+    new = malloc(sizeof(*new));
+    
+    if (!new)
+        return NULL;
+
+    new->d_proj = (wndw->wdt / 2) / tan(FOV_ANG / 2);
+    new->perp_d = ray->dist * cos(ray->ang - p_dir);
+    new->hgt = ((TILESIZE / new->perp_d) * new->d_proj);
+    new->org_sy = (wndw->hgt / 2) - (new->hgt / 2);
+    new->end_sy = (wndw->hgt / 2) + (new->hgt / 2);
+    new->texture = select_texture(wrld, ray);
+    new->ox = calcule_ox(new->texture, ray);
+
+    return new;
 }

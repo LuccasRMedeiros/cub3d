@@ -12,19 +12,18 @@
 
 #include "cub3d_structs.h"
 
-/*
-** Return a color code.
-** This color code is obtained by bit shifting the array rgb values.
-*/
-
-int	color_picker(int rgb[3])
+/**
+ * Return a color code.
+ * This color code is obtained by bit shifting the array rgb values.
+ */
+int color_picker(int rgb[3])
 {
-	int	r;
-	int	g;
-	int	b;
+    int r;
+    int g;
+    int b;
 
-	r = rgb[0];
-	g = rgb[1];
-	b = rgb[2];
-	return (r << 16 | g << 8 | b);
+    r = rgb[0];
+    g = rgb[1];
+    b = rgb[2];
+    return (r << 16 | g << 8 | b);
 }

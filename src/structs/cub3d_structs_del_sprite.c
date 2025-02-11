@@ -10,15 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Destroy a t_sprite.
-*/
-
 #include "cub3d_structs.h"
 
-void	del_sprite(t_sprite *del)
+/**
+ * Destroy a t_sprite.
+ */
+void del_sprite(t_sprite *del)
 {
-	del->id = 0;
-	del_img(del->sprite);
-	free(del);
+    del->id = 0;
+    del_img(del->sprite);
+   
+    free(del);
 }

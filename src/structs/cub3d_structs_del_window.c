@@ -12,15 +12,15 @@
 
 #include "cub3d_structs.h"
 
-/*
-** Delete a window.
-*/
-
-void	del_window(t_wndw *del)
+/**
+ * Delete a window.
+ */
+void del_window(st_wndw *del)
 {
-	mlx_destroy_window(del->conn, del->wndw);
-	mlx_destroy_display(del->conn);
-	del->conn = NULL;
-	del->wndw = NULL;
-	free(del);
+    mlx_destroy_window(del->conn, del->wndw);
+    mlx_destroy_display(del->conn);
+    del->conn = NULL;
+    del->wndw = NULL;
+    
+    free(del);
 }

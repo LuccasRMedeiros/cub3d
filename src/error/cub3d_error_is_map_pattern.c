@@ -12,29 +12,27 @@
 
 #include "cub3d_error.h"
 
-/*
-** Confer if a line corresponds to a map pattern, it means such line have a    -
-** sequence of elements.
-** Requires a line which will be read. Return true if it is a map pattern or   -
-** false if not.
-*/
+#include <string.h>
 
-bool	is_map_pattern(const char *line)
+/**
+ * Confer if a line corresponds to a map pattern, it means such line have a    -
+ * sequence of elements.
+ * Requires a line which will be read. Return true if it is a map pattern or   -
+ * false if not.
+ */
+int is_map_pattern(const char *line)
 {
-	size_t	i;
-	size_t	y;
+    size_t i = 0, y = 0;
 
-	i = 0;
-	y = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-	{
-		if (ft_strhvchr(VLCHR, line[i]))
-			++y;
-		else if (line[i] != ' ')
-			return (false);
-		++i;
-	}
-	if (y > 0)
-		return (true);
-	return (false);
+    while (line[i] != '\n' && line[i] != '\0')
+    {
+        if (strpbrk(VLCHR, line)) { ++y; }
+        else if (line[i] != ' ') { return 0; }
+
+        ++i;
+    }
+
+    if (y > 0) { return 1; }
+
+    return 0;
 }

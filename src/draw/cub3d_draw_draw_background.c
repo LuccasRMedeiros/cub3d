@@ -12,28 +12,19 @@
 
 #include "cub3d_draw.h"
 
-/*
-** Draw the images of ceilling and floor.
-*/
-
-void	draw_background(t_img *f, t_wndw *wndw, t_world *wrld)
+/**
+ * Draw the images of ceilling and floor.
+ */
+void draw_background(st_img *f, st_wndw *wndw, st_world *wrld)
 {
-	int	sx;
-	int	sy;
-
-	sx = 0;
-	sy = 0;
-	while (sy < wndw->hgt)
-	{
-		while (sx < wndw->wdt)
-		{
-			if (sy > wndw->hgt / 2)
-				pixel_put(f, sx, sy, wrld->ceilling);
-			else
-				pixel_put(f, sx, sy, wrld->floor);
-			++sx;
-		}
-		sx = 0;
-		++sy;
-	}	
+    for (int sy = 0; sy < wndw->hgt; ++sy)
+    {
+        for (int sx = 0; sx < wndw->wdt; ++sx)
+        {
+            if (sy > wndw->hgt / 2)
+                pixel_put(f, sx, sy, wrld->ceilling);
+            else
+                pixel_put(f, sx, sy, wrld->floor);
+        }
+    }   
 }

@@ -12,35 +12,27 @@
 
 #include "cub3d_core.h"
 
-/*
-** Search for the player.
-** Only succed if there are one (and not more) player in the map.
-*/
-
-void	set_player(t_cub *cub)
+/**
+ * Search for the player.
+ * Only succed if there are one (and not more) player in the map.
+ */
+void set_player(st_cub *cub)
 {
-	int	map_x;
-	int	map_y;
-
-	map_x = 0;
-	map_y = 0;
-	if (!validate_player_pos(cub))
-	{
-		cub->status = -1;
-		return ;
-	}
-	while (map_y < cub->map_axis[Y])
-	{
-		while (map_x < cub->map_axis[X])
-		{
-			if (ft_strhvchr(PLAYER, cub->layout[map_y][map_x]))
-			{
-				cub->player_pos[X] = map_x;
-				cub->player_pos[Y] = map_y;
-			}
-			++map_x;
-		}
-		map_x = 0;
-		++map_y;
-	}
+    // TODO: Make the validation more straigthforward to remove this part
+    if (!validate_player_pos(cub))
+    {
+        cub->status = -1;
+        return ;
+    }
+    for (int map_y = 0; map_y < cub->map_axis[Y]; ++map_y)
+    {
+        for (int map_x = 0; map_x < cub->map_axis[X]; ++map_x)
+        {
+            if (strpbrk(cub->layout[map_y][map_x], PLAYER) != NULL)
+            {
+                cub->player_pos[X] = map_x;
+                cub->player_pos[Y] = map_y;
+            }
+        }
+    }
 }

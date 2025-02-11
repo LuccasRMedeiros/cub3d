@@ -23,6 +23,8 @@
 # include <math.h>
 # include <mlx.h>
 
+#include <stdlib.h>
+
 # define PI 3.14159265
 # define TPI 6.2831853
 # define RDR 0.0174532925
@@ -41,197 +43,197 @@
 # define TRGT 0xff53
 # define TLFT 0xff51
 
-typedef enum e_axis
+typedef enum
 {
-	X,
-	Y
-}	t_axis;
+    X,
+    Y
+}   e_axis;
 
-typedef enum e_dirs
+typedef enum
 {
-	UPDN,
-	LTRT,
-}	t_dirs;
+    UPDN,
+    LTRT,
+}   e_dirs;
 
-typedef enum e_measure
+typedef enum
 {
-	WDT,
-	HGT
-}	t_measure;
+    WDT,
+    HGT
+}   e_measure;
 
-typedef enum e_img_type
+typedef enum
 {
-	SMP,
-	TEX
-}	t_img_type;
+    SMP,
+    TEX
+}   e_img_type;
 
-typedef struct s_sheet
+typedef struct
 {
-	char	id;
-	bool	is_wall;
-	char	*no_face;
-	char	*so_face;
-	char	*we_face;
-	char	*ea_face;
-}	t_sheet;
+    char    id;
+    bool    is_wall;
+    char    *no_face;
+    char    *so_face;
+    char    *we_face;
+    char    *ea_face;
+}   st_sheet;
 
-typedef struct s_cub
+typedef struct
 {
-	int		status;
-	bool	save;
-	int		res[2];
-	t_sheet	*tilesheet;
-	t_sheet	*spritesheet;
-	int		f_color[3];
-	int		c_color[3];
-	char	*pre_lyt;
-	char	**layout;
-	int		map_axis[2];
-	int		player_pos[2];
-}	t_cub;
+    int     status;
+    bool    save;
+    int     res[2];
+    st_sheet *tilesheet;
+    st_sheet *spritesheet;
+    int     f_color[3];
+    int     c_color[3];
+    char    *pre_lyt;
+    char    **layout;
+    int     map_axis[2];
+    int     player_pos[2];
+}   st_cub;
 
-typedef struct s_img
+typedef struct
 {
-	void	*conn;
-	void	*img;
-	int		*addr;
-	int		wdt;
-	int		hgt;
-	int		bpp;
-	int		l_len;
-	int		end;
-}	t_img;
+    void    *conn;
+    void    *img;
+    int     *addr;
+    int     wdt;
+    int     hgt;
+    int     bpp;
+    int     l_len;
+    int     end;
+}   st_img;
 
-typedef struct s_wndw
+typedef struct
 {
-	void	*conn;
-	void	*wndw;
-	int		wdt;
-	int		hgt;
-}	t_wndw;
+    void    *conn;
+    void    *wndw;
+    int     wdt;
+    int     hgt;
+}   st_wndw;
 
-typedef struct s_tile
+typedef struct
 {
-	char	id;
-	t_img	*wall_no;
-	t_img	*wall_so;
-	t_img	*wall_we;
-	t_img	*wall_ea;
-}	t_tile;
+    char    id;
+    st_img   *wall_no;
+    st_img   *wall_so;
+    st_img   *wall_we;
+    st_img   *wall_ea;
+}   st_tile;
 
-typedef struct s_sprite
+typedef struct
 {
-	char	id;
-	t_img	*sprite;
-}	t_sprite;
+    char    id;
+    st_img   *sprite;
+}   st_sprite;
 
-typedef struct s_ray
+typedef struct
 {
-	char	id;
-	float	ang;
-	int		dirs[2];
-	float	yo;
-	float	xo;
-	float	ry;
-	float	rx;
-	int		map_x;
-	int		map_y;
-	float	dist;
-}	t_ray;
+    char    id;
+    float   ang;
+    int     dirs[2];
+    float   yo;
+    float   xo;
+    float   ry;
+    float   rx;
+    int     map_x;
+    int     map_y;
+    float   dist;
+}   st_ray;
 
-typedef struct s_obj
+typedef struct
 {
-	float	p_rl_ang;
-	float	s_rl_ang;
-	float	dist;
-	int		p_rl_x;
-	int		wdt;
-	int		hgt;
-	int		org_sy;
-	int		end_sy;
-	int		org_sx;
-	int		end_sx;
-	bool	visible;
-}	t_obj;
+    float   p_rl_ang;
+    float   s_rl_ang;
+    float   dist;
+    int     p_rl_x;
+    int     wdt;
+    int     hgt;
+    int     org_sy;
+    int     end_sy;
+    int     org_sx;
+    int     end_sx;
+    bool    visible;
+}   st_obj;
 
-typedef struct s_static_obj
+typedef struct
 {
-	char	id;
-	t_img	*texture;
-	int		map_x;
-	int		map_y;
-	int		abs_x;
-	int		abs_y;
-	t_obj	obj;
-}	t_static_obj;
+    char    id;
+    st_img   *texture;
+    int     map_x;
+    int     map_y;
+    int     abs_x;
+    int     abs_y;
+    st_obj   obj;
+}   st_static_obj;
 
-typedef struct s_world
+typedef struct
 {
-	t_tile		*tileset;
-	t_sprite	*spriteset;
-	int			floor;
-	int			ceilling;
-	char		**map;
-	int			map_x;
-	int			map_y;
-	int			abs_x;
-	int			abs_y;
-	int			n_sprites;
-}	t_world;
+    st_tile      *tileset;
+    st_sprite    *spriteset;
+    int         floor;
+    int         ceilling;
+    char        **map;
+    int         map_x;
+    int         map_y;
+    int         abs_x;
+    int         abs_y;
+    int         n_sprites;
+}   st_world;
 
-typedef struct s_column
+typedef struct
 {
-	float	d_proj;
-	float	perp_d;
-	int		hgt;
-	int		org_sy;
-	int		end_sy;
-	int		ox;
-	t_img	*texture;
-}	t_column;
+    float   d_proj;
+    float   perp_d;
+    int     hgt;
+    int     org_sy;
+    int     end_sy;
+    int     ox;
+    st_img   *texture;
+}   st_column;
 
-typedef struct s_actor
+typedef struct
 {
-	char	id;
-	int		map_x;
-	int		map_y;
-	int		abs_x;
-	int		abs_y;
-	float	dir;
-	float	d_proj;
-	float	delta_x;
-	float	delta_xl;
-	float	delta_y;
-	float	delta_yl;
-	int		move_frrr;
-	int		move_lfrt;
-	int		vsn_turn;
-	t_ray	*rays;
-}	t_actor;
+    char    id;
+    int     map_x;
+    int     map_y;
+    int     abs_x;
+    int     abs_y;
+    float   dir;
+    float   d_proj;
+    float   delta_x;
+    float   delta_xl;
+    float   delta_y;
+    float   delta_yl;
+    int     move_frrr;
+    int     move_lfrt;
+    int     vsn_turn;
+    st_ray   *rays;
+}   st_actor;
 
-t_sheet			*new_sheet(char id, bool is_wall);
-void			del_sheet(t_sheet *del);
-t_cub			*new_cub(void);
-void			del_cub(t_cub *del);
-t_img			*new_img(t_wndw *wndw, int wdt, int hgt, char *file_path);
-void			del_img(t_img *del);
-t_wndw			*new_window(int wdt, int hgt, char *title);
-void			del_window(t_wndw *del);
-t_tile			*new_tile(t_sheet *tilesheet, t_wndw *wndw);
-void			del_tile(t_tile *del);
-t_sprite		*new_sprite(t_sheet *spritesheet, t_wndw *wndw);
-void			del_sprite(t_sprite *del);
-t_world			*new_world(t_cub *cub, t_wndw *wndw);
-void			del_world(t_world *del);
-t_actor			*new_actor(char id, t_wndw *wndw, int pos_x, int pos_y);
-void			del_actor(t_actor *del);
-t_ray			new_ray(char id, double ang);
-t_column		*new_column(t_wndw *wndw, t_world *wrld, t_ray *ray, float dir);
-void			del_column(t_column *del);
-t_static_obj	*list_static_obj(t_world *wrld);
-t_obj			new_obj(t_wndw *wndw, t_actor *p, t_static_obj obj);
-void			del_static_obj(t_static_obj *del);
-float			normalize_angle(float ang);
-int				color_picker(int rgb[3]);
+st_sheet         *new_sheet(char id, bool is_wall);
+void            del_sheet(st_sheet *del);
+st_cub           *new_cub(void);
+void            del_cub(st_cub *del);
+st_img           *new_img(st_wndw *wndw, int wdt, int hgt, char *file_path);
+void            del_img(st_img *del);
+st_wndw          *new_window(int wdt, int hgt, char *title);
+void            del_window(st_wndw *del);
+st_tile          *new_tile(st_sheet *tilesheet, st_wndw *wndw);
+void            del_tile(st_tile *del);
+st_sprite        *new_sprite(st_sheet *spritesheet, st_wndw *wndw);
+void            del_sprite(st_sprite *del);
+st_world         *new_world(st_cub *cub, st_wndw *wndw);
+void            del_world(st_world *del);
+st_actor         *new_actor(char id, st_wndw *wndw, int pos_x, int pos_y);
+void            del_actor(st_actor *del);
+st_ray           new_ray(char id, double ang);
+st_column        *new_column(st_wndw *wndw, st_world *wrld, st_ray *ray, float dir);
+void            del_column(st_column *del);
+st_static_obj    *list_static_obj(st_world *wrld);
+st_obj           new_obj(st_wndw *wndw, st_actor *p, st_static_obj obj);
+void            del_static_obj(st_static_obj *del);
+float           normalize_angle(float ang);
+int             color_picker(int rgb[3]);
 
 #endif

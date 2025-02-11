@@ -12,25 +12,27 @@
 
 #include "cub3d_structs.h"
 
-/*
-** Creates a new t_sheet instance.
-** t_sheet is a identificated list which contains the path for textures to     -
-** north, south, west and east faces for both walls and sprites. The required  -
-** id is how a tile or a sprite is identified in the cub layout.
-*/
-
-t_sheet	*new_sheet(char id, bool is_wall)
+/**
+ * Creates a new t_sheet instance.
+  * t_sheet is a identificated list which contains the path for textures to     -
+  * north, south, west and east faces for both walls and sprites. The required  -
+  * id is how a tile or a sprite is identified in the cub layout.
+ */
+st_sheet *new_sheet(char id, unsigned int is_wall)
 {
-	t_sheet	*new;
+    st_sheet *new;
 
-	new = malloc(sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->id = id;
-	new->is_wall = is_wall;
-	new->no_face = NULL;
-	new->so_face = NULL;
-	new->we_face = NULL;
-	new->ea_face = NULL;
-	return (new);
+    new = malloc(sizeof(*new));
+    
+    if (!new)
+        return (NULL);
+    
+    new->id = id;
+    new->is_wall = is_wall;
+    new->no_face = NULL;
+    new->so_face = NULL;
+    new->we_face = NULL;
+    new->ea_face = NULL;
+    
+    return new;
 }

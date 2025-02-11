@@ -10,20 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Initialize a new t_sprite.
-*/
-
 #include "cub3d_structs.h"
 
-t_sprite	*new_sprite(t_sheet *spritesheet, t_wndw *wndw)
+/**
+ * Initialize a new t_sprite.
+ */
+st_sprite *new_sprite(st_sheet *spritesheet, st_wndw *wndw)
 {
-	t_sprite	*new;
+    st_sprite *new;
 
-	new = malloc(sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->id = spritesheet->id;
-	new->sprite = new_img(wndw, 0, 0, spritesheet->no_face);
-	return (new);
+    new = malloc(sizeof(*new));
+
+    if (!new)
+        return (NULL);
+
+    new->id = spritesheet->id;
+    new->sprite = new_img(wndw, 0, 0, spritesheet->no_face);
+
+    return new;
 }

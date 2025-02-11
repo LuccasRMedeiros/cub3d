@@ -12,38 +12,53 @@
 
 #include "cub3d_error.h"
 
-/*
-** Check if the informed color is invalid.
-** A invalid color can be:
-**  - A group of less than three values or more than three values;
-**  - One or more values are negative;
-**  - One or more values are greater than 255.
-** Case one of the above conditions be verified, the function emits a error    -
-** message and returns true to sinalize the program to stop.
-*/
-
-bool	validate_color(char **rgb, char *area)
+/**
+ * Check if the informed color is invalid.
+ * A invalid color can be:
+ *  - A group of less than three values or more than three values;
+ *  - One or more values are negative;
+ *  - One or more values are greater than 255.
+ * Case one of the above conditions be verified, the function emits a error    
+ * message and returns true to sinalize the program to stop.
+ */
+int validate_color(char **rgb, char *area)
 {
-	int		value;
-	size_t	rgb_i;
+    int value;
 
-	rgb_i = 0;
-	while (rgb[rgb_i] != NULL)
-	{
-		value = ft_atoi(rgb[rgb_i]);
-		if (value > 255 || value < 0)
-		{
-			error_msg("Invalid color", area);
-			ft_destroyer((void **)rgb);
-			return (false);
-		}
-		++rgb_i;
-	}
-	if (rgb_i < 3 || rgb_i > 3)
-	{
-		error_msg("The color must be composed by RGB", area);
-		ft_destroyer((void **)rgb);
-		return (false);
-	}
-	return (true);
+    for (size_t rgb_i = 0; rgb[rgb_i] != NULL; ++rgb_i)
+    {
+        value = atoi(rgb[rgb_i]);
+
+        if (value > 255 || value < 0)
+        {
+            error_msg("Invalid color", area);
+
+            for (size_t i = 0; rgb[i] != NULL; ++i)
+            {
+                free(rgb[i]);
+            }
+
+            free(rgb);
+            rgb = NULL;
+
+            return 0;
+        }
+    }
+
+    if (rgb_i < 3 || rgb_i > 3)
+    {
+        error_msg("The color must be composed by RGB", area);
+
+        for (size_t i = 0; rgb[i] != NULL; ++i)
+        {
+            free(rgb[i]);
+        }
+
+        free(rgb);
+        rgb = NULL;
+
+        return 0;
+    }
+
+    return 1;
 }

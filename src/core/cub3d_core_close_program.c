@@ -10,22 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Close a the program.
-** Calls for get_window to obtain the main window informations, then delete the-
-**  window and the received world.
-** The close_program function is only called when the program had successfully -
-** been executed.
-*/
-
 #include "cub3d_core.h"
 
-int	close_program(t_program *prog)
+/**
+ * Close a the program.
+ * Calls for get_window to obtain the main window informations, then delete the-
+ *  window and the received world.
+ * The close_program function is only called when the program had successfully -
+ * been executed.
+ */
+int close_program(st_program *prog)
 {
-	del_world(prog->wrld);
-	del_window(prog->wndw);
-	del_actor(prog->player);
-	del_static_obj(prog->sprite_list);
-	prog = NULL;
-	exit(0);
+    del_world(prog->wrld);
+    del_window(prog->wndw);
+    del_actor(prog->player);
+    del_static_obj(prog->sprite_list);
+    
+    prog = NULL;
+    
+    exit(0);
 }

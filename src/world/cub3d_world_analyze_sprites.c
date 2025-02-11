@@ -12,45 +12,39 @@
 
 #include "cub3d_world.h"
 
-/*
-** Sort the sprites accordingly to their distance from the player.
-*/
-
-static void	sort_sprites(t_static_obj *spt_list, int n_spts)
+/**
+ * Sort the sprites accordingly to their distance from the player.
+ */
+static void sort_sprites(st_static_obj *spt_list, int n_spts)
 {
-	int				el;
-	t_static_obj	temp;
+    st_static_obj temp;
 
-	el = 0;
-	while (el < n_spts - 1)
-	{
-		if (spt_list[el].obj.dist < spt_list[el + 1].obj.dist)
-		{
-			temp = spt_list[el];
-			spt_list[el] = spt_list[el + 1];
-			spt_list[el + 1] = temp;
-		}
-		++el;
-	}
+    for (int el = 0; el < n_spts - 1; ++el)
+    {
+        if (spt_list[el].obj.dist < spt_list[el + 1].obj.dist)
+        {
+            temp = spt_list[el];
+            spt_list[el] = spt_list[el + 1];
+            spt_list[el + 1] = temp;
+        }
+    }
 }
 
-/*
-** Use the list of sprites to calculate the distance between the sprite and the-
-**  player.
-*/
-
-void	analyze_sprites(t_wndw *wndw,
-						t_world *wrld,
-						t_actor *p,
-						t_static_obj *spt_list)
+/**
+ * Use the list of sprites to calculate the distance between the sprite and the
+ *  player.
+ */
+void analyze_sprites(
+        st_wndw *wndw,
+        st_world *wrld,
+        st_actor *p,
+        st_static_obj *spt_list
+        )
 {
-	int	el;
+    for (int el = 0; el < wrld->n_sprites; ++el)
+    {
+        spt_list[el].obj = new_obj(wndw, p, spt_list[el]);
+    }
 
-	el = 0;
-	while (el < wrld->n_sprites)
-	{
-		spt_list[el].obj = new_obj(wndw, p, spt_list[el]);
-		++el;
-	}
-	sort_sprites(spt_list, wrld->n_sprites);
+    sort_sprites(spt_list, wrld->n_sprites);
 }

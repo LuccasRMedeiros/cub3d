@@ -10,25 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** This function must be called everytime a misplaced layout is found on the   -
-** cub file. In other words, the world properties were not defined yet and a   -
-** layout pattern is placed before they be setted.
-** Its prototype is void cause it should not return anything, just set the     -
-** world->status as -1 and emit an error message.
-** Requires an address to a t_world instance.
-*/
-
+/**
+ * This function must be called everytime a misplaced layout is found on the   
+ * cub file. In other words, the world properties were not defined yet and a   
+ * layout pattern is placed before they be setted.
+ * Its prototype is void cause it should not return anything, just set the     
+ * world->status as -1 and emit an error message.
+ * Requires an address to a t_world instance.
+ */
 #include "cub3d_error.h"
 
-void	wrong_order(t_cub *cub)
+void wrong_order(st_cub *cub)
 {
-	cub->status = -1;
-	if (cub->layout)
-	{
-		error_msg("Line break between map layout", "map layout");
-		return ;
-	}
-	error_msg ("The map layout begins before all the properties are setted",
-		"cub file");
+    cub->status = -1;
+
+    if (cub->layout)
+    {
+        error_msg("Line break between map layout", "map layout");
+
+        return ;
+    }
+
+    error_msg (
+            "The map layout begins before all the properties are setted",
+            "cub file"
+            );
 }

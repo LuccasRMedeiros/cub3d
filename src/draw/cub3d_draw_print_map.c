@@ -12,42 +12,48 @@
 
 #include "cub3d_draw.h"
 
-/*
-** Print the map and where the rays are hitting.
-*/
+#include <stdio.h>
+#include <string.h>
 
-void print_map(t_world *wrld, t_actor *player, int n_rays) {
-	int n_ray;
-	int x, y;
+/**
+ * Print the map and where the rays are hitting.
+ */
+void print_map(st_world *wrld, st_actor *player, int n_rays)
+{
+    int n_ray;
+    int x, y;
 
     for (y = 0; y < wrld->map_y; ++y) {
-		for (x = 0; x <= wrld->map_x; ++x) {
-			n_ray = 0;
-			while (n_ray < n_rays) {
-				if (x == player->rays[n_ray].map_x && y == player->rays[n_ray].map_y) {
-					if (player->rays[n_ray].id == 'H') {
-						printf("\e[1;31m%c\e[0m", wrld->map[y][x]);
-					} else {
-						printf("\e[0;31m%c\e[0m", wrld->map[y][x]);
-					}
-					++x;
-				}
-				++n_ray;
-			}
-			if (x == player->map_x && y == player->map_y) {
-				printf("\e[1;34m%c\e[0m", 'P');
-			}
-			else if (ft_strhvchr("NSWE", wrld->map[y][x])) {
-				printf("0");
-			}
-			else if (x == wrld->map_x) {
-				printf("\n");
-			}
-			else {
-				printf("%c", wrld->map[y][x]);
-			}		
-		}
+
+        for (x = 0; x <= wrld->map_x; ++x) {
+            n_ray = 0;
+            
+            while (n_ray < n_rays) {
+                if (x == player->rays[n_ray].map_x && y == player->rays[n_ray].map_y) {
+                    if (player->rays[n_ray].id == 'H') {
+                        printf("\e[1;31m%c\e[0m", wrld->map[y][x]);
+                    } else {
+                        printf("\e[0;31m%c\e[0m", wrld->map[y][x]);
+                    }
+                    ++x;
+                }
+                ++n_ray;
+            }
+            if (x == player->map_x && y == player->map_y) {
+                printf("\e[1;34m%c\e[0m", 'P');
+            }
+            else if (strpbrk("NSWE", wrld->map[y][x])) {
+                printf("0");
+            }
+            else if (x == wrld->map_x) {
+                printf("\n");
+            }
+            else {
+                printf("%c", wrld->map[y][x]);
+            }       
+        }
     }
-	printf("\n player abs_x: %i | player abs_y: %i | player direction: %f \n", player->abs_x, player->abs_y, player->dir);
-	printf("\n player map_x: %i | player map_y: %i\n\n", player->map_x, player->map_y);
+
+    printf("\n player abs_x: %i | player abs_y: %i | player direction: %f \n", player->abs_x, player->abs_y, player->dir);
+    printf("\n player map_x: %i | player map_y: %i\n\n", player->map_x, player->map_y);
 }

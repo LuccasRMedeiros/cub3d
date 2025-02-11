@@ -12,26 +12,28 @@
 
 #include "cub3d_core.h"
 
-/*
-** Receive a line containing info about window resolution, check if it is all  -
-** right, the sets the proper values for further configuration.
-** Does not return data, it will process all the information into a given t_cub-
-**  address.
-*/
+#include <string.h>
 
-void	set_res(const char *line, t_cub *cub)
+/**
+ * Receive a line containing info about window resolution, check if it is all  
+ * right, the sets the proper values for further configuration.
+ * Does not return data, it will process all the information into a given st_cub
+ * address.
+ */
+void set_res(char *line, st_cub *cub)
 {
-	char	**res;
+    char *res[2];
 
-	res = ft_split(line + 1, ' ');
-	if (!is_first_def((void *)cub->res, "Window resolution", 0)
-		|| !validate_res(res))
-	{
-		cub->status = -1;
-		ft_destroyer((void **)res);
-		return ;
-	}
-	cub->res[WDT] = ft_atoi(res[0]);
-	cub->res[HGT] = ft_atoi(res[1]);
-	ft_destroyer((void **)res);
+    res[0] = strtok(line + 1, " ");
+    res[1] = strtok(NULL, " ");
+
+    if (
+            !is_first_def((void *)cub->res, "Window resolution", 0) ||
+            !validate_res(res)
+        )
+    {
+        cub->status = -1;
+    }
+    cub->res[WDT] = atoi(res[0]);
+    cub->res[HGT] = atoi(res[1]);
 }

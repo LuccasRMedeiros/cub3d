@@ -12,17 +12,17 @@
 
 #include "cub3d_structs.h"
 
-/*
-** Delete a t_column instance.
-*/
-
-void	del_column(t_column *del)
+/**
+ * Delete a st_column instance.
+ */
+void del_column(st_column *del)
 {
-	del->d_proj = 0;
-	del->perp_d = 0;
-	del->hgt = 0;
-	del->org_sy = 0;
-	del->end_sy = 0;
-	del->ox = 0;
-	free(del);
+    del->d_proj = 0;
+    del->perp_d = 0;
+    del->hgt = 0;
+    del->org_sy = 0;
+    del->end_sy = 0;
+    del->ox = 0;
+    
+    free(del);
 }

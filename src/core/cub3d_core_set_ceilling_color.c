@@ -12,28 +12,32 @@
 
 #include "cub3d_core.h"
 
-/*
-** Sets the ceilling color.
-** Receives a line and a world. The line is a string processed by the ft_gnl   -
-** and its assumed that when the program enters the function a "C" char can be -
-** found in the beging of such line.
-** The world is a address to an t_world instance.
-*/
-
-void	set_ceilling_color(const char *line, t_cub *cub)
+#include <string.h>
+/**
+ * Sets the ceilling color.
+ * Receives a line and a world. The line is a string processed by the ft_gnl   -
+ * and its assumed that when the program enters the function a "C" char can be -
+ * found in the beging of such line.
+ * The world is a address to an t_world instance.
+ */
+void set_ceilling_color(char *line, st_cub *cub)
 {
-	char	**rgb;
+    char *rgb[3];
 
-	rgb = ft_split(line + 1, ',');
-	if (!validate_color(rgb, "ceilling")
-		|| !is_first_def(&cub->c_color[0], "Ceilling color", -1))
-	{
-		cub->status = -1;
-		return ;
-	}
-	cub->c_color[0] = ft_atoi(rgb[0]);
-	cub->c_color[1] = ft_atoi(rgb[1]);
-	cub->c_color[2] = ft_atoi(rgb[2]);
-	cub->status += 1;
-	ft_destroyer((void **)rgb);
+    rgb[0] = strtok(line + 1, ","); // TODO: Substitute this by 'strtok' and avail if it might not cause crashes
+    for (size_t i = 1; (rgb[1] = strtok(NULL, ",")) != NULL && i < 3; ++i);
+
+    if (
+            !validate_color(rgb, "ceilling") ||
+            !is_first_def(&cub->c_color[0], "Ceilling color", -1)
+        )
+    {
+        cub->status = -1;
+        
+        return ;
+    }
+    cub->c_color[0] = atoi(rgb[0]);
+    cub->c_color[1] = atoi(rgb[1]);
+    cub->c_color[2] = atoi(rgb[2]);
+    cub->status += 1;
 }

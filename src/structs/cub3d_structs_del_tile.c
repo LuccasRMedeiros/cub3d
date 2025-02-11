@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Destroy a t_tile.
-*/
-
 #include "cub3d_structs.h"
 
-void	del_tile(t_tile *del)
+/**
+ * Destroy a t_tile.
+ */
+void del_tile(st_tile *del)
 {
-	del->id = 0;
-	del_img(del->wall_no);
-	del_img(del->wall_so);
-	del_img(del->wall_we);
-	del_img(del->wall_ea);
-	free(del);
+    del->id = 0;
+    del_img(del->wall_no);
+    del_img(del->wall_so);
+    del_img(del->wall_we);
+    del_img(del->wall_ea);
+   
+    free(del);
 }

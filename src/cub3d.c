@@ -10,47 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d_core.h>
+#include "core/cub3d_core.h"
 
-/*
-** Create window and world instances using the information obtained from the   -
-** cub buffer.
-** When it finishes, destroy the cub and return a t_program containing the     -
-** window and the world addresses.
-*/
-
-static t_program	prog_config(t_cub *cub)
+/**
+ * Create window and world instances using the information obtained from the   -
+ * cub buffer.
+ * When it finishes, destroy the cub and return a t_program containing the     -
+ * window and the world addresses.
+ */
+static st_program prog_config(st_cub *cub)
 {
-	int			px;
-	int			py;
-	t_program	prog;
+    int px, py;
+    st_program   prog;
 
-	px = cub->player_pos[X];
-	py = cub->player_pos[Y];
-	prog.running = true;
-	prog.wndw = new_window(cub->res[WDT], cub->res[HGT], "Cub3D");
-	prog.wrld = new_world(cub, prog.wndw);
-	prog.player = new_actor(cub->layout[py][px], prog.wndw, px, py);
-	prog.sprite_list = list_static_obj(prog.wrld);
-	fst_frame(&prog, cub->save);
-	del_cub(cub);
-	return (prog);
+    px = cub->player_pos[X];
+    py = cub->player_pos[Y];
+    prog.running = 1;
+    prog.wndw = new_window(cub->res[WDT], cub->res[HGT], "Cub3D");
+    prog.wrld = new_world(cub, prog.wndw);
+    prog.player = new_actor(cub->layout[py][px], prog.wndw, px, py);
+    prog.sprite_list = list_static_obj(prog.wrld);
+    fst_frame(&prog, cub->save);
+    del_cub(cub);
+
+    return prog;
 }
 
-/*
-** Calls for ret_window to receive the main t_window instance (created during  -
-** read_cub call), it is assumed that the program will only enter this function-
-**  if all the needed information was provided in the cub file, what means that-
-**  a window was already created.
-*/
-
-static void	cub3d(t_program prog)
-{
-	mlx_loop_hook(prog.wndw->conn, update_frame, &prog);
-	mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
-	mlx_hook(prog.wndw->wndw, 3, 1L<<1, key_released, &prog);
-	mlx_hook(prog.wndw->wndw, 33, 1L<<17, close_pressed, &prog);
-	mlx_loop(prog.wndw->conn);
+/**
+ * Calls for ret_window to receive the main t_window instance (created during  -
+ * read_cub call), it is assumed that the program will only enter this function-
+ *  if all the needed information was provided in the cub file, what means that-
+ *  a window was already created.
+ */
+static void cub3d(st_program prog)
+{:
+    mlx_loop_hook(prog.wndw->conn, update_frame, &prog);
+    mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
+    mlx_hook(prog.wndw->wndw, 3, 1L<<1, key_released, &prog);
+    mlx_hook(prog.wndw->wndw, 33, 1L<<17, close_pressed, &prog);
+    mlx_loop(prog.wndw->conn);
 }
 
 /*
@@ -61,16 +59,19 @@ static void	cub3d(t_program prog)
 ** will delete that t_world instance and then will close the program.
 */
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_cub	*cub;
+    st_cub *cub;
 
-	cub = read_cub(argc, argv);
-	if (cub->status == -1)
-	{
-		del_cub(cub);
-		exit(-1);
-	}
-	cub3d(prog_config(cub));
-	return (argc);
+    cub = read_cub(argc, argv);
+    
+    if (cub->status == -1)
+    {
+        del_cub(cub);
+        exit(-1);
+    }
+    
+    cub3d(prog_config(cub));
+    
+    return 0;
 }

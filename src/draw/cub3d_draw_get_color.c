@@ -12,18 +12,17 @@
 
 #include "cub3d_draw.h"
 
-/*
-** Get the pixel on the texture. To decide what pixel it is looking for, it    -
-** needs the wall projected height and "distribute" to the texture height,     -
-** taking in consideration of course what "line" of the column it is drawing.
-*/
-
-int	get_color(t_img *texture, int hgt, int ox, int tx_row)
+/**
+ * Get the pixel on the texture. To decide what pixel it is looking for, it    -
+ * needs the wall projected height and "distribute" to the texture height,     -
+ * taking in consideration of course what "line" of the column it is drawing.
+ */
+int get_color(st_img *texture, int hgt, int ox, int tx_row)
 {
-	int	oy;
-	int	color;
+    int oy;
+    int color;
 
-	oy = tx_row * texture->hgt / (double)hgt;
-	color = texture->addr[oy * texture->wdt + ox];
-	return (color);
+    oy = tx_row * texture->hgt / (double)hgt;
+    color = texture->addr[oy * texture->wdt + ox];
+    return color;
 }

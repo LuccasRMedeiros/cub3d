@@ -12,16 +12,17 @@
 
 #include "cub3d_structs.h"
 
-/*
-** Attempt to regulate the value of angle keeping it more than zero and less   -
-** than 2PI (aka EAST).
-*/
-
-float	normalize_angle(float ang)
+/**
+ * Attempt to regulate the value of angle keeping it more than zero and less
+ * than 2PI (aka EAST).
+ */
+float normalize_angle(float ang)
 {
-	while (ang >= EAST)
-		ang -= EAST;
-	while (ang < 0)
-		ang += EAST;
-	return (ang);
+    while (ang >= EAST)
+        ang -= EAST;
+    
+    while (ang < 0)
+        ang += EAST;
+    
+    return ang;
 }

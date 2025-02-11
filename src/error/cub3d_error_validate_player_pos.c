@@ -12,50 +12,49 @@
 
 #include "cub3d_error.h"
 
-/*
-** If necessary, send an apropriate error message.
-** Return false or true.
-*/
-
-static bool	send_msg(int p_cnt)
+/**
+ * If necessary, send an apropriate error message.
+ * Return false or true.
+ */
+static int send_msg(int p_cnt)
 {
-	if (p_cnt < 1)
-	{
-		error_msg("No player present in the given map", "Map");
-		return (false);
-	}
-	else if (p_cnt > 1)
-	{
-		error_msg("More than one player present in the map", "Map");
-		return (false);
-	}
-	else
-		return (true);
+    if (p_cnt < 1)
+    {
+        error_msg("No player present in the given map", "Map");
+
+        return 0;
+    }
+    else if (p_cnt > 1)
+    {
+        error_msg("More than one player present in the map", "Map");
+
+        return 0;
+    }
+    else
+        return 1;
 }
 
 /*
 ** Verify if there are only one player on map layout.
 */
 
-bool	validate_player_pos(t_cub *cub)
+int validate_player_pos(st_cub *cub)
 {
-	size_t	row;
-	size_t	col;
-	int		p_cnt;
+    int p_cnt;
 
-	row = 0;
-	col = 0;
-	p_cnt = 0;
-	while (cub->layout[row])
-	{
-		while (cub->layout[row][col])
-		{
-			if (ft_strhvchr(PLAYER, cub->layout[row][col]))
-				++p_cnt;
-			++col;
-		}
-		col = 0;
-		++row;
-	}
-	return (send_msg(p_cnt));
+    row = 0;
+    col = 0;
+    p_cnt = 0;
+
+    for (size_t row = 0; cub->layout[row]; ++row)
+    {
+        for (size_t col = 0; cub->layout[row][col]; ++col)
+        {
+            if (ft_strhvchr(PLAYER, cub->layout[row][col]))
+                ++p_cnt;
+        }
+        col = 0;
+    }
+
+    return send_msg(p_cnt);
 }

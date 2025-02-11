@@ -10,27 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Verifies if the property membe have some data already.
-** Receives an address and the property name. Case the address have some value,-
-**  the function will emit a error message and sinalize the program to stop.
-** The verification is done by looking to the first byte of the given address.
-*/
-
 #include "cub3d_error.h"
 
-bool	is_first_def(void *data, const char *p_name, int ruler)
+/**
+ * Verifies if the property membe have some data already.
+ * Receives an address and the property name. Case the address have some value,-
+ * the function will emit a error message and sinalize the program to stop.
+ * The verification is done by looking to the first byte of the given address.
+ */
+int is_first_def(void *data, const char *p_name, int ruler)
 {
-	char	*holder;
+    char *holder;
 
-	holder = (char *)data;
-	if (holder)
-	{
-		if (holder[0] != ruler)
-		{
-			error_msg("Double definition for property", p_name);
-			return (false);
-		}
-	}
-	return (true);
+    holder = (char *)data;
+
+    if (holder)
+    {
+        if (holder[0] != ruler)
+        {
+            error_msg("Double definition for property", p_name);
+
+            return 0;
+        }
+    }
+
+    return 1;
 }

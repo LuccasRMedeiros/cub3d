@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** It is a placeholder. Prints a blue cube in stdout
-** Can be called to help structuring a program part a keep compiling it.
-*/
-
 #include "cub3d_error.h"
 
-void	do_nothing(int args, ...)
+/**
+ * It is a placeholder. Prints a blue cube in stdout
+ * Can be called to help structuring a program part a keep compiling it.
+ */
+void do_nothing(int args, ...)
 {
     (void)args;
 }
