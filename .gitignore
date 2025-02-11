@@ -6,11 +6,11 @@ Makefile.gen
 .vscode/*
 *~
 \#*\#
+.ccls-cache
+tags
 
 ## Other
 .DS_STORE
-
-
 
 ## Template from https://github.com/github/gitignore
 # Prerequisites

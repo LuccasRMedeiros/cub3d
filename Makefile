@@ -86,7 +86,7 @@ OBJ = $(SRC:%.c=%.o)
 
 OBJ_FULL = $(addprefix $(ROOT_OBJ)/, $(OBJ))
 
-all: $(NAME)
+all: tag $(NAME)
 	@echo "$$CUBED"
 	@$(MSG_DONE)
 
@@ -96,6 +96,12 @@ $(NAME): makeft makemlx
 	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "To use it call ./$(NAME) maps/map.cub"
 	@echo "\n"
+
+tag:
+	@bash taggen.sh --tag
+
+untag:
+	@bash taggen.sh --untag
 
 makeft: MAKEFILE = $(LIBFT)
 
@@ -129,7 +135,7 @@ cleanmlx:
 
 clean: RULE = clean
 
-clean: cleanft cleanmlx
+clean: untag cleanft cleanmlx
 	@echo "Removing objects"
 	@echo "NOTE: Both source code and executable will be preserved"
 	@rm -rf $(ROOT_OBJ)
@@ -158,7 +164,7 @@ fcleanmlx: RULE = fclean
 
 fclean: RULE = fclean
 
-fclean: fcleanft cleanmlx
+fclean: untag fcleanft cleanmlx
 	@echo "Removing objects and executable"
 	@echo "NOTE: Source code will be preserved"
 	@rm -rf $(ROOT_OBJ)
@@ -167,4 +173,4 @@ fclean: fcleanft cleanmlx
 
 re: fclean all
 
-.PHONY: all clean cleanft cleanmlx fclean fcleanft fcleanmlx makeft makemlx re
+.PHONY: all tag untag clean cleanft cleanmlx fclean fcleanft fcleanmlx makeft makemlx re
