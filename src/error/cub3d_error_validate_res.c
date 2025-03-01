@@ -12,6 +12,9 @@
 
 #include "cub3d_error.h"
 
+#include <ctype.h>
+#include <stdio.h>
+
 /**
  * Check for a invalid resolution.
  * Invalid resolution can be:
@@ -23,7 +26,9 @@
  */
 int validate_res(char **values)
 {
-    for (size_t sa = 0; values[sa] != NULL; ++sa)
+    size_t sa;
+
+    for (sa = 0; values[sa] != NULL; ++sa)
     {
         for (size_t i = 0; values[sa][i] != '\0'; ++i)
         {

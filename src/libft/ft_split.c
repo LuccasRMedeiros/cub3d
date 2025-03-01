@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_string.h>
+#include "libft.h"
+
+#include <string.h>
+#include <stdlib.h>
 
 static void	error(char **split, int len, size_t *wise)
 {
@@ -63,7 +66,7 @@ static size_t	*wise(char const *path, char truth, size_t stars)
 	size_t	answers;
 	size_t	reflections;
 
-	wisdom = ft_calloc((stars * 2), sizeof(int *));
+	wisdom = calloc((stars * 2), sizeof(int *));
 	if (!wisdom)
 		return (NULL);
 	questions = 0;
@@ -99,7 +102,7 @@ char	**ft_split(char const *str, char c)
 		return (NULL);
 	while (i < count_strs(str, c))
 	{
-		split[i] = ft_substr(str, dl[i + i], (dl[i + i + 1] - dl[i + i]));
+		split[i] = substr(str, dl[i + i], (dl[i + i + 1] - dl[i + i]));
 		if (!(split[i]))
 		{
 			error(split, i, dl);

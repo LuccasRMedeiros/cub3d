@@ -12,6 +12,8 @@
 
 #include "cub3d_error.h"
 
+#include <string.h>
+
 /**
  * If necessary, send an apropriate error message.
  * Return false or true.
@@ -42,18 +44,15 @@ int validate_player_pos(st_cub *cub)
 {
     int p_cnt;
 
-    row = 0;
-    col = 0;
     p_cnt = 0;
 
     for (size_t row = 0; cub->layout[row]; ++row)
     {
         for (size_t col = 0; cub->layout[row][col]; ++col)
         {
-            if (ft_strhvchr(PLAYER, cub->layout[row][col]))
+            if (strpbrk(PLAYER, cub->layout[row]))
                 ++p_cnt;
         }
-        col = 0;
     }
 
     return send_msg(p_cnt);

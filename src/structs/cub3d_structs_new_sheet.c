@@ -14,18 +14,18 @@
 
 /**
  * Creates a new t_sheet instance.
-  * t_sheet is a identificated list which contains the path for textures to     -
-  * north, south, west and east faces for both walls and sprites. The required  -
-  * id is how a tile or a sprite is identified in the cub layout.
+ * t_sheet is a identificated list which contains the path for textures to     
+ * north, south, west and east faces for both walls and sprites. The required  
+ * id is how a tile or a sprite is identified in the cub layout.
  */
-st_sheet *new_sheet(char id, unsigned int is_wall)
+st_sheet *new_sheet(char id, int is_wall)
 {
     st_sheet *new;
 
-    new = malloc(sizeof(*new));
+    new = malloc(sizeof (*new));
     
     if (!new)
-        return (NULL);
+        return NULL;
     
     new->id = id;
     new->is_wall = is_wall;

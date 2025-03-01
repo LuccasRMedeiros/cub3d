@@ -22,7 +22,7 @@ st_sprite *new_sprite(st_sheet *spritesheet, st_wndw *wndw)
     new = malloc(sizeof(*new));
 
     if (!new)
-        return (NULL);
+        return NULL;
 
     new->id = spritesheet->id;
     new->sprite = new_img(wndw, 0, 0, spritesheet->no_face);

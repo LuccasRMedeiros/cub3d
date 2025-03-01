@@ -9,8 +9,16 @@
 /*   Updated: 2021/07/26 22:00:12 by lrocigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#define _GNU_SOURCE
 
 #include "cub3d_error.h"
+
+#include <string.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 /**
  * Check for a invalid texture.

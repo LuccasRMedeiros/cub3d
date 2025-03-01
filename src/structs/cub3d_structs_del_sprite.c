@@ -15,7 +15,7 @@
 /**
  * Destroy a t_sprite.
  */
-void del_sprite(t_sprite *del)
+void del_sprite(st_sprite *del)
 {
     del->id = 0;
     del_img(del->sprite);

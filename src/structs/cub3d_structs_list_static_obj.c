@@ -26,7 +26,7 @@ static st_static_obj get_static_obj(st_world *wrld, int map_x, int map_y)
     new.abs_y = (map_y * TILESIZE) + (TILESIZE / 2);
     new.texture = wrld->spriteset->sprite;
 
-    return (new);
+    return new;
 }
 
 /**
@@ -36,7 +36,7 @@ static st_static_obj get_static_obj(st_world *wrld, int map_x, int map_y)
 st_static_obj *list_static_obj(st_world *wrld)
 {
     st_static_obj *ret_list;
-    int el, map_x, map_y;
+    int el;
 
     ret_list = calloc(wrld->n_sprites, sizeof(*ret_list));
     el = 0;
@@ -53,5 +53,5 @@ st_static_obj *list_static_obj(st_world *wrld)
         }
     }
 
-    return (ret_list);
+    return ret_list;
 }

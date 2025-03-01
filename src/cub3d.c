@@ -43,7 +43,7 @@ static st_program prog_config(st_cub *cub)
  *  a window was already created.
  */
 static void cub3d(st_program prog)
-{:
+{
     mlx_loop_hook(prog.wndw->conn, update_frame, &prog);
     mlx_hook(prog.wndw->wndw, 2, 1L<<0, key_pressed, &prog);
     mlx_hook(prog.wndw->wndw, 3, 1L<<1, key_released, &prog);

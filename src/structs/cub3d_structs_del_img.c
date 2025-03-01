@@ -16,7 +16,7 @@
 
 #include "cub3d_structs.h"
 
-void del_img(t_img *del)
+void del_img(st_img *del)
 {
     if (!del)
         return ;

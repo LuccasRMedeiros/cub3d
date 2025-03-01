@@ -19,7 +19,7 @@
  * TODO: It is possible to delegate the resposability to save the take the
  * screenshot to the update_frame function.
  */
-void fst_frame(st_program *prog, unsigned int save)
+void fst_frame(st_program *prog, int save)
 {
     st_img *frame;
 

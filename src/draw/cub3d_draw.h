@@ -16,7 +16,7 @@
 #ifndef CUB3D_DRAW_H
 #define CUB3D_DRAW_H
 
-#include " ../structs/cub3d_structs.h"
+#include "cub3d_structs.h"
 
 void pixel_put(st_img *f, int posx, int posy, int color);
 void render_projection(st_img *f, st_world *wrld, st_wndw *wndw, st_actor *p);

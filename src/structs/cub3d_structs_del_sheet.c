@@ -15,10 +15,10 @@
 /**
  * Deletes a t_tilesheet instance.
  */
-void del_sheet(t_sheet *del)
+void del_sheet(st_sheet *del)
 {
     del->id = 0;
-    del->is_wall = false;
+    del->is_wall = 0;
 
     if (del->no_face)
         free(del->no_face);

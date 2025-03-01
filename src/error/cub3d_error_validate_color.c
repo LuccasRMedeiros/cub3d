@@ -24,8 +24,9 @@
 int validate_color(char **rgb, char *area)
 {
     int value;
+    size_t rgb_i;
 
-    for (size_t rgb_i = 0; rgb[rgb_i] != NULL; ++rgb_i)
+    for (rgb_i = 0; rgb[rgb_i] != NULL; ++rgb_i)
     {
         value = atoi(rgb[rgb_i]);
 

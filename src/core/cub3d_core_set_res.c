@@ -22,10 +22,11 @@
  */
 void set_res(char *line, st_cub *cub)
 {
-    char *res[2];
+    char *res[3];
 
     res[0] = strtok(line + 1, " ");
     res[1] = strtok(NULL, " ");
+    res[2] = NULL;
 
     if (
             !is_first_def((void *)cub->res, "Window resolution", 0) ||

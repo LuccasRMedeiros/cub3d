@@ -13,7 +13,7 @@
 #include "cub3d_structs.h"
 
 /**
- * Creates a t_img instance.
+ * Creates a st_img instance.
  */
 st_img *new_img(st_wndw *wndw, int wdt, int hgt, char *file_path)
 {
@@ -32,12 +32,22 @@ st_img *new_img(st_wndw *wndw, int wdt, int hgt, char *file_path)
         new->img = mlx_new_image(wndw->conn, wdt, hgt);
     else
     {
-        new->img = mlx_xpm_file_to_image(new->conn, file_path,
-                &new->wdt, &new->hgt);
+        new->img = mlx_xpm_file_to_image
+            (
+             new->conn,
+             file_path,
+             &new->wdt,
+             &new->hgt
+             );
     }
 
-    new->addr = (int *)mlx_get_data_addr(new->img, &new->bpp,
-            &new->l_len, &new->end);
+    new->addr = (int *)mlx_get_data_addr
+        (
+            new->img,
+            &new->bpp,
+            &new->l_len,
+            &new->end
+            );
 
     return new;
 }

@@ -31,16 +31,17 @@ static st_img *select_texture(st_world *wrld, st_ray *ray)
         else
             return wrld->tileset->wall_we;
     }
+
     return NULL;
 }
 
 /**
  * Calculate the column where to start drawing the texture.
  */
-static int calculate_ox(t_img *texture, t_ray *ray)
+static int calculate_ox(st_img *texture, st_ray *ray)
 {
-    double  step;
-    int     ox;
+    double step;
+    int ox;
 
     step = ((double)texture->wdt / (double)TILESIZE);
     ox = 0;
@@ -49,15 +50,16 @@ static int calculate_ox(t_img *texture, t_ray *ray)
         ox = (int)ray->rx % TILESIZE;
     else if (ray->id == 'V')
         ox = (int)ray->ry % TILESIZE;
+
     ox = (double)ox * step;
     
     return ox;
 }
 
-/*
-** Create a new column instance with values already setted.
-*/
-t_column *new_column(st_wndw *wndw, st_world *wrld, st_ray *ray, float p_dir)
+/**
+ * Create a new column instance with values already setted.
+ */
+st_column *new_column(st_wndw *wndw, st_world *wrld, st_ray *ray, float p_dir)
 {
     st_column *new;
 
@@ -72,7 +74,7 @@ t_column *new_column(st_wndw *wndw, st_world *wrld, st_ray *ray, float p_dir)
     new->org_sy = (wndw->hgt / 2) - (new->hgt / 2);
     new->end_sy = (wndw->hgt / 2) + (new->hgt / 2);
     new->texture = select_texture(wrld, ray);
-    new->ox = calcule_ox(new->texture, ray);
+    new->ox = calculate_ox(new->texture, ray);
 
     return new;
 }

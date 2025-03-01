@@ -42,7 +42,7 @@ void print_map(st_world *wrld, st_actor *player, int n_rays)
             if (x == player->map_x && y == player->map_y) {
                 printf("\e[1;34m%c\e[0m", 'P');
             }
-            else if (strpbrk("NSWE", wrld->map[y][x])) {
+            else if (strchr("NSWE", wrld->map[y][x]) == NULL) {
                 printf("0");
             }
             else if (x == wrld->map_x) {

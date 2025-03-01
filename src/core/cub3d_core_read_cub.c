@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "cub3d_core.h"
+#include "libft.h"
 
 #include <string.h>
+#include <unistd.h>
 
 /**
  * Call the function that deals with certain type of information.
@@ -21,7 +23,7 @@
  * to continue the read of the cub file. It is done to prevent to grant the 
  * program will read a fil till the end, avoiding a memory leak.
  *
- * TODO: This if else tree is not necessary anymore
+ * TODO: Validate the need for this "if else" tree
  */
 static void select_case_line(char *line, st_cub *cub, int gnl_stts)
 {

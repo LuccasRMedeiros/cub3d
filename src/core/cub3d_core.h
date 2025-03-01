@@ -17,10 +17,12 @@
 #ifndef CUB3D_CORE_H
 #define CUB3D_CORE_H
 
-#include "../draw/cub3d_draw.h"
-#include "../error/cub3d_error.h"
-#include "../structs/cub3d_structs.h"
-#include "../world/cub3d_world.h"
+#include "cub3d_draw.h"
+#include "cub3d_error.h"
+#include "cub3d_structs.h"
+#include "cub3d_world.h"
+
+#include <stdint.h>
 
 typedef struct
 {

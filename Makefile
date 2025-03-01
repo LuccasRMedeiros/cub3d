@@ -49,9 +49,9 @@ export CUBED
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=gnu99
 
-LIBFT =	./src/libs/libft
+# LIBFT =	./src/libs/libft
 
 MLBX = 	./src/libs/minilibx-linux
 
@@ -63,12 +63,12 @@ INCLUDES =	-I src/libs/libft/headers \
 			-I src/structs \
 			-I src/world \
 
-LIBS =  -L$(LIBFT) -lft \
-		-L$(MLBX) -lmlx_Linux \
+LIBS =  -L$(MLBX) -lmlx_Linux \
 		-lX11 \
 		-lXext \
 		-lm \
 		-lz \
+		#-L$(LIBFT) -lft \
 
 ROOT_SRC = ./src
 
@@ -79,6 +79,7 @@ SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 		$(addprefix structs/, $(notdir $(wildcard ./src/structs/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
+		$(addprefix libft/, $(notdir $(wildcard ./src/libft/*.c)))
 
 SRC_FULL = $(addprefix $(ROOT_SRC)/, $(SRC))
 
@@ -90,7 +91,7 @@ all: tag $(NAME)
 	@echo "$$CUBED"
 	@$(MSG_DONE)
 
-$(NAME): makeft makemlx
+$(NAME): makemlx 
 	@echo "\n"
 	@echo "Generating excutable $(NAME)"
 	@$(CC) $(FLAGS) ./src/cub3d.c $(SRC_FULL) $(INCLUDES) $(LIBS) -o $(NAME)
@@ -103,11 +104,11 @@ tag:
 untag:
 	@bash taggen.sh --untag
 
-makeft: MAKEFILE = $(LIBFT)
+# makeft: MAKEFILE = $(LIBFT)
 
-makeft:
-	@echo "Making dependencies 1/2"
-	@$(MAKE_EXT)
+#makeft:
+#	@echo "Making dependencies 1/2"
+#	@$(MAKE_EXT)
 
 makemlx: MAKEFILE = $(MLBX)
 
@@ -115,14 +116,6 @@ makemlx: RULE = all
 
 makemlx:
 	@echo "Making dependencies 2/2"
-	@$(MAKE_EXT)
-
-cleanft: MAKEFILE = $(LIBFT)
-
-cleanft: RULE = clean
-
-cleanft:
-	@echo "Cleaning dependencies 1/2"
 	@$(MAKE_EXT)
 
 cleanmlx: MAKEFILE = $(MLBX)
@@ -135,7 +128,7 @@ cleanmlx:
 
 clean: RULE = clean
 
-clean: untag cleanft cleanmlx
+clean: untag cleanmlx # cleanft 
 	@echo "Removing objects"
 	@echo "NOTE: Both source code and executable will be preserved"
 	@rm -rf $(ROOT_OBJ)
@@ -150,21 +143,13 @@ debug: fclean $(NAME)
 	@echo "$$CUBED"
 	@echo " -- Ready to debug!"
 
-fcleanft: MAKEFILE = $(LIBFT)
-
-fcleanft: RULE = fclean
-
-fcleanft:
-	@echo "Removing dependencies 1/2"
-	@$(MAKE_EXT)
-
 fcleanmlx: MAKEFILE = $(MLBX)
 
 fcleanmlx: RULE = fclean
 
 fclean: RULE = fclean
 
-fclean: untag fcleanft cleanmlx
+fclean: untag cleanmlx # fcleanft
 	@echo "Removing objects and executable"
 	@echo "NOTE: Source code will be preserved"
 	@rm -rf $(ROOT_OBJ)
@@ -173,4 +158,8 @@ fclean: untag fcleanft cleanmlx
 
 re: fclean all
 
-.PHONY: all tag untag clean cleanft cleanmlx fclean fcleanft fcleanmlx makeft makemlx re
+sanitize: FLAGS += -fsanitize=address
+
+sanitize: re
+
+.PHONY: all tag untag clean cleanmlx fclean fcleanmlx makemlx re sanitize

@@ -13,6 +13,7 @@
 #include "cub3d_core.h"
 
 #include <string.h>
+
 /**
  * Sets the ceilling color.
  * Receives a line and a world. The line is a string processed by the ft_gnl   -
@@ -22,10 +23,11 @@
  */
 void set_ceilling_color(char *line, st_cub *cub)
 {
-    char *rgb[3];
+    char *rgb[4];
 
     rgb[0] = strtok(line + 1, ","); // TODO: Substitute this by 'strtok' and avail if it might not cause crashes
-    for (size_t i = 1; (rgb[1] = strtok(NULL, ",")) != NULL && i < 3; ++i);
+    for (size_t i = 1; (rgb[i] = strtok(NULL, ",")) != NULL && i < 3; ++i);
+    rgb[3] = NULL;
 
     if (
             !validate_color(rgb, "ceilling") ||

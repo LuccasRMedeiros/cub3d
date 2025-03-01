@@ -12,6 +12,8 @@
 
 #include "cub3d_core.h"
 
+#include <string.h>
+
 /**
  * Search for the player.
  * Only succed if there are one (and not more) player in the map.
@@ -28,7 +30,7 @@ void set_player(st_cub *cub)
     {
         for (int map_x = 0; map_x < cub->map_axis[X]; ++map_x)
         {
-            if (strpbrk(cub->layout[map_y][map_x], PLAYER) != NULL)
+            if (strchr(PLAYER, cub->layout[map_y][map_x]) != NULL)
             {
                 cub->player_pos[X] = map_x;
                 cub->player_pos[Y] = map_y;

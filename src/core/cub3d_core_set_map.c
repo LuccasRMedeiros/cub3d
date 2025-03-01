@@ -11,67 +11,47 @@
 /* ************************************************************************** */
 
 #include "cub3d_core.h"
+#include "libft.h"
 
 #include <string.h>
 #include <stdlib.h>
 
 /**
  * NOTE: Until now this must be the most complex routine i had found in the 
- * code. Its objective was to setup the map in the cub structure for the program
- * to render it then.
+ * code. Its objective was to setup the map so cub3d could render it.
  * There is a lot of unecessary memory allocations, not so much strange 
  * normalizations, and use of "custom" functions that i added in libft. It looks
  * "overengineered", and certainly can be optimized.
+ *
+ * TODO:
+ *  - Open and read the cub file line by line
+ *  - Remove the realloc part and use strtok instead
  */
 
 /**
- * normalize_map will grant that all the lines have the same amount of columns -
- * by addind blank spaces till the end of the line.
- * It uses the map_x value as reference to calculate how much blank spaces are -
- * needed to normalize such line.
- * filler auxiliate normalize_map generating a string filled with blank spaces -
- * which will be concatenated in the line.
+ * Normalize the map filling the layout row with spaces, so cub3d can scan the
+ * layout better
  */
-static char *filler(int spcs)
-{
-    char *fill;
-
-    fill = calloc(spcs, sizeof (char *));
-
-    if (!fill)
-        return NULL;
-
-    --spcs;
-    while (spcs >= 0)
-    {
-        fill[spcs] = ' ';
-        --spcs;
-    }
-
-    return fill;
-}
-
 static void normalize_map(st_cub *cub)
 {
     char **map;
-    char *fill;
-    size_t rowsz;
+    int rowsz;
 
     map = cub->layout;
     
-    for (int row = 0; row < cub->map_axis[1]; ++l)
+    for (int row = 0; row < cub->map_axis[1]; ++row)
     {
-        rowsz = strlen(map[row]);
+        rowsz = (int)strlen(map[row]);
 
         if (rowsz < cub->map_axis[0])
         {
             map[row] = realloc(map[row], cub->map_axis[0] * sizeof(char) + 1);
-            for (rowsz; rowsz < cub->map_axis[0]; ++rowsz)
+
+            for (rowsz = rowsz; rowsz < cub->map_axis[0]; ++rowsz)
             {
-                map[rowsz] = ' ';
+                map[row][rowsz] = ' ';
             }
         }
-        ++l;
     }
 }
 
@@ -83,7 +63,7 @@ static void normalize_map(st_cub *cub)
 static void set_axes(st_cub *cub)
 {
     char **map;
-    size_t x = 0; y = 0;
+    int x = 0, y = 0;
 
     map = cub->layout;
 
@@ -95,7 +75,7 @@ static void set_axes(st_cub *cub)
 
     cub->map_axis[1] = y;
     
-    for (int y = cub->map_axis[1]; y > 0; --y)
+    for (y = y; y > 0; --y)
     {
         x = strlen(map[y]);
 
@@ -117,27 +97,35 @@ static void set_axes(st_cub *cub)
  *
  * TODO: Try to find a more optimal way to parse the map
  */
-void set_map(const char *line, st_cub *cub, size_t gnl_stts)
+void set_map(char *line, st_cub *cub, size_t gnl_stts)
 {
     if (gnl_stts && is_map_pattern(line))
     {
         if (!cub->pre_lyt)
-            cub->pre_lyt = calloc(1, sizeof(char *));
+            cub->pre_lyt = calloc(1, (strlen(line) + 1) * sizeof(char *));
+        else
+        {
+            cub->pre_lyt = realloc(
+                    cub->pre_lyt,
+                    (strlen(cub->pre_lyt) + strlen(line) + 1) * sizeof (char)
+                    );
+        }
 
-        cub->pre_lyt = realloc(cub->pre_lyt, sizeof(char) * strlen(line) + 2);
         if (cub->pre_lyt == NULL) { exit(-1); }
+
         cub->pre_lyt = strcat(cub->pre_lyt, line);
         cub->pre_lyt = strcat(cub->pre_lyt, "\n");
     }
     else if (!gnl_stts || cub->pre_lyt)
     {
-        cub->layout = ft_split(cub->pre_lyt, '\n'); // this function will be kept for now
+        cub->layout = ft_split(cub->pre_lyt, '\n');
         set_axes(cub);
         normalize_map(cub);
         
         if (!validate_map(cub))
         {
             cub->status = -1;
+
             return ;
         }
         

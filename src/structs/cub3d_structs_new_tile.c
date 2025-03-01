@@ -22,7 +22,7 @@ st_tile *new_tile(st_sheet *tilesheet, st_wndw *wndw)
     new = malloc(sizeof(*new));
 
     if (!new)
-        return (NULL);
+        return NULL;
 
     new->id = tilesheet->id;
     new->wall_no = new_img(wndw, 0, 0, tilesheet->no_face);

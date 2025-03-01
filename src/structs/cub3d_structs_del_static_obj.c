@@ -16,7 +16,7 @@
  * Destroy the entire static_actor list. In future changes it will destroy only
  * one.
  */
-void del_static_obj(t_static_obj *del)
+void del_static_obj(st_static_obj *del)
 {
     free(del);
 }

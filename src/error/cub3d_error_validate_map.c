@@ -12,6 +12,8 @@
 
 #include "cub3d_error.h"
 
+#include <string.h>
+
 /**
  * Both walls_at_col and walls_at_row looks to each index at what it is meant  
  * look at from its beginning to its end and the reverse path also, it will    
@@ -33,14 +35,14 @@ static int walls_at_col(char **map, size_t col)
     {
         if (map[i][col] == '1')
             walls = 2;
-        else if (strpbrk(INNER, map[i][col]))
+        else if (strpbrk(INNER, map[i]))
         {
             if (walls == 0 || map[i - 1][col] == ' ')
                 return 1;
 
             walls = 1;
         }
-        else if (!strpbrk(VLCHR, map[i][col]))
+        else if (!strpbrk(VLCHR, map[i]))
             return -1;
     }
 
@@ -57,14 +59,14 @@ static int walls_at_row(char *map)
     {
         if (map[i] == '1')
             walls = 2;
-        else if (strpbrk(INNER, map[i]))
+        else if (strpbrk(INNER, map))
         {
             if (walls == 0 || map[i - 1] == ' ')
                 return 1;
 
             walls = 1;
         }
-        else if (!strpbrk(VLCHR, map[i]))
+        else if (!strpbrk(VLCHR, map))
             return -1;
     }
 

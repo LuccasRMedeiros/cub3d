@@ -24,10 +24,11 @@
  */
 void set_floor_color(char *line, st_cub *cub)
 {
-    char *rgb[3];
+    char *rgb[4];
 
     rgb[0] = strtok(line + 1, ",");
     for (size_t i = 1; (rgb[i] = strtok(NULL, ",")) != NULL && i < 3; ++i);
+    rgb[3] = NULL;
 
     if (
             !validate_color(rgb, "floor") ||

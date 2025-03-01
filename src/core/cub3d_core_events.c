@@ -37,7 +37,7 @@ int key_pressed(int key, st_program *prog)
     return 0;
 }
 
-int key_released(int key, t_program *prog)
+int key_released(int key, st_program *prog)
 {
     if (key == FWRD || key == REAR)
         prog->player->move_frrr = 0;

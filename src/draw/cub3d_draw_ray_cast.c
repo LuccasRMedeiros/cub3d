@@ -13,6 +13,7 @@
 #include "cub3d_draw.h"
 
 #include <math.h>
+#include <stdlib.h>
 
 /**
  * Cast two rays, one horizontally and one vertically, then compare which one  
@@ -48,8 +49,7 @@ void ray_cast(st_world *wrld, st_actor *p, int n_rays)
 
     dist_proj = ((n_rays / 2) / tan(FOV_ANG / 2));
     ang = 0;
-    ray = 0;
-    aray = (t_ray *)ft_calloc(n_rays, sizeof(*aray));
+    aray = (st_ray *)calloc(n_rays, sizeof(*aray));
     
     for (int ray = 0; ray < n_rays; ++ray)
     {

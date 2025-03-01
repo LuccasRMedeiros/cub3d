@@ -42,5 +42,5 @@ st_ray new_ray(char id, double ang)
     new.map_y = 0;
     new.dist = (float)INT_MAX;
 
-    return (new);
+    return new;
 }
