@@ -13,7 +13,7 @@ fi
 
 if [ $1 == "--tag" ]; then
     echo "Generating project tags"
-    ctags -R --languages=C,C++ --exclude=".git/" --exclude=".ccls-cache/"
+    ctags -R --languages=C,C++ --exclude=.git --exclude=.ccls-cache
 elif [ $1 == "--untag" ]; then
     echo "Removing tags"
     rm -f tags

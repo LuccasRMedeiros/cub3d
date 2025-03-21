@@ -99,22 +99,31 @@ static void set_axes(st_cub *cub)
  */
 void set_map(char *line, st_cub *cub, size_t gnl_stts)
 {
+    size_t sz_pre_lyt = 0;
+
     if (gnl_stts && is_map_pattern(line))
     {
         if (!cub->pre_lyt)
-            cub->pre_lyt = calloc(1, (strlen(line) + 1) * sizeof(char *));
+        {
+            sz_pre_lyt = strlen(line) + 2;
+            cub->pre_lyt = calloc(sz_pre_lyt, sizeof(char *));
+        }
         else
         {
-            cub->pre_lyt = realloc(
-                    cub->pre_lyt,
-                    (strlen(cub->pre_lyt) + strlen(line) + 1) * sizeof (char)
-                    );
+            char *pre_lyt;
+
+            sz_pre_lyt = strlen(cub->pre_lyt) + strlen(line) + 2;
+            pre_lyt = calloc(sz_pre_lyt, sizeof (char));
+
+            strcpy(pre_lyt, cub->pre_lyt);
+            free(cub->pre_lyt);
+            cub->pre_lyt = pre_lyt;
         }
 
         if (cub->pre_lyt == NULL) { exit(-1); }
 
-        cub->pre_lyt = strcat(cub->pre_lyt, line);
-        cub->pre_lyt = strcat(cub->pre_lyt, "\n");
+        strcat(cub->pre_lyt, line);
+        strcat(cub->pre_lyt, "\n");
     }
     else if (!gnl_stts || cub->pre_lyt)
     {

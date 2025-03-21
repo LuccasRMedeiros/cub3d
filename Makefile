@@ -55,7 +55,7 @@ FLAGS = -Wall -Wextra -Werror -std=gnu99
 
 MLBX = 	./src/libs/minilibx-linux
 
-INCLUDES =	-I src/libs/libft/headers \
+INCLUDES =	-I src/libft \
 			-I src/libs/minilibx-linux \
 			-I src/core \
 			-I src/error \

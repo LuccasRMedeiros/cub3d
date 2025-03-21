@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.25.1)
+
+project(Cub3d LANGUAGES C)
+
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
+add_subdirectory(src/core)
+add_subdirectory(src/draw)
+add_subdirectory(src/error)
+add_subdirectory(src/libft)
+add_subdirectory(src/struct)
+add_subdirectory(src/world)
+
+add_executable(cub3d)
