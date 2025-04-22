@@ -37,6 +37,7 @@ st_cub *new_cub(void)
     new->c_color[0] = -1;
     new->c_color[1] = -1;
     new->c_color[2] = -1;
+    new->layout_size = 0;
     new->pre_lyt = NULL;
     new->layout = NULL;
     new->map_axis[0] = 0;

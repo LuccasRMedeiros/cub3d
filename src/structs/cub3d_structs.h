@@ -44,8 +44,8 @@
 
 typedef enum
 {
-    X,
-    Y
+    AXIS_X,
+    AXIS_Y
 }   e_axis;
 
 typedef enum
@@ -81,14 +81,15 @@ typedef struct
     int         status;
     int         save;
     int         res[2];
-    st_sheet    *tilesheet;
-    st_sheet    *spritesheet;
     int         f_color[3];
     int         c_color[3];
-    char        *pre_lyt;
-    char        **layout;
     int         map_axis[2];
     int         player_pos[2];
+    size_t      layout_size;
+    char        *pre_lyt;
+    char        **layout;
+    st_sheet    *tilesheet;
+    st_sheet    *spritesheet;
 }   st_cub;
 
 typedef struct

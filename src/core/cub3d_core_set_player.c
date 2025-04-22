@@ -26,14 +26,14 @@ void set_player(st_cub *cub)
         cub->status = -1;
         return ;
     }
-    for (int map_y = 0; map_y < cub->map_axis[Y]; ++map_y)
+    for (int map_y = 0; map_y < cub->map_axis[AXIS_Y]; ++map_y)
     {
-        for (int map_x = 0; map_x < cub->map_axis[X]; ++map_x)
+        for (int map_x = 0; map_x < cub->map_axis[AXIS_X]; ++map_x)
         {
             if (strchr(PLAYER, cub->layout[map_y][map_x]) != NULL)
             {
-                cub->player_pos[X] = map_x;
-                cub->player_pos[Y] = map_y;
+                cub->player_pos[AXIS_X] = map_x;
+                cub->player_pos[AXIS_Y] = map_y;
             }
         }
     }

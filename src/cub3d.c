@@ -23,8 +23,8 @@ static st_program prog_config(st_cub *cub)
     int px, py;
     st_program   prog;
 
-    px = cub->player_pos[X];
-    py = cub->player_pos[Y];
+    px = cub->player_pos[AXIS_X];
+    py = cub->player_pos[AXIS_Y];
     prog.running = 1;
     prog.wndw = new_window(cub->res[WDT], cub->res[HGT], "Cub3D");
     prog.wrld = new_world(cub, prog.wndw);

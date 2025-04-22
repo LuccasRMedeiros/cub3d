@@ -11,95 +11,44 @@
 /* ************************************************************************** */
 
 #include "cub3d_error.h"
+#include "libmaker_types.h"
 
 #include <string.h>
+#include <stdio.h>
 
 /**
- * Both walls_at_col and walls_at_row looks to each index at what it is meant  
- * look at from its beginning to its end and the reverse path also, it will    
- * assign 2 to "walls" var each time it find a wall, if it find a INNER element
- *  (02NSWE) it set walls to 1.
- * So each number returned from "walls_at" functions means:
- *  - 2: There are walls in both extremes and its interior is filled.
- *  - 1: There are no walls surrounding the interiors of the map.
- *  - 0: A empty column was found, and like the break lines between the map    
- * layout, they are invalid.
+ * Check if there are walls surrounding the map
  */
-static int walls_at_col(char **map, size_t col)
+static st_ipoint *look_arround(st_cub *cub)
 {
-    int walls;
 
-    walls = 0;
+    char **layout = cub->layout;
+    unsigned int leak_cnt = 0;
+    st_ipoint *ret = NULL;
 
-    for (int i = 0; map[i]; ++i)
+    for (size_t x = 0; layout[x] != NULL; ++x)
     {
-        if (map[i][col] == '1')
-            walls = 2;
-        else if (strpbrk(INNER, map[i]))
+        for (size_t y = 0; layout[x][y] != '\0'; ++y)
         {
-            if (walls == 0 || map[i - 1][col] == ' ')
-                return 1;
-
-            walls = 1;
+            if (strchr(INNER, layout[x][y]))
+            {
+                if (
+                        y == 0 || layout[x][y - 1] == ' ' ||
+                        x == 0 || layout[x - 1][y] == ' ' ||
+                        layout[x][y + 1] == '\0' || layout[x][y + 1] == ' ' ||
+                        layout[x + 1] == NULL || layout[x + 1][y] == ' '
+                        )
+                {
+                    ++leak_cnt;
+                    ret = realloc(ret, sizeof (st_ipoint) * leak_cnt);
+                    ret[leak_cnt - 1].x = x;
+                    ret[leak_cnt - 1].y = y;
+                }
+            }
         }
-        else if (!strpbrk(VLCHR, map[i]))
-            return -1;
     }
 
-    return walls;
-}
-
-static int walls_at_row(char *map)
-{
-    int walls;
-
-    walls = 0;
-
-    for (int i = 0; map[i]; ++i)
-    {
-        if (map[i] == '1')
-            walls = 2;
-        else if (strpbrk(INNER, map))
-        {
-            if (walls == 0 || map[i - 1] == ' ')
-                return 1;
-
-            walls = 1;
-        }
-        else if (!strpbrk(VLCHR, map))
-            return -1;
-    }
-
-    return walls;
-}
-
-/**
- * Call walls_at_row and walls_at_col to check if there are walls surrounding  
- * the map.
- */
-static int conf_walls(st_cub *cub)
-{
-    int walls;
-
-    walls = 0;
-
-    for (int r = 0; r < cub->map_axis[1]; ++r)
-    {
-        walls = walls_at_row(cub->layout[r]);
-
-        if (walls != 2)
-            return walls;
-    }
-
-    for (int c = 0; c < cub->map_axis[0]; ++c)
-    {
-        walls = walls_at_col(cub->layout, c);
-
-        if (walls != 2)
-            return walls;
-    }
-
-    return walls;
+    return ret;
 }
 
 /**
@@ -115,30 +64,28 @@ static int conf_walls(st_cub *cub)
  * Erros like unknown element ids or more than one player or no player at all  
  * are handled by validate_elements.
  */
-int validate_map(st_cub *cub)
+bool validate_map(st_cub *cub)
 {
-    int cw;
+    st_ipoint *leaks;
 
-    cw = conf_walls(cub);
-
-    if (cw == 1)
+    if (
+            cub == NULL ||
+            cub->layout == NULL ||
+            cub->map_axis[AXIS_X] <= 2 ||
+            cub->map_axis[AXIS_Y] <= 2
+        )
     {
-        error_msg("The map must be surrounded by walls", "map layout");
-
-        return 0;
+        return false;
     }
-    else if (cw == 0)
+    
+    leaks = look_arround(cub);
+    if (leaks != NULL)
     {
-        error_msg("Blank line found on map layout", "map layout");
+        fprintf(stderr, "The map is not closed!\n");
+        free(leaks);
 
-        return 0;
-    }
-    else if (cw == -1)
-    {
-        error_msg("Invalid character in map layout", "map layout");
-
-        return 0;
+        return false;
     }
 
-    return 1;
+    return true;
 }

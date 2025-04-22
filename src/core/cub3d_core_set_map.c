@@ -22,17 +22,17 @@
  * There is a lot of unecessary memory allocations, not so much strange 
  * normalizations, and use of "custom" functions that i added in libft. It looks
  * "overengineered", and certainly can be optimized.
- *
- * TODO:
- *  - Open and read the cub file line by line
- *  - Remove the realloc part and use strtok instead
  */
 
 /**
  * Normalize the map filling the layout row with spaces, so cub3d can scan the
  * layout better
+ *
+ * NOTE: This process seems to be unecessary, as it is used only to validate the
+ * layout, for now it will be here "deprecated" for the case i find use for it 
+ * in the future
  */
-static void normalize_map(st_cub *cub)
+__attribute__((unused)) static void normalize_map(st_cub *cub)
 {
     char **map;
     int rowsz;
@@ -56,35 +56,6 @@ static void normalize_map(st_cub *cub)
 }
 
 /**
- * set_axes is a part of set_map where map_x and map_y are defined. It is      -
- * organized this way to allow check_invalid_map do its verification in the    -
- * already parsed data, garanting a better use of memory and processing.
- */
-static void set_axes(st_cub *cub)
-{
-    char **map;
-    int x = 0, y = 0;
-
-    map = cub->layout;
-
-    while (*map != NULL)
-    {
-        ++y;
-        ++*map;
-    }
-
-    cub->map_axis[1] = y;
-    
-    for (y = y; y > 0; --y)
-    {
-        x = strlen(map[y]);
-
-        if (x > cub->map_axis[0])
-            cub->map_axis[0] = x;
-    }
-}
-
-/**
  * Set the map, the axes, normalize it, then verify if it is build correctly.
  * The verification is only made in the end of the parsing to let ft_gnl finish-
  *  the read of the cub file, avoiding the static buffer to retain unecessary  -
@@ -99,38 +70,22 @@ static void set_axes(st_cub *cub)
  */
 void set_map(char *line, st_cub *cub, size_t gnl_stts)
 {
-    size_t sz_pre_lyt = 0;
-
     if (gnl_stts && is_map_pattern(line))
     {
-        if (!cub->pre_lyt)
-        {
-            sz_pre_lyt = strlen(line) + 2;
-            cub->pre_lyt = calloc(sz_pre_lyt, sizeof(char *));
-        }
-        else
-        {
-            char *pre_lyt;
+        int line_size = strlen(line);
 
-            sz_pre_lyt = strlen(cub->pre_lyt) + strlen(line) + 2;
-            pre_lyt = calloc(sz_pre_lyt, sizeof (char));
+        cub->layout_size++;
+        cub->layout = realloc(cub->layout, sizeof (char *) * cub->layout_size + 1);
+        cub->layout[cub->layout_size - 1] = strdup(line);
+        cub->layout[cub->layout_size] = NULL;
 
-            strcpy(pre_lyt, cub->pre_lyt);
-            free(cub->pre_lyt);
-            cub->pre_lyt = pre_lyt;
-        }
+        if (line_size > cub->map_axis[AXIS_X])
+            cub->map_axis[AXIS_X] = line_size;
 
-        if (cub->pre_lyt == NULL) { exit(-1); }
-
-        strcat(cub->pre_lyt, line);
-        strcat(cub->pre_lyt, "\n");
+        cub->map_axis[AXIS_Y] = cub->layout_size;
     }
-    else if (!gnl_stts || cub->pre_lyt)
+    else if (!gnl_stts)
     {
-        cub->layout = ft_split(cub->pre_lyt, '\n');
-        set_axes(cub);
-        normalize_map(cub);
-        
         if (!validate_map(cub))
         {
             cub->status = -1;

@@ -9,10 +9,6 @@
 #include <sys/resource.h>
 #include <unistd.h>
 
-#if !defined(BUFFER_SIZE) || (EXPAND(BUFFER_SIZE) <= 0)
-#error "Invalid BUFFER_SIZE detected, define it at compile time or change on libft.h"
-#endif
-
 static int read_file(int fd, char **rf)
 {
     int n = 1;
@@ -84,12 +80,12 @@ int mkr_read_line(int fd, char **line)
     int nread = 0;
 
     if (fd < 1 || fd > RLIMIT_NOFILE)
-        return RD_INVALID_FD(fd);
+        return fd;
     if (line == NULL)
         return RD_INVALID_BUF;
     
-    if (*rf == NULL)
-        *rf = calloc(1, sizeof (char));
+    if (rf == NULL)
+        rf = calloc(1, sizeof (char));
 
     nread = read_file(fd, &rf);
  

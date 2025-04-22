@@ -19,7 +19,9 @@
 #ifndef CUB3D_ERROR_H
 #define CUB3D_ERROR_H
 
-#include <cub3d_structs.h>
+#include "cub3d_structs.h"
+
+#include <stdbool.h>
 
 #define PLAYER "NSWE"
 #define INNER "02NSWE"
@@ -31,7 +33,7 @@ int validate_args(int argc, char **argv);
 int is_first_def(void *data, const char *p_name, int ruler);
 int is_map_pattern(const char *line);
 int validate_color(char **rgb, char *area);
-int validate_map(st_cub *cub);
+bool validate_map(st_cub *cub);
 int validate_player_pos(st_cub *cub);
 int validate_res(char **values);
 int validate_texture(char *path, char *where);

@@ -55,7 +55,7 @@ FLAGS = -Wall -Wextra -Werror -std=gnu99
 
 MLBX = 	./src/libs/minilibx-linux
 
-INCLUDES =	-I src/libft \
+INCLUDES =	-I src/libmaker \
 			-I src/libs/minilibx-linux \
 			-I src/core \
 			-I src/error \
@@ -79,7 +79,7 @@ SRC = 	$(addprefix core/, $(notdir $(wildcard ./src/core/*.c))) \
 		$(addprefix error/, $(notdir $(wildcard ./src/error/*.c))) \
 		$(addprefix structs/, $(notdir $(wildcard ./src/structs/*.c))) \
 		$(addprefix world/, $(notdir $(wildcard ./src/world/*.c))) \
-		$(addprefix libft/, $(notdir $(wildcard ./src/libft/*.c)))
+		$(addprefix libmaker/, $(notdir $(wildcard ./src/libmaker/*.c)))
 
 SRC_FULL = $(addprefix $(ROOT_SRC)/, $(SRC))
 

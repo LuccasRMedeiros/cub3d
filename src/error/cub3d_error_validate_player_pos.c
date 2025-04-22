@@ -46,11 +46,11 @@ int validate_player_pos(st_cub *cub)
 
     p_cnt = 0;
 
-    for (size_t row = 0; cub->layout[row]; ++row)
+    for (size_t row = 0; cub->layout[row] != NULL; ++row)
     {
-        for (size_t col = 0; cub->layout[row][col]; ++col)
+        for (size_t col = 0; cub->layout[row][col] != '\0'; ++col)
         {
-            if (strpbrk(PLAYER, cub->layout[row]))
+            if (strchr(PLAYER, cub->layout[row][col]))
                 ++p_cnt;
         }
     }
